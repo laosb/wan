@@ -53,7 +53,7 @@ export default class WeChatArticle {
   /**
    * Fetch & parse the article.
    *
-   * @return {Boolean} Returns `true` on success.
+   * @return {WeChatArticle} Returns `this` so you can chain calls.
    */
   async fetchAndParse () {
     const $ = await fetchAndParse(this.url)
@@ -100,7 +100,7 @@ export default class WeChatArticle {
      */
     this.content = $('#js_content').html()
     this._parsed = true
-    return true
+    return this
   }
 
   /**
