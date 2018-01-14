@@ -22,7 +22,7 @@ standard webpages.
 * **Normalize**: Remove `poweredby` and other useless attributes, unwrap elements
 which was far too wrapped by elements, etc.
 * **Purify**(optional): You may need much pure HTML documents. This process
-reconstruct all elements basede on pure content. Only crucial styles will be
+reconstruct all elements based on pure content. Only crucial styles will be
 preserved, like `text-align`. Decorational widgets & tiny images removed.
 * **Serve**(optional): You may want to push your WeChat articles to your website,
 and style them with your website's styles. No problem.
