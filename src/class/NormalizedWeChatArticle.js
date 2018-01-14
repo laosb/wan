@@ -10,6 +10,8 @@ import { normalize } from '../normalize'
  * need to `fetchAndParse` before normalization. But you can still do this
  * manually, so you get the chance to make your own normalization work before our
  * process, with a cheerio instance from {@link NormalizedWeChatArticle#getContent$}.
+ *
+ * @since 0.3.0
  */
 export default class NormalizedWeChatArticle extends WeChatArticle {
   /**

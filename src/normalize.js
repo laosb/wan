@@ -10,6 +10,8 @@ import { cleanStyle } from './lib/style'
  * @param {$} $
  *
  * @return {$}
+ *
+ * @since 0.3.0
  */
 export function normalize ($) {
   $('[style]').each((i, el) => $(el).attr('style', cleanStyle($(el).attr('style'))))

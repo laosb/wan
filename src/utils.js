@@ -12,6 +12,8 @@ const axiosGet = throttle(axios.get, 7, 1000)
  * @param {String} url - URL to that page.
  *
  * @return {$} Returns a cheerio instance with the whole HTML from axios.
+ *
+ * @since 0.2.0
  */
 export async function fetchAndParse (url) {
   try {
