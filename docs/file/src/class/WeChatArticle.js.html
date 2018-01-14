@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../../">
-  <title data-ice="title">src/class/WeChatArticle.js | wan</title>
+  <title data-ice="title">src/class/WeChatArticle.js | wearticle</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
   <script src="script/manual.js"></script>
-<meta name="description" content="A server that normalize WeChat articles to webpages."><meta property="twitter:card" content="summary"><meta property="twitter:title" content="wan"><meta property="twitter:description" content="A server that normalize WeChat articles to webpages."></head>
+<meta name="description" content="A server that normalize WeChat articles to webpages."><meta property="twitter:card" content="summary"><meta property="twitter:title" content="wearticle"><meta property="twitter:description" content="A server that normalize WeChat articles to webpages."></head>
 <body class="layout-container" data-ice="rootContainer">
 
 <header>
@@ -46,6 +46,15 @@ import { VM } from &apos;vm2&apos;
  * e.g. http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw
  */
 export default class WeChatArticle {
+  /**
+   * Take the url. Just note the article won&apos;t be actually loaded and parsed
+   * before you call `WeChatArticle#fetchAndParse` manually.
+   *
+   * You could see if this article is parsed or not, by using `WeChatArticle#isParsed()`.
+   *
+   * @param {String} url - A valid WeChat article URL, begins with
+   * http(s)://mp.weixin.qq.com/s
+   */
   constructor (url) {
     if (!url.startsWith(&apos;https://mp.weixin.qq.com/s&apos;) &amp;&amp;
       !url.startsWith(&apos;http://mp.weixin.qq.com/s&apos;)) {
@@ -54,7 +63,20 @@ export default class WeChatArticle {
     this.url = url
     this._parsed = false
   }
+  /**
+   * See if this article has been loaded &amp; parsed.
+   *
+   * Load &amp; parse with `WeChatArticle#fetchAndParse()`.
+   *
+   * @return {Boolean} Parsed or not.
+   */
   isParsed () { return this._parsed }
+
+  /**
+   * Fetch &amp; parse the article.
+   *
+   * @return {Boolean} Returns `true` on success.
+   */
   async fetchAndParse () {
     const $ = await fetchAndParse(this.url)
     let usefulCode = &apos;const window = {}; const __getInfoFunc = () =&gt; {&apos;
@@ -85,6 +107,12 @@ export default class WeChatArticle {
     this._parsed = true
     return true
   }
+  /**
+   * Returns author&apos;s name if the author does specify an author name on the
+   * article, or the name of the Official Account if not.
+   *
+   * @return {String} The author&apos;s name.
+   */
   getAuthorName () { return this.author || this.account.name }
   toString () {
     return this._parsed

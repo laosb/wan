@@ -8,6 +8,15 @@ import { VM } from 'vm2'
  * e.g. http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw
  */
 export default class WeChatArticle {
+  /**
+   * Take the url. Just note the article won't be actually loaded and parsed
+   * before you call `WeChatArticle#fetchAndParse` manually.
+   *
+   * You could see if this article is parsed or not, by using `WeChatArticle#isParsed()`.
+   *
+   * @param {String} url - A valid WeChat article URL, begins with
+   * http(s)://mp.weixin.qq.com/s
+   */
   constructor (url) {
     if (!url.startsWith('https://mp.weixin.qq.com/s') &&
       !url.startsWith('http://mp.weixin.qq.com/s')) {
@@ -16,7 +25,20 @@ export default class WeChatArticle {
     this.url = url
     this._parsed = false
   }
+  /**
+   * See if this article has been loaded & parsed.
+   *
+   * Load & parse with `WeChatArticle#fetchAndParse()`.
+   *
+   * @return {Boolean} Parsed or not.
+   */
   isParsed () { return this._parsed }
+
+  /**
+   * Fetch & parse the article.
+   *
+   * @return {Boolean} Returns `true` on success.
+   */
   async fetchAndParse () {
     const $ = await fetchAndParse(this.url)
     let usefulCode = 'const window = {}; const __getInfoFunc = () => {'
@@ -47,6 +69,12 @@ export default class WeChatArticle {
     this._parsed = true
     return true
   }
+  /**
+   * Returns author's name if the author does specify an author name on the
+   * article, or the name of the Official Account if not.
+   *
+   * @return {String} The author's name.
+   */
   getAuthorName () { return this.author || this.account.name }
   toString () {
     return this._parsed

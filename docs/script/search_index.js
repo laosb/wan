@@ -1,14 +1,14 @@
 window.esdocSearchIndex = [
   [
-    "wan/src/class/wechatarticle.js~wechatarticle",
+    "wearticle/src/class/wechatarticle.js~wechatarticle",
     "class/src/class/WeChatArticle.js~WeChatArticle.html",
-    "<span>WeChatArticle</span> <span class=\"search-result-import-path\">wan/src/class/WeChatArticle.js</span>",
+    "<span>WeChatArticle</span> <span class=\"search-result-import-path\">wearticle/src/class/WeChatArticle.js</span>",
     "class"
   ],
   [
-    "wan/src/utils.js~fetchandparse",
+    "wearticle/src/utils.js~fetchandparse",
     "function/index.html#static-function-fetchAndParse",
-    "<span>fetchAndParse</span> <span class=\"search-result-import-path\">wan/src/utils.js</span>",
+    "<span>fetchAndParse</span> <span class=\"search-result-import-path\">wearticle/src/utils.js</span>",
     "function"
   ],
   [

@@ -8,7 +8,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "gen-doc": "esdoc",
     "serve-doc": "(cd docs && live-server)",
-    "doc": "npm run gen-doc && npm run serve-doc"
+    "doc": "npm run gen-doc && npm run serve-doc",
+    "prepublish": "npm run gen-doc"
   },
   "repository": {
     "type": "git",

@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../../">
-  <title data-ice="title">WeChatArticle | wan</title>
+  <title data-ice="title">WeChatArticle | wearticle</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
   <script src="script/manual.js"></script>
-<meta name="description" content="A server that normalize WeChat articles to webpages."><meta property="twitter:card" content="summary"><meta property="twitter:title" content="wan"><meta property="twitter:description" content="A server that normalize WeChat articles to webpages."></head>
+<meta name="description" content="A server that normalize WeChat articles to webpages."><meta property="twitter:card" content="summary"><meta property="twitter:title" content="wearticle"><meta property="twitter:description" content="A server that normalize WeChat articles to webpages."></head>
 <body class="layout-container" data-ice="rootContainer">
 
 <header>
@@ -36,7 +36,7 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import WeChatArticle from &apos;<span><a href="file/src/class/WeChatArticle.js.html#lineNumber10">wan/src/class/WeChatArticle.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import WeChatArticle from &apos;<span><a href="file/src/class/WeChatArticle.js.html#lineNumber10">wearticle/src/class/WeChatArticle.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
@@ -97,13 +97,14 @@ e.g. <a href="http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw">http://mp.weixin
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/class/WeChatArticle.js~WeChatArticle.html#instance-constructor-constructor">constructor</a></span></span><span class="code" data-ice="signature">()</span>
+          <span class="code" data-ice="name"><span><a href="class/src/class/WeChatArticle.js~WeChatArticle.html#instance-constructor-constructor">constructor</a></span></span><span class="code" data-ice="signature">(url: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Take the url.</p>
+</div>
       </div>
     </td>
     <td>
@@ -341,13 +342,14 @@ e.g. <a href="http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw">http://mp.weixin
           
           <span data-ice="async">async</span>
           
-          <span class="code" data-ice="name"><span><a href="class/src/class/WeChatArticle.js~WeChatArticle.html#instance-method-fetchAndParse">fetchAndParse</a></span></span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/class/WeChatArticle.js~WeChatArticle.html#instance-method-fetchAndParse">fetchAndParse</a></span></span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a></span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Fetch &amp; parse the article.</p>
+</div>
       </div>
     </td>
     <td>
@@ -369,13 +371,15 @@ e.g. <a href="http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw">http://mp.weixin
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/class/WeChatArticle.js~WeChatArticle.html#instance-method-getAuthorName">getAuthorName</a></span></span><span class="code" data-ice="signature">(): <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/class/WeChatArticle.js~WeChatArticle.html#instance-method-getAuthorName">getAuthorName</a></span></span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Returns author&apos;s name if the author does specify an author name on the
+article, or the name of the Official Account if not.</p>
+</div>
       </div>
     </td>
     <td>
@@ -397,13 +401,14 @@ e.g. <a href="http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw">http://mp.weixin
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/class/WeChatArticle.js~WeChatArticle.html#instance-method-isParsed">isParsed</a></span></span><span class="code" data-ice="signature">(): <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/class/WeChatArticle.js~WeChatArticle.html#instance-method-isParsed">isParsed</a></span></span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a></span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>See if this article has been loaded &amp; parsed.</p>
+</div>
       </div>
     </td>
     <td>
@@ -457,22 +462,43 @@ e.g. <a href="http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw">http://mp.weixin
     
     
     
-    <span class="code" data-ice="name">constructor</span><span class="code" data-ice="signature">()</span>
+    <span class="code" data-ice="name">constructor</span><span class="code" data-ice="signature">(url: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/class/WeChatArticle.js.html#lineNumber11">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/class/WeChatArticle.js.html#lineNumber20">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Take the url. Just note the article won&apos;t be actually loaded and parsed
+before you call <code>WeChatArticle#fetchAndParse</code> manually.</p>
+<p>You could see if this article is parsed or not, by using <code>WeChatArticle#isParsed()</code>.</p>
+</div>
 
   
 
-  <div data-ice="properties">
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">url</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>A valid WeChat article URL, begins with
+http(s)://mp.weixin.qq.com/s</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
 </div>
 
   
@@ -507,7 +533,7 @@ e.g. <a href="http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw">http://mp.weixin
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/class/WeChatArticle.js.html#lineNumber45">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/class/WeChatArticle.js.html#lineNumber67">source</a></span></span>
     </span>
   </h3>
 
@@ -550,7 +576,7 @@ e.g. <a href="http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw">http://mp.weixin
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/class/WeChatArticle.js.html#lineNumber44">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/class/WeChatArticle.js.html#lineNumber66">source</a></span></span>
     </span>
   </h3>
 
@@ -593,7 +619,7 @@ e.g. <a href="http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw">http://mp.weixin
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/class/WeChatArticle.js.html#lineNumber46">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/class/WeChatArticle.js.html#lineNumber68">source</a></span></span>
     </span>
   </h3>
 
@@ -636,7 +662,7 @@ e.g. <a href="http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw">http://mp.weixin
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/class/WeChatArticle.js.html#lineNumber42">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/class/WeChatArticle.js.html#lineNumber64">source</a></span></span>
     </span>
   </h3>
 
@@ -679,7 +705,7 @@ e.g. <a href="http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw">http://mp.weixin
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/class/WeChatArticle.js.html#lineNumber41">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/class/WeChatArticle.js.html#lineNumber63">source</a></span></span>
     </span>
   </h3>
 
@@ -722,7 +748,7 @@ e.g. <a href="http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw">http://mp.weixin
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/class/WeChatArticle.js.html#lineNumber16">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/class/WeChatArticle.js.html#lineNumber25">source</a></span></span>
     </span>
   </h3>
 
@@ -767,7 +793,7 @@ e.g. <a href="http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw">http://mp.weixin
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/class/WeChatArticle.js.html#lineNumber17">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/class/WeChatArticle.js.html#lineNumber26">source</a></span></span>
     </span>
   </h3>
 
@@ -809,18 +835,19 @@ e.g. <a href="http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw">http://mp.weixin
     
     <span data-ice="async">async</span>
     
-    <span class="code" data-ice="name">fetchAndParse</span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
+    <span class="code" data-ice="name">fetchAndParse</span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/class/WeChatArticle.js.html#lineNumber20">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/class/WeChatArticle.js.html#lineNumber42">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Fetch &amp; parse the article.</p>
+</div>
 
   
 
@@ -832,8 +859,9 @@ e.g. <a href="http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw">http://mp.weixin
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
-          
+          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>Returns <code>true</code> on success.</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -864,18 +892,20 @@ e.g. <a href="http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw">http://mp.weixin
     
     
     
-    <span class="code" data-ice="name">getAuthorName</span><span class="code" data-ice="signature">(): <span>*</span></span>
+    <span class="code" data-ice="name">getAuthorName</span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/class/WeChatArticle.js.html#lineNumber50">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/class/WeChatArticle.js.html#lineNumber78">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Returns author&apos;s name if the author does specify an author name on the
+article, or the name of the Official Account if not.</p>
+</div>
 
   
 
@@ -887,8 +917,9 @@ e.g. <a href="http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw">http://mp.weixin
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span>*</span></td>
-          
+          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>The author&apos;s name.</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -919,18 +950,20 @@ e.g. <a href="http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw">http://mp.weixin
     
     
     
-    <span class="code" data-ice="name">isParsed</span><span class="code" data-ice="signature">(): <span>*</span></span>
+    <span class="code" data-ice="name">isParsed</span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/class/WeChatArticle.js.html#lineNumber19">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/class/WeChatArticle.js.html#lineNumber35">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>See if this article has been loaded &amp; parsed.</p>
+<p>Load &amp; parse with <code>WeChatArticle#fetchAndParse()</code>.</p>
+</div>
 
   
 
@@ -942,8 +975,9 @@ e.g. <a href="http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw">http://mp.weixin
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span>*</span></td>
-          
+          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>Parsed or not.</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -978,7 +1012,7 @@ e.g. <a href="http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw">http://mp.weixin
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/class/WeChatArticle.js.html#lineNumber51">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/class/WeChatArticle.js.html#lineNumber79">source</a></span></span>
     </span>
   </h3>
 
