@@ -15,6 +15,8 @@ import { VM } from 'vm2'
  * await article.fetchAndParse()
  * console.log(article.toString())
  * // -> WeChatArticle ("关于 ¡Hola!" by "Holateens")
+ *
+ * @since 0.1.0
  */
 export default class WeChatArticle {
   /**
