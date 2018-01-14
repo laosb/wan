@@ -43,12 +43,23 @@
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import WeChatArticle from &apos;./WeChatArticle&apos;
 import { normalize } from &apos;../normalize&apos;
 
+/**
+ * `NormalizedWeChatArticle` is for fetching &amp; normalize a WeChat article. It
+ * extends {@link WeChatArticle}, and has an extra method
+ * {@link NormalizedWeChatArticle#normalize}.
+ *
+ * Just to clarify, this class does nothing more than normalize. Except you don&apos;t
+ * need to `fetchAndParse` before normalization. But you can still do this
+ * manually, so you get the chance to make your own normalization work before our
+ * process, with a cheerio instance from {@link NormalizedWeChatArticle#getContent$}.
+ */
 export default class NormalizedWeChatArticle extends WeChatArticle {
-  constructor (url) {
-    super(url)
-    this._origContent = &apos;&apos;
-    this.content = &apos;&apos;
-  }
+  /**
+   * Does normalization. Simply overrides {@link NormalizedWeChatArticle#content}
+   * with normalized content.
+   *
+   * @return {NormalizedWeChatArticle}
+   */
   async normalize () {
     if (!this.isParsed()) await this.fetchAndParse()
     this._origContent = this.content

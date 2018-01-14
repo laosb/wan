@@ -40,13 +40,13 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import NormalizedWeChatArticle from &apos;<span><a href="file/src/class/NormalizedWeChatArticle.js.html#lineNumber4">wearticle/src/class/NormalizedWeChatArticle.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import NormalizedWeChatArticle from &apos;<span><a href="file/src/class/NormalizedWeChatArticle.js.html#lineNumber14">wearticle/src/class/NormalizedWeChatArticle.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/class/NormalizedWeChatArticle.js.html#lineNumber4">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/class/NormalizedWeChatArticle.js.html#lineNumber14">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -66,7 +66,14 @@
 
   
   
-  
+  <div class="description" data-ice="description"><p><code>NormalizedWeChatArticle</code> is for fetching &amp; normalize a WeChat article. It
+extends <span><a href="class/src/class/WeChatArticle.js~WeChatArticle.html">WeChatArticle</a></span>, and has an extra method
+<span><a href="class/src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle.html#instance-method-normalize">NormalizedWeChatArticle#normalize</a></span>.</p>
+<p>Just to clarify, this class does nothing more than normalize. Except you don&apos;t
+need to <code>fetchAndParse</code> before normalization. But you can still do this
+manually, so you get the chance to make your own normalization work before our
+process, with a cheerio instance from <span><a href="class/src/class/WeChatArticle.js~WeChatArticle.html#instance-method-getContent$">NormalizedWeChatArticle#getContent$</a></span>.</p>
+</div>
   
 
   
@@ -80,41 +87,7 @@
 
 
 
-<div data-ice="constructorSummary"><h2>Constructor Summary</h2><table class="summary" data-ice="summary">
-  <thead><tr><td data-ice="title" colspan="3">Public Constructor</td></tr></thead>
-  <tbody>
-  
-  <tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-          
-          
-          
-          <span class="code" data-ice="name"><span><a href="class/src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle.html#instance-constructor-constructor">constructor</a></span></span><span class="code" data-ice="signature">()</span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-</tbody>
-</table>
-</div>
+
 <div data-ice="memberSummary"><h2>Member Summary</h2><table class="summary" data-ice="summary">
   <thead><tr><td data-ice="title" colspan="3">Public Members</td></tr></thead>
   <tbody>
@@ -133,7 +106,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle.html#instance-member-content">content</a></span></span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle.html#instance-member-content">content</a></span></span><span class="code" data-ice="signature">: <span>*</span></span>
         </p>
       </div>
       <div>
@@ -167,7 +140,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle.html#instance-member-_origContent">_origContent</a></span></span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle.html#instance-member-_origContent">_origContent</a></span></span><span class="code" data-ice="signature">: <span>*</span></span>
         </p>
       </div>
       <div>
@@ -202,13 +175,14 @@
           
           <span data-ice="async">async</span>
           
-          <span class="code" data-ice="name"><span><a href="class/src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle.html#instance-method-normalize">normalize</a></span></span><span class="code" data-ice="signature">(): <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle.html#instance-method-normalize">normalize</a></span></span><span class="code" data-ice="signature">(): <span><a href="class/src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle.html">NormalizedWeChatArticle</a></span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Does normalization.</p>
+</div>
       </div>
     </td>
     <td>
@@ -601,55 +575,7 @@ article, or the name of the Official Account if not.</p>
 
 
 
-<div data-ice="constructorDetails"><h2 data-ice="title">Public Constructors</h2>
 
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-constructor-constructor">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    
-    <span class="code" data-ice="name">constructor</span><span class="code" data-ice="signature">()</span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/class/NormalizedWeChatArticle.js.html#lineNumber5">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  <div data-ice="description"><p>Take the url. Just note the article won&apos;t be actually loaded and parsed
-before you call <span><a href="class/src/class/WeChatArticle.js~WeChatArticle.html#instance-method-fetchAndParse">WeChatArticle#fetchAndParse</a></span> manually.</p>
-<p>You could see if this article is parsed or not, by using <span><a href="class/src/class/WeChatArticle.js~WeChatArticle.html#instance-method-isParsed">WeChatArticle#isParsed</a></span>.</p>
-</div>
-
-  <div data-ice="override"><h4>Override:</h4><span><a href="class/src/class/WeChatArticle.js~WeChatArticle.html#instance-constructor-constructor">WeChatArticle#constructor</a></span></div>
-
-  <div data-ice="properties">
-</div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-</div>
 <div data-ice="memberDetails"><h2 data-ice="title">Public Members</h2>
 
 <div class="detail" data-ice="detail">
@@ -660,11 +586,11 @@ before you call <span><a href="class/src/class/WeChatArticle.js~WeChatArticle.ht
     
     
     
-    <span class="code" data-ice="name">content</span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
+    <span class="code" data-ice="name">content</span><span class="code" data-ice="signature">: <span>*</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/class/NormalizedWeChatArticle.js.html#lineNumber8">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/class/NormalizedWeChatArticle.js.html#lineNumber25">source</a></span></span>
     </span>
   </h3>
 
@@ -707,11 +633,11 @@ before you call <span><a href="class/src/class/WeChatArticle.js~WeChatArticle.ht
     
     
     
-    <span class="code" data-ice="name">_origContent</span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
+    <span class="code" data-ice="name">_origContent</span><span class="code" data-ice="signature">: <span>*</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/class/NormalizedWeChatArticle.js.html#lineNumber7">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/class/NormalizedWeChatArticle.js.html#lineNumber23">source</a></span></span>
     </span>
   </h3>
 
@@ -753,18 +679,20 @@ before you call <span><a href="class/src/class/WeChatArticle.js~WeChatArticle.ht
     
     <span data-ice="async">async</span>
     
-    <span class="code" data-ice="name">normalize</span><span class="code" data-ice="signature">(): <span>*</span></span>
+    <span class="code" data-ice="name">normalize</span><span class="code" data-ice="signature">(): <span><a href="class/src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle.html">NormalizedWeChatArticle</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/class/NormalizedWeChatArticle.js.html#lineNumber10">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/class/NormalizedWeChatArticle.js.html#lineNumber21">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Does normalization. Simply overrides <span><a href="class/src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle.html#instance-member-content">NormalizedWeChatArticle#content</a></span>
+with normalized content.</p>
+</div>
 
   
 
@@ -776,7 +704,7 @@ before you call <span><a href="class/src/class/WeChatArticle.js~WeChatArticle.ht
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span>*</span></td>
+          <td class="return-type code" data-ice="returnType"><span><a href="class/src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle.html">NormalizedWeChatArticle</a></span></td>
           
         </tr>
       </tbody>

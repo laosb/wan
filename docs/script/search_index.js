@@ -330,12 +330,6 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
-    "src/class/normalizedwechatarticle.js~normalizedwechatarticle#constructor",
-    "class/src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle.html#instance-constructor-constructor",
-    "src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle#constructor",
-    "method"
-  ],
-  [
     "src/class/normalizedwechatarticle.js~normalizedwechatarticle#content",
     "class/src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle.html#instance-member-content",
     "src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle#content",

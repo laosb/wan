@@ -5,9 +5,11 @@ import { VM } from 'vm2'
 /** @external {$} https://cheerio.js.org/ */
 
 /**
- * WeChatArticle
  * This class is for a typical WeChat article. Takes an URL to that article.
  * e.g. http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw
+ *
+ * In most cases you don't really need to use this class. Use {@link NormalizedWeChatArticle}
+ * if you need normalization on articles.
  *
  * All content-based properties are only available after {@link WeChatArticle#fetchAndParse}.
  *
