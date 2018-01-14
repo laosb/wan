@@ -48,9 +48,9 @@ import { VM } from &apos;vm2&apos;
 export default class WeChatArticle {
   /**
    * Take the url. Just note the article won&apos;t be actually loaded and parsed
-   * before you call `WeChatArticle#fetchAndParse` manually.
+   * before you call {@link WeChatArticle#fetchAndParse} manually.
    *
-   * You could see if this article is parsed or not, by using `WeChatArticle#isParsed()`.
+   * You could see if this article is parsed or not, by using {@link WeChatArticle#isParsed}.
    *
    * @param {String} url - A valid WeChat article URL, begins with
    * http(s)://mp.weixin.qq.com/s
@@ -60,13 +60,18 @@ export default class WeChatArticle {
       !url.startsWith(&apos;http://mp.weixin.qq.com/s&apos;)) {
       throw new Error(&apos;url is not a WeChat article url&apos;)
     }
+
+    /** @type {String} */
     this.url = url
+
+    /** @type {Boolean} */
     this._parsed = false
   }
+
   /**
    * See if this article has been loaded &amp; parsed.
    *
-   * Load &amp; parse with `WeChatArticle#fetchAndParse()`.
+   * Load &amp; parse with {@link WeChatArticle#fetchAndParse}.
    *
    * @return {Boolean} Parsed or not.
    */
@@ -98,15 +103,33 @@ export default class WeChatArticle {
       __getInfoFunc();
     `
     const infoObj = (new VM()).run(usefulCode)
+
+    /** @type {String} */
     this.title = infoObj.title
+
+    /** @type {Date} */
     this.publishedAt = moment($(&apos;#post-date&apos;).text().trim()).toDate()
     const authorEl = $(&apos;#meta_content &gt; em:nth-child(2)&apos;)
-    this.author = authorEl ? authorEl.text().trim() : &apos;&apos;
+
+    /**
+     * The author. Only exists when it does have an author field.
+     *
+     * To get a must-have author name, use {@link WeChatArticle.getAuthorName}.
+     * @type {String}
+     */
+    this.author = authorEl ? authorEl.text().trim() : undefined
     this.account = infoObj.account
+
+    /**
+     * The original content fetched from WeChat public platform. Actually from
+     * `#js-content` part of the whole raw HTML.
+     * @type {String}
+     */
     this.content = $(&apos;#js_content&apos;).html()
     this._parsed = true
     return true
   }
+
   /**
    * Returns author&apos;s name if the author does specify an author name on the
    * article, or the name of the Official Account if not.
