@@ -598,7 +598,7 @@
     "__docId__": 50,
     "kind": "file",
     "name": "src/class/NormalizedWeChatArticle.js",
-    "content": "import WeChatArticle from './WeChatArticle'\nimport { normalize } from '../normalize'\n\n/**\n * `NormalizedWeChatArticle` is for fetching & normalize a WeChat article. It\n * extends {@link WeChatArticle}, and has an extra method\n * {@link NormalizedWeChatArticle#normalize}.\n *\n * Just to clarify, this class does nothing more than normalize. Except you don't\n * need to `fetchAndParse` before normalization. But you can still do this\n * manually, so you get the chance to make your own normalization work before our\n * process, with a cheerio instance from {@link NormalizedWeChatArticle#getContent$}.\n *\n * @example\n * import { NormalizedWeChatArticle } from 'wearticle'\n * const aboutHolaArticle = new NormalizedWeChatArticle('http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw')\n * await article.normalize()\n * console.log(article.content)\n *\n * @since 0.3.0\n */\nexport default class NormalizedWeChatArticle extends WeChatArticle {\n  /**\n   * Does normalization. Simply overrides {@link NormalizedWeChatArticle#content}\n   * with normalized content.\n   *\n   * If the article instance is not parsed yet, this method will get it parsed first.\n   *\n   * @return {NormalizedWeChatArticle}\n   */\n  async normalize () {\n    if (!this.isParsed()) await this.fetchAndParse()\n    this._origContent = this.content\n    const $ = super.getContent$()\n    /** @type {String} */\n    this.content = normalize($)('*').first().parent().html().trim()\n    return this\n  }\n}\n",
+    "content": "import WeChatArticle from './WeChatArticle'\nimport { normalize } from '../normalize'\n\n/**\n * `NormalizedWeChatArticle` is for fetching & normalize a WeChat article. It\n * extends {@link WeChatArticle}, and has an extra method\n * {@link NormalizedWeChatArticle#normalize}.\n *\n * Just to clarify, this class does nothing more than normalize. Except you don't\n * need to `fetchAndParse` before normalization. But you can still do this\n * manually, so you get the chance to make your own normalization work before our\n * process, with a cheerio instance from {@link NormalizedWeChatArticle#getContent$}.\n *\n * @example\n * import { NormalizedWeChatArticle } from 'wearticle'\n * const aboutHolaArticle = new NormalizedWeChatArticle('http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw')\n * await article.normalize()\n * console.log(article.content)\n *\n * @since 0.3.0\n */\nexport default class NormalizedWeChatArticle extends WeChatArticle {\n  /**\n   * Does normalization. Simply overrides {@link NormalizedWeChatArticle#content}\n   * with normalized content.\n   *\n   * If the article instance is not parsed yet, this method will get it parsed first.\n   *\n   * @return {NormalizedWeChatArticle}\n   */\n  async normalize () {\n    if (!this.isParsed()) await this.fetchAndParse()\n    /** @type {String} */\n    this._origContent = this.content\n    const $ = super.getContent$()\n    /** @type {String} */\n    this.content = normalize($)('*').first().parent().html().trim()\n    return this\n  }\n}\n",
     "static": true,
     "longname": "/Users/laosb/Documents/SoftwareProj/wan/src/class/NormalizedWeChatArticle.js",
     "access": "public",
@@ -658,12 +658,14 @@
     "longname": "src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle#_origContent",
     "access": "private",
     "description": null,
-    "lineNumber": 33,
-    "undocument": true,
+    "lineNumber": 34,
     "type": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "String"
+      ],
+      "spread": false,
+      "description": null
     }
   },
   {
@@ -675,7 +677,7 @@
     "longname": "src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle#content",
     "access": "public",
     "description": null,
-    "lineNumber": 36,
+    "lineNumber": 37,
     "type": {
       "nullable": null,
       "types": [

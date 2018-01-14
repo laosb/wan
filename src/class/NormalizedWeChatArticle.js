@@ -30,6 +30,7 @@ export default class NormalizedWeChatArticle extends WeChatArticle {
    */
   async normalize () {
     if (!this.isParsed()) await this.fetchAndParse()
+    /** @type {String} */
     this._origContent = this.content
     const $ = super.getContent$()
     /** @type {String} */
