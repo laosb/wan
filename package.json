@@ -38,6 +38,7 @@
   "devDependencies": {
     "babel-eslint": "^8.2.1",
     "live-server": "^1.2.0",
+    "np": "^2.18.3",
     "standard": "^10.0.3"
   },
   "standard": {
