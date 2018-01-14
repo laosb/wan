@@ -1,7 +1,5 @@
 # Project WAN
 
-![Document coverage](docs/badge.svg)
-
 A server / toolkit to normalize WeChat articles into plain webpages.
 
 ## Why
