@@ -9,7 +9,7 @@
     "gen-doc": "esdoc",
     "serve-doc": "(cd docs && live-server)",
     "doc": "npm run gen-doc && npm run serve-doc",
-    "prepublish": "npm run gen-doc"
+    "version": "npm run gen-doc && git add docs"
   },
   "repository": {
     "type": "git",
