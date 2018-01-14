@@ -22,9 +22,16 @@
   "homepage": "https://github.com/laosb/wan#readme",
   "dependencies": {
     "axios": "^0.17.1",
-    "cheerio": "^1.0.0-rc.2"
+    "cheerio": "^1.0.0-rc.2",
+    "moment": "^2.20.1",
+    "p-throttle": "^1.1.0",
+    "vm2": "^3.5.2"
   },
   "devDependencies": {
+    "babel-eslint": "^8.2.1",
     "standard": "^10.0.3"
+  },
+  "standard": {
+    "parser": "babel-eslint"
   }
 }
