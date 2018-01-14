@@ -2,6 +2,8 @@ import { fetchAndParse } from '../utils'
 import moment from 'moment'
 import { VM } from 'vm2'
 
+/** @external {$} https://cheerio.js.org/
+
 /**
  * WeChatArticle
  * This class is for a typical WeChat article. Takes an URL to that article.
@@ -57,6 +59,7 @@ export default class WeChatArticle {
    */
   async fetchAndParse () {
     const $ = await fetchAndParse(this.url)
+    this._$ = $
     let usefulCode = 'const window = {}; const __getInfoFunc = () => {'
     usefulCode += $('#activity-detail > script:nth-child(7)').get()[0].children[0].data
     usefulCode += `
@@ -95,13 +98,21 @@ export default class WeChatArticle {
 
     /**
      * The original content fetched from WeChat public platform. Actually from
-     * `#js-content` part of the whole raw HTML.
+     * `#js_content` part of the whole raw HTML.
      * @type {String}
      */
     this.content = $('#js_content').html()
     this._parsed = true
     return this
   }
+
+  /**
+   * Returns a cheerio $ of the content.
+   *
+   * @return {$} The cheerio $.
+   * @since 0.2.0
+   */
+  getContent$ () { return this._$(this._$('#js_content')) }
 
   /**
    * Returns author's name if the author does specify an author name on the
