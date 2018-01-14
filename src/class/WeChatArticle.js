@@ -2,7 +2,7 @@ import { fetchAndParse } from '../utils'
 import moment from 'moment'
 import { VM } from 'vm2'
 
-/** @external {$} https://cheerio.js.org/
+/** @external {$} https://cheerio.js.org/ */
 
 /**
  * WeChatArticle
