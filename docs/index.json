@@ -598,7 +598,7 @@
     "__docId__": 50,
     "kind": "file",
     "name": "src/class/NormalizedWeChatArticle.js",
-    "content": "import WeChatArticle from './WeChatArticle'\nimport { normalize } from '../normalize'\n\n/**\n * `NormalizedWeChatArticle` is for fetching & normalize a WeChat article. It\n * extends {@link WeChatArticle}, and has an extra method\n * {@link NormalizedWeChatArticle#normalize}.\n *\n * Just to clarify, this class does nothing more than normalize. Except you don't\n * need to `fetchAndParse` before normalization. But you can still do this\n * manually, so you get the chance to make your own normalization work before our\n * process, with a cheerio instance from {@link NormalizedWeChatArticle#getContent$}.\n */\nexport default class NormalizedWeChatArticle extends WeChatArticle {\n  /**\n   * Does normalization. Simply overrides {@link NormalizedWeChatArticle#content}\n   * with normalized content.\n   *\n   * @return {NormalizedWeChatArticle}\n   */\n  async normalize () {\n    if (!this.isParsed()) await this.fetchAndParse()\n    this._origContent = this.content\n    const $ = super.getContent$()\n    this.content = normalize($)('*').first().parent().html().trim()\n    return this\n  }\n}\n",
+    "content": "import WeChatArticle from './WeChatArticle'\nimport { normalize } from '../normalize'\n\n/**\n * `NormalizedWeChatArticle` is for fetching & normalize a WeChat article. It\n * extends {@link WeChatArticle}, and has an extra method\n * {@link NormalizedWeChatArticle#normalize}.\n *\n * Just to clarify, this class does nothing more than normalize. Except you don't\n * need to `fetchAndParse` before normalization. But you can still do this\n * manually, so you get the chance to make your own normalization work before our\n * process, with a cheerio instance from {@link NormalizedWeChatArticle#getContent$}.\n */\nexport default class NormalizedWeChatArticle extends WeChatArticle {\n  /**\n   * Does normalization. Simply overrides {@link NormalizedWeChatArticle#content}\n   * with normalized content.\n   *\n   * If the article instance is not parsed yet, this method will get it parsed first.\n   *\n   * @return {NormalizedWeChatArticle}\n   */\n  async normalize () {\n    if (!this.isParsed()) await this.fetchAndParse()\n    this._origContent = this.content\n    const $ = super.getContent$()\n    this.content = normalize($)('*').first().parent().html().trim()\n    return this\n  }\n}\n",
     "static": true,
     "longname": "/Users/laosb/Documents/SoftwareProj/wan/src/class/NormalizedWeChatArticle.js",
     "access": "public",
@@ -633,8 +633,8 @@
     "static": false,
     "longname": "src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle#normalize",
     "access": "public",
-    "description": "Does normalization. Simply overrides {@link NormalizedWeChatArticle#content}\nwith normalized content.",
-    "lineNumber": 21,
+    "description": "Does normalization. Simply overrides {@link NormalizedWeChatArticle#content}\nwith normalized content.\n\nIf the article instance is not parsed yet, this method will get it parsed first.",
+    "lineNumber": 23,
     "return": {
       "nullable": null,
       "types": [
@@ -654,7 +654,7 @@
     "longname": "src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle#_origContent",
     "access": "private",
     "description": null,
-    "lineNumber": 23,
+    "lineNumber": 25,
     "undocument": true,
     "type": {
       "types": [
@@ -671,7 +671,7 @@
     "longname": "src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle#content",
     "access": "public",
     "description": null,
-    "lineNumber": 25,
+    "lineNumber": 27,
     "undocument": true,
     "type": {
       "types": [
@@ -1100,7 +1100,7 @@
     "__docId__": 78,
     "kind": "file",
     "name": "src/normalize.js",
-    "content": "import { removeUselessStyles } from './lib/style'\n\nexport function normalize ($) {\n  $('[style]').each((i, el) => $(el).attr('style', removeUselessStyles($(el).attr('style'))))\n  $('[powered-by]').attr('powered-by', null)\n  $('[class=\"Powered-by-XIUMI V5\"]').attr('class', null)\n  $('[class=\"\"]').attr('class', null)\n  $('section:not([class],[style])').each((e, el) => {\n    if ($(el).children().length <= 1) $(el).remove()\n  })\n  return $\n}\n",
+    "content": "import { cleanStyle } from './lib/style'\n\n/**\n * **Don't use.** Internal function of {@link NormalizedWeChatArticle}.\n *\n * In case you really need it, it proceeds the content cheerio instance.\n *\n * @private\n *\n * @param {$} $\n *\n * @return {$}\n */\nexport function normalize ($) {\n  $('[style]').each((i, el) => $(el).attr('style', cleanStyle($(el).attr('style'))))\n  $('[powered-by]').attr('powered-by', null)\n  $('[class=\"Powered-by-XIUMI V5\"]').attr('class', null)\n  $('[class=\"\"]').attr('class', null)\n  $('section:not([class],[style])').each((e, el) => {\n    if ($(el).children().length <= 1) $(el).remove()\n  })\n  return $\n}\n",
     "static": true,
     "longname": "/Users/laosb/Documents/SoftwareProj/wan/src/normalize.js",
     "access": "public",
@@ -1116,32 +1116,38 @@
     "async": false,
     "static": true,
     "longname": "src/normalize.js~normalize",
-    "access": "public",
+    "access": "private",
     "export": true,
     "importPath": "wearticle/src/normalize.js",
     "importStyle": "{normalize}",
-    "description": null,
-    "lineNumber": 3,
-    "undocument": true,
+    "description": "**Don't use.** Internal function of {@link NormalizedWeChatArticle}.\n\nIn case you really need it, it proceeds the content cheerio instance.",
+    "lineNumber": 14,
     "params": [
       {
-        "name": "$",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "$"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "$",
+        "description": ""
       }
     ],
     "return": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "$"
+      ],
+      "spread": false,
+      "description": ""
     }
   },
   {
     "__docId__": 80,
     "kind": "file",
     "name": "src/utils.js",
-    "content": "import cheerio from 'cheerio'\nimport axios from 'axios'\nimport throttle from 'p-throttle'\n\nconst axiosGet = throttle(axios.get, 7, 1000)\n\nconst fetchAndParse = async url => {\n  try {\n    const { data } = await axiosGet(url)\n    return cheerio.load(data)\n  } catch (e) { console.log(e) }\n}\n\nexport {\n  fetchAndParse\n}\n",
+    "content": "import cheerio from 'cheerio'\nimport axios from 'axios'\nimport throttle from 'p-throttle'\n\nconst axiosGet = throttle(axios.get, 7, 1000)\n\n/**\n * Internal shorthand for fetching & parsing a general webpage.\n *\n * @private\n *\n * @param {String} url - URL to that page.\n *\n * @return {$} Returns a cheerio instance with the whole HTML from axios.\n */\nexport async function fetchAndParse (url) {\n  try {\n    const { data } = await axiosGet(url)\n    return cheerio.load(data)\n  } catch (e) { console.log(e) }\n}\n",
     "static": true,
     "longname": "/Users/laosb/Documents/SoftwareProj/wan/src/utils.js",
     "access": "public",
@@ -1178,30 +1184,36 @@
     "async": true,
     "static": true,
     "longname": "src/utils.js~fetchAndParse",
-    "access": "public",
+    "access": "private",
     "export": true,
     "importPath": "wearticle/src/utils.js",
     "importStyle": "{fetchAndParse}",
-    "description": null,
-    "lineNumber": 7,
-    "undocument": true,
+    "description": "Internal shorthand for fetching & parsing a general webpage.",
+    "lineNumber": 16,
     "params": [
       {
-        "name": "url",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "url",
+        "description": "URL to that page."
       }
     ],
     "return": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "$"
+      ],
+      "spread": false,
+      "description": "Returns a cheerio instance with the whole HTML from axios."
     }
   },
   {
     "kind": "index",
-    "content": "# Project WAN\n\nA server / toolkit to normalize WeChat articles into plain webpages.\n\n## Why\n\nWeChat has built its own system of social networking, and facilitated their own\nplatform of web publishing. WeChat Public Platforms, are very popular among\nChinese netizens, thus we can't miss our audience on WeChat. WeChat articles are\nbasically made with HTML markups, but with very hard limits on external links,\nembed content and actually you can't interact with this article outside WeChat's\necosystem. With some \"WeChat article editors\"(e.g. Xiumi.us), most WeChat\narticles have terrible HTML structures and markups, making it hard to be crawled\nby search engines and webpage optimizers(like Telegram's Instant View).\n\n## So What?\n\nThis project aims to capture, normalize, purify and serve WeChat articles into\nstandard webpages.\n\n* **Capture**: capture the HTML and assets served by WeChat platform.\n* **Normalize**: Remove `poweredby` and other useless attributes, unwrap elements\nwhich was far too wrapped by elements, etc.\n* **Purify**(optional): You may need much pure HTML documents. This process\nreconstruct all elements basede on pure content. Only crucial styles will be\npreserved, like `text-align`. Decorational widgets & tiny images removed.\n* **Serve**(optional): You may want to push your WeChat articles to your website,\nand style them with your website's styles. No problem.\n\n## Docs\n\nHosted: https://laosb.github.io/wan\n\nFor local, See `/docs`. Or use `npm run doc` when you tweaked a bit.\n\n## Status\n\nIn progress. Don't push me too hard.\n\n## Legal\n\nThis project itself is licensed under MIT. We don't touch with the content you've\nextracted by this project. Use this at your own risk.\n",
+    "content": "# Project WAN\n\nA server / toolkit to normalize WeChat articles into plain webpages.\n\n## Why\n\nWeChat has built its own system of social networking, and facilitated their own\nplatform of web publishing. WeChat Public Platforms, are very popular among\nChinese netizens, thus we can't miss our audience on WeChat. WeChat articles are\nbasically made with HTML markups, but with very hard limits on external links,\nembed content and actually you can't interact with this article outside WeChat's\necosystem. With some \"WeChat article editors\"(e.g. Xiumi.us), most WeChat\narticles have terrible HTML structures and markups, making it hard to be crawled\nby search engines and webpage optimizers(like Telegram's Instant View).\n\n## So What?\n\nThis project aims to capture, normalize, purify and serve WeChat articles into\nstandard webpages.\n\n* **Capture**: capture the HTML and assets served by WeChat platform.\n* **Normalize**: Remove `poweredby` and other useless attributes, unwrap elements\nwhich was far too wrapped by elements, etc.\n* **Purify**(optional): You may need much pure HTML documents. This process\nreconstruct all elements based on pure content. Only crucial styles will be\npreserved, like `text-align`. Decorational widgets & tiny images removed.\n* **Serve**(optional): You may want to push your WeChat articles to your website,\nand style them with your website's styles. No problem.\n\n## Docs\n\nHosted: https://laosb.github.io/wan\n\nFor local, See `/docs`. Or use `npm run doc` when you tweaked a bit.\n\n## Status\n\nIn progress. Don't push me too hard.\n\n## Legal\n\nThis project itself is licensed under MIT. We don't touch with the content you've\nextracted by this project. Use this at your own risk.\n",
     "longname": "/Users/laosb/Documents/SoftwareProj/wan/README.md",
     "name": "./README.md",
     "static": true,

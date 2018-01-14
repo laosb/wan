@@ -1,5 +1,16 @@
 import { cleanStyle } from './lib/style'
 
+/**
+ * **Don't use.** Internal function of {@link NormalizedWeChatArticle}.
+ *
+ * In case you really need it, it proceeds the content cheerio instance.
+ *
+ * @private
+ *
+ * @param {$} $
+ *
+ * @return {$}
+ */
 export function normalize ($) {
   $('[style]').each((i, el) => $(el).attr('style', cleanStyle($(el).attr('style'))))
   $('[powered-by]').attr('powered-by', null)

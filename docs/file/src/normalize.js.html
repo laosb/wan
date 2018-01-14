@@ -40,10 +40,21 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/normalize.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { removeUselessStyles } from &apos;./lib/style&apos;
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { cleanStyle } from &apos;./lib/style&apos;
 
+/**
+ * **Don&apos;t use.** Internal function of {@link NormalizedWeChatArticle}.
+ *
+ * In case you really need it, it proceeds the content cheerio instance.
+ *
+ * @private
+ *
+ * @param {$} $
+ *
+ * @return {$}
+ */
 export function normalize ($) {
-  $(&apos;[style]&apos;).each((i, el) =&gt; $(el).attr(&apos;style&apos;, removeUselessStyles($(el).attr(&apos;style&apos;))))
+  $(&apos;[style]&apos;).each((i, el) =&gt; $(el).attr(&apos;style&apos;, cleanStyle($(el).attr(&apos;style&apos;))))
   $(&apos;[powered-by]&apos;).attr(&apos;powered-by&apos;, null)
   $(&apos;[class=&quot;Powered-by-XIUMI V5&quot;]&apos;).attr(&apos;class&apos;, null)
   $(&apos;[class=&quot;&quot;]&apos;).attr(&apos;class&apos;, null)

@@ -58,6 +58,8 @@ export default class NormalizedWeChatArticle extends WeChatArticle {
    * Does normalization. Simply overrides {@link NormalizedWeChatArticle#content}
    * with normalized content.
    *
+   * If the article instance is not parsed yet, this method will get it parsed first.
+   *
    * @return {NormalizedWeChatArticle}
    */
   async normalize () {

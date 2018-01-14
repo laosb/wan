@@ -1,7 +1,7 @@
 {
-  "coverage": "53.84%",
+  "coverage": "61.53%",
   "expectCount": 26,
-  "actualCount": 14,
+  "actualCount": 16,
   "files": {
     "src/app.js": {
       "expectCount": 1,
@@ -14,8 +14,8 @@
       "expectCount": 4,
       "actualCount": 2,
       "undocumentLines": [
-        23,
-        25
+        25,
+        27
       ]
     },
     "src/class/WeChatArticle.js": {
@@ -38,17 +38,14 @@
     },
     "src/normalize.js": {
       "expectCount": 1,
-      "actualCount": 0,
-      "undocumentLines": [
-        3
-      ]
+      "actualCount": 1,
+      "undocumentLines": []
     },
     "src/utils.js": {
       "expectCount": 2,
-      "actualCount": 0,
+      "actualCount": 1,
       "undocumentLines": [
-        5,
-        7
+        5
       ]
     }
   }

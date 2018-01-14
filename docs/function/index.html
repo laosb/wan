@@ -72,9 +72,15 @@
       
     </td>
   </tr>
-<tr data-ice="target">
+</tbody>
+</table>
+<table class="summary" data-ice="summary">
+  <thead><tr><td data-ice="title" colspan="3">Static Private Summary</td></tr></thead>
+  <tbody>
+  
+  <tr data-ice="target">
     <td>
-      <span class="access" data-ice="access">public</span>
+      <span class="access" data-ice="access">private</span>
       
       
       
@@ -86,13 +92,14 @@
           
           <span data-ice="async">async</span>
           
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-fetchAndParse">fetchAndParse</a></span></span><span class="code" data-ice="signature">(url: <span>*</span>): <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-fetchAndParse">fetchAndParse</a></span></span><span class="code" data-ice="signature">(url: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>): <span><a href="https://cheerio.js.org/">$</a></span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Internal shorthand for fetching &amp; parsing a general webpage.</p>
+</div>
       </div>
     </td>
     <td>
@@ -102,7 +109,7 @@
   </tr>
 <tr data-ice="target">
     <td>
-      <span class="access" data-ice="access">public</span>
+      <span class="access" data-ice="access">private</span>
       
       
       
@@ -114,13 +121,15 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-normalize">normalize</a></span></span><span class="code" data-ice="signature">($: <span>*</span>): <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-normalize">normalize</a></span></span><span class="code" data-ice="signature">($: <span><a href="https://cheerio.js.org/">$</a></span>): <span><a href="https://cheerio.js.org/">$</a></span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p><strong>Don&apos;t use.</strong> Internal function of <span><a href="class/src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle.html">NormalizedWeChatArticle</a></span>.</p>
+<p>In case you really need it, it proceeds the content cheerio instance.</p>
+</div>
       </div>
     </td>
     <td>
@@ -204,26 +213,29 @@
   
   
 </div>
+<h2 data-ice="title">Static Private </h2>
+
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="static-function-fetchAndParse">
-    <span class="access" data-ice="access">public</span>
+    <span class="access" data-ice="access">private</span>
     
     
     
     <span data-ice="async">async</span>
     
-    <span class="code" data-ice="name">fetchAndParse</span><span class="code" data-ice="signature">(url: <span>*</span>): <span>*</span></span>
+    <span class="code" data-ice="name">fetchAndParse</span><span class="code" data-ice="signature">(url: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>): <span><a href="https://cheerio.js.org/">$</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/utils.js.html#lineNumber7">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/utils.js.html#lineNumber16">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {fetchAndParse} from &apos;<span><a href="file/src/utils.js.html#lineNumber7">wearticle/src/utils.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {fetchAndParse} from &apos;<span><a href="file/src/utils.js.html#lineNumber16">wearticle/src/utils.js</a></span>&apos;</code></pre></div>
   
   
-  
+  <div data-ice="description"><p>Internal shorthand for fetching &amp; parsing a general webpage.</p>
+</div>
 
   
 
@@ -237,9 +249,10 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">url</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>URL to that page.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -251,8 +264,9 @@
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span>*</span></td>
-          
+          <td class="return-type code" data-ice="returnType"><span><a href="https://cheerio.js.org/">$</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>Returns a cheerio instance with the whole HTML from axios.</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -277,24 +291,26 @@
 </div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="static-function-normalize">
-    <span class="access" data-ice="access">public</span>
+    <span class="access" data-ice="access">private</span>
     
     
     
     
     
-    <span class="code" data-ice="name">normalize</span><span class="code" data-ice="signature">($: <span>*</span>): <span>*</span></span>
+    <span class="code" data-ice="name">normalize</span><span class="code" data-ice="signature">($: <span><a href="https://cheerio.js.org/">$</a></span>): <span><a href="https://cheerio.js.org/">$</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/normalize.js.html#lineNumber3">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/normalize.js.html#lineNumber14">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {normalize} from &apos;<span><a href="file/src/normalize.js.html#lineNumber3">wearticle/src/normalize.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {normalize} from &apos;<span><a href="file/src/normalize.js.html#lineNumber14">wearticle/src/normalize.js</a></span>&apos;</code></pre></div>
   
   
-  
+  <div data-ice="description"><p><strong>Don&apos;t use.</strong> Internal function of <span><a href="class/src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle.html">NormalizedWeChatArticle</a></span>.</p>
+<p>In case you really need it, it proceeds the content cheerio instance.</p>
+</div>
 
   
 
@@ -308,7 +324,7 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">$</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="type" class="code"><span><a href="https://cheerio.js.org/">$</a></span></td>
       <td data-ice="appendix"></td>
       <td data-ice="description"></td>
     </tr>
@@ -322,7 +338,7 @@
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span>*</span></td>
+          <td class="return-type code" data-ice="returnType"><span><a href="https://cheerio.js.org/">$</a></span></td>
           
         </tr>
       </tbody>
