@@ -74,6 +74,7 @@ export default class NormalizedWeChatArticle extends WeChatArticle {
     if (!this.isParsed()) await this.fetchAndParse()
     this._origContent = this.content
     const $ = super.getContent$()
+    /** @type {String} */
     this.content = normalize($)(&apos;*&apos;).first().parent().html().trim()
     return this
   }
