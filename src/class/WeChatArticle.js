@@ -6,6 +6,15 @@ import { VM } from 'vm2'
  * WeChatArticle
  * This class is for a typical WeChat article. Takes an URL to that article.
  * e.g. http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw
+ *
+ * All content-based properties are only available after {@link WeChatArticle#fetchAndParse}.
+ *
+ * @example
+ * import { WeChatArticle } from 'wearticle'
+ * const article = new WeChatArticle('http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw')
+ * await article.fetchAndParse()
+ * console.log(article.toString())
+ * // -> WeChatArticle ("关于 ¡Hola!" by "Holateens")
  */
 export default class WeChatArticle {
   /**

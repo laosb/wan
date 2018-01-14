@@ -620,7 +620,7 @@
     "__docId__": 51,
     "kind": "file",
     "name": "src/class/WeChatArticle.js",
-    "content": "import { fetchAndParse } from '../utils'\nimport moment from 'moment'\nimport { VM } from 'vm2'\n\n/**\n * WeChatArticle\n * This class is for a typical WeChat article. Takes an URL to that article.\n * e.g. http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw\n */\nexport default class WeChatArticle {\n  /**\n   * Take the url. Just note the article won't be actually loaded and parsed\n   * before you call {@link WeChatArticle#fetchAndParse} manually.\n   *\n   * You could see if this article is parsed or not, by using {@link WeChatArticle#isParsed}.\n   *\n   * @param {String} url - A valid WeChat article URL, begins with\n   * http(s)://mp.weixin.qq.com/s\n   */\n  constructor (url) {\n    if (!url.startsWith('https://mp.weixin.qq.com/s') &&\n      !url.startsWith('http://mp.weixin.qq.com/s')) {\n      throw new Error('url is not a WeChat article url')\n    }\n\n    /** @type {String} */\n    this.url = url\n\n    /** @type {Boolean} */\n    this._parsed = false\n  }\n\n  /**\n   * See if this article has been loaded & parsed.\n   *\n   * Load & parse with {@link WeChatArticle#fetchAndParse}.\n   *\n   * @return {Boolean} Parsed or not.\n   */\n  isParsed () { return this._parsed }\n\n  /**\n   * Fetch & parse the article.\n   *\n   * @return {Boolean} Returns `true` on success.\n   */\n  async fetchAndParse () {\n    const $ = await fetchAndParse(this.url)\n    let usefulCode = 'const window = {}; const __getInfoFunc = () => {'\n    usefulCode += $('#activity-detail > script:nth-child(7)').get()[0].children[0].data\n    usefulCode += `\n        return {\n          copyrightStat: copyright_stat,\n          account: {\n            id: user_name,\n            name: nickname,\n            avatarUrl: round_head_img\n          },\n          title: msg_title,\n          description: msg_desc,\n          sourceUrl: msg_source_url,\n          headPicUrl: msg_cdn_url\n        };\n      };\n      __getInfoFunc();\n    `\n    const infoObj = (new VM()).run(usefulCode)\n\n    /** @type {String} */\n    this.title = infoObj.title\n\n    /** @type {Date} */\n    this.publishedAt = moment($('#post-date').text().trim()).toDate()\n    const authorEl = $('#meta_content > em:nth-child(2)')\n\n    /**\n     * The author. Only exists when it does have an author field.\n     *\n     * To get a must-have author name, use {@link WeChatArticle.getAuthorName}.\n     * @type {String}\n     */\n    this.author = authorEl ? authorEl.text().trim() : undefined\n    this.account = infoObj.account\n\n    /**\n     * The original content fetched from WeChat public platform. Actually from\n     * `#js-content` part of the whole raw HTML.\n     * @type {String}\n     */\n    this.content = $('#js_content').html()\n    this._parsed = true\n    return true\n  }\n\n  /**\n   * Returns author's name if the author does specify an author name on the\n   * article, or the name of the Official Account if not.\n   *\n   * @return {String} The author's name.\n   */\n  getAuthorName () { return this.author || this.account.name }\n  toString () {\n    return this._parsed\n      ? `WeChatArticle (\"${this.title}\" by \"${this.getAuthorName()}\")`\n      : `WeChatArticle (unparsed ${this.url})`\n  }\n}\n",
+    "content": "import { fetchAndParse } from '../utils'\nimport moment from 'moment'\nimport { VM } from 'vm2'\n\n/**\n * WeChatArticle\n * This class is for a typical WeChat article. Takes an URL to that article.\n * e.g. http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw\n *\n * All content-based properties are only available after {@link WeChatArticle#fetchAndParse}.\n *\n * @example\n * import { WeChatArticle } from 'wearticle'\n * const article = new WeChatArticle('http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw')\n * await article.fetchAndParse()\n * console.log(article.toString())\n * // -> WeChatArticle (\"关于 ¡Hola!\" by \"Holateens\")\n */\nexport default class WeChatArticle {\n  /**\n   * Take the url. Just note the article won't be actually loaded and parsed\n   * before you call {@link WeChatArticle#fetchAndParse} manually.\n   *\n   * You could see if this article is parsed or not, by using {@link WeChatArticle#isParsed}.\n   *\n   * @param {String} url - A valid WeChat article URL, begins with\n   * http(s)://mp.weixin.qq.com/s\n   */\n  constructor (url) {\n    if (!url.startsWith('https://mp.weixin.qq.com/s') &&\n      !url.startsWith('http://mp.weixin.qq.com/s')) {\n      throw new Error('url is not a WeChat article url')\n    }\n\n    /** @type {String} */\n    this.url = url\n\n    /** @type {Boolean} */\n    this._parsed = false\n  }\n\n  /**\n   * See if this article has been loaded & parsed.\n   *\n   * Load & parse with {@link WeChatArticle#fetchAndParse}.\n   *\n   * @return {Boolean} Parsed or not.\n   */\n  isParsed () { return this._parsed }\n\n  /**\n   * Fetch & parse the article.\n   *\n   * @return {Boolean} Returns `true` on success.\n   */\n  async fetchAndParse () {\n    const $ = await fetchAndParse(this.url)\n    let usefulCode = 'const window = {}; const __getInfoFunc = () => {'\n    usefulCode += $('#activity-detail > script:nth-child(7)').get()[0].children[0].data\n    usefulCode += `\n        return {\n          copyrightStat: copyright_stat,\n          account: {\n            id: user_name,\n            name: nickname,\n            avatarUrl: round_head_img\n          },\n          title: msg_title,\n          description: msg_desc,\n          sourceUrl: msg_source_url,\n          headPicUrl: msg_cdn_url\n        };\n      };\n      __getInfoFunc();\n    `\n    const infoObj = (new VM()).run(usefulCode)\n\n    /** @type {String} */\n    this.title = infoObj.title\n\n    /** @type {Date} */\n    this.publishedAt = moment($('#post-date').text().trim()).toDate()\n    const authorEl = $('#meta_content > em:nth-child(2)')\n\n    /**\n     * The author. Only exists when it does have an author field.\n     *\n     * To get a must-have author name, use {@link WeChatArticle.getAuthorName}.\n     * @type {String}\n     */\n    this.author = authorEl ? authorEl.text().trim() : undefined\n    this.account = infoObj.account\n\n    /**\n     * The original content fetched from WeChat public platform. Actually from\n     * `#js-content` part of the whole raw HTML.\n     * @type {String}\n     */\n    this.content = $('#js_content').html()\n    this._parsed = true\n    return true\n  }\n\n  /**\n   * Returns author's name if the author does specify an author name on the\n   * article, or the name of the Official Account if not.\n   *\n   * @return {String} The author's name.\n   */\n  getAuthorName () { return this.author || this.account.name }\n  toString () {\n    return this._parsed\n      ? `WeChatArticle (\"${this.title}\" by \"${this.getAuthorName()}\")`\n      : `WeChatArticle (unparsed ${this.url})`\n  }\n}\n",
     "static": true,
     "longname": "/Users/laosb/Documents/SoftwareProj/wan/src/class/WeChatArticle.js",
     "access": "public",
@@ -638,8 +638,11 @@
     "export": true,
     "importPath": "wearticle/src/class/WeChatArticle.js",
     "importStyle": "WeChatArticle",
-    "description": "WeChatArticle\nThis class is for a typical WeChat article. Takes an URL to that article.\ne.g. http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw",
-    "lineNumber": 10,
+    "description": "WeChatArticle\nThis class is for a typical WeChat article. Takes an URL to that article.\ne.g. http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw\n\nAll content-based properties are only available after {@link WeChatArticle#fetchAndParse}.",
+    "examples": [
+      "import { WeChatArticle } from 'wearticle'\nconst article = new WeChatArticle('http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw')\nawait article.fetchAndParse()\nconsole.log(article.toString())\n// -> WeChatArticle (\"关于 ¡Hola!\" by \"Holateens\")"
+    ],
+    "lineNumber": 19,
     "interface": false
   },
   {
@@ -653,7 +656,7 @@
     "longname": "src/class/WeChatArticle.js~WeChatArticle#constructor",
     "access": "public",
     "description": "Take the url. Just note the article won't be actually loaded and parsed\nbefore you call {@link WeChatArticle#fetchAndParse} manually.\n\nYou could see if this article is parsed or not, by using {@link WeChatArticle#isParsed}.",
-    "lineNumber": 20,
+    "lineNumber": 29,
     "params": [
       {
         "nullable": null,
@@ -676,7 +679,7 @@
     "longname": "src/class/WeChatArticle.js~WeChatArticle#url",
     "access": "public",
     "description": null,
-    "lineNumber": 27,
+    "lineNumber": 36,
     "type": {
       "nullable": null,
       "types": [
@@ -695,7 +698,7 @@
     "longname": "src/class/WeChatArticle.js~WeChatArticle#_parsed",
     "access": "private",
     "description": null,
-    "lineNumber": 30,
+    "lineNumber": 39,
     "type": {
       "nullable": null,
       "types": [
@@ -716,7 +719,7 @@
     "longname": "src/class/WeChatArticle.js~WeChatArticle#isParsed",
     "access": "public",
     "description": "See if this article has been loaded & parsed.\n\nLoad & parse with {@link WeChatArticle#fetchAndParse}.",
-    "lineNumber": 40,
+    "lineNumber": 49,
     "return": {
       "nullable": null,
       "types": [
@@ -738,7 +741,7 @@
     "longname": "src/class/WeChatArticle.js~WeChatArticle#fetchAndParse",
     "access": "public",
     "description": "Fetch & parse the article.",
-    "lineNumber": 47,
+    "lineNumber": 56,
     "return": {
       "nullable": null,
       "types": [
@@ -758,7 +761,7 @@
     "longname": "src/class/WeChatArticle.js~WeChatArticle#title",
     "access": "public",
     "description": null,
-    "lineNumber": 70,
+    "lineNumber": 79,
     "type": {
       "nullable": null,
       "types": [
@@ -777,7 +780,7 @@
     "longname": "src/class/WeChatArticle.js~WeChatArticle#publishedAt",
     "access": "public",
     "description": null,
-    "lineNumber": 73,
+    "lineNumber": 82,
     "type": {
       "nullable": null,
       "types": [
@@ -796,7 +799,7 @@
     "longname": "src/class/WeChatArticle.js~WeChatArticle#author",
     "access": "public",
     "description": "The author. Only exists when it does have an author field.\n\nTo get a must-have author name, use {@link WeChatArticle.getAuthorName}.",
-    "lineNumber": 82,
+    "lineNumber": 91,
     "type": {
       "nullable": null,
       "types": [
@@ -815,7 +818,7 @@
     "longname": "src/class/WeChatArticle.js~WeChatArticle#account",
     "access": "public",
     "description": null,
-    "lineNumber": 83,
+    "lineNumber": 92,
     "undocument": true,
     "type": {
       "types": [
@@ -832,7 +835,7 @@
     "longname": "src/class/WeChatArticle.js~WeChatArticle#content",
     "access": "public",
     "description": "The original content fetched from WeChat public platform. Actually from\n`#js-content` part of the whole raw HTML.",
-    "lineNumber": 90,
+    "lineNumber": 99,
     "type": {
       "nullable": null,
       "types": [
@@ -853,7 +856,7 @@
     "longname": "src/class/WeChatArticle.js~WeChatArticle#getAuthorName",
     "access": "public",
     "description": "Returns author's name if the author does specify an author name on the\narticle, or the name of the Official Account if not.",
-    "lineNumber": 101,
+    "lineNumber": 110,
     "return": {
       "nullable": null,
       "types": [
@@ -875,7 +878,7 @@
     "longname": "src/class/WeChatArticle.js~WeChatArticle#toString",
     "access": "public",
     "description": null,
-    "lineNumber": 102,
+    "lineNumber": 111,
     "undocument": true,
     "params": [],
     "return": {
