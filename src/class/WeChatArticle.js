@@ -30,7 +30,7 @@ export default class WeChatArticle {
    * You could see if this article is parsed or not, by using {@link WeChatArticle#isParsed}.
    *
    * @param {String} url - A valid WeChat article URL, begins with
-   * http(s)://mp.weixin.qq.com/s
+   * `http(s)://mp.weixin.qq.com/s`
    */
   constructor (url) {
     if (!url.startsWith('https://mp.weixin.qq.com/s') &&
@@ -92,7 +92,7 @@ export default class WeChatArticle {
     /**
      * The author. Only exists when it does have an author field.
      *
-     * To get a must-have author name, use {@link WeChatArticle.getAuthorName}.
+     * To get a must-have author name, use {@link WeChatArticle#getAuthorName}.
      * @type {String}
      */
     this.author = authorEl ? authorEl.text().trim() : undefined
@@ -110,6 +110,10 @@ export default class WeChatArticle {
 
   /**
    * Returns a cheerio $ of the content.
+   *
+   * To tell the truth, this $ is not a fully functional $. It's actually a
+   * function delegates cheerio instance in some way. You can only use `$(selector)`
+   * there, and even can't use a context.
    *
    * @return {$} The cheerio $.
    * @since 0.2.0
