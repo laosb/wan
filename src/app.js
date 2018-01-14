@@ -1,4 +1,4 @@
-const WeChatArticle = require('./class/WeChatArticle')
+import { WeChatArticle } from './'
 
 const aboutHolaArticle = new WeChatArticle('http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw')
 aboutHolaArticle.fetchAndParse()

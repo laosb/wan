@@ -27,6 +27,10 @@ preserved, like `text-align`. Decorational widgets & tiny images removed.
 * **Serve**(optional): You may want to push your WeChat articles to your website,
 and style them with your website's styles. No problem.
 
+## Docs
+
+See `/docs`. Or use `npm run doc`.
+
 ## Status
 
 In progress. Don't push me too hard.

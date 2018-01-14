@@ -1,6 +1,6 @@
-const cheerio = require('cheerio')
-const axios = require('axios')
-const throttle = require('p-throttle')
+import cheerio from 'cheerio'
+import axios from 'axios'
+import throttle from 'p-throttle'
 
 const axiosGet = throttle(axios.get, 7, 1000)
 
@@ -11,6 +11,6 @@ const fetchAndParse = async url => {
   } catch (e) { console.log(e) }
 }
 
-module.exports = {
+export {
   fetchAndParse
 }

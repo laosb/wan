@@ -1,8 +1,13 @@
-const { fetchAndParse } = require('../utils')
-const moment = require('moment')
-const { VM } = require('vm2')
+import { fetchAndParse } from '../utils'
+import moment from 'moment'
+import { VM } from 'vm2'
 
-class WeChatArticle {
+/**
+ * WeChatArticle
+ * This class is for a typical WeChat article. Takes an URL to that article.
+ * e.g. http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw
+ */
+export default class WeChatArticle {
   constructor (url) {
     if (!url.startsWith('https://mp.weixin.qq.com/s') &&
       !url.startsWith('http://mp.weixin.qq.com/s')) {
@@ -49,5 +54,3 @@ class WeChatArticle {
       : `WeChatArticle (unparsed ${this.url})`
   }
 }
-
-module.exports = WeChatArticle
