@@ -52,6 +52,8 @@
  * @param {$} $
  *
  * @return {$}
+ *
+ * @since 0.3.0
  */
 export function normalize ($) {
   $(&apos;[style]&apos;).each((i, el) =&gt; $(el).attr(&apos;style&apos;, cleanStyle($(el).attr(&apos;style&apos;))))

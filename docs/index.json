@@ -598,7 +598,7 @@
     "__docId__": 50,
     "kind": "file",
     "name": "src/class/NormalizedWeChatArticle.js",
-    "content": "import WeChatArticle from './WeChatArticle'\nimport { normalize } from '../normalize'\n\n/**\n * `NormalizedWeChatArticle` is for fetching & normalize a WeChat article. It\n * extends {@link WeChatArticle}, and has an extra method\n * {@link NormalizedWeChatArticle#normalize}.\n *\n * Just to clarify, this class does nothing more than normalize. Except you don't\n * need to `fetchAndParse` before normalization. But you can still do this\n * manually, so you get the chance to make your own normalization work before our\n * process, with a cheerio instance from {@link NormalizedWeChatArticle#getContent$}.\n */\nexport default class NormalizedWeChatArticle extends WeChatArticle {\n  /**\n   * Does normalization. Simply overrides {@link NormalizedWeChatArticle#content}\n   * with normalized content.\n   *\n   * If the article instance is not parsed yet, this method will get it parsed first.\n   *\n   * @return {NormalizedWeChatArticle}\n   */\n  async normalize () {\n    if (!this.isParsed()) await this.fetchAndParse()\n    this._origContent = this.content\n    const $ = super.getContent$()\n    this.content = normalize($)('*').first().parent().html().trim()\n    return this\n  }\n}\n",
+    "content": "import WeChatArticle from './WeChatArticle'\nimport { normalize } from '../normalize'\n\n/**\n * `NormalizedWeChatArticle` is for fetching & normalize a WeChat article. It\n * extends {@link WeChatArticle}, and has an extra method\n * {@link NormalizedWeChatArticle#normalize}.\n *\n * Just to clarify, this class does nothing more than normalize. Except you don't\n * need to `fetchAndParse` before normalization. But you can still do this\n * manually, so you get the chance to make your own normalization work before our\n * process, with a cheerio instance from {@link NormalizedWeChatArticle#getContent$}.\n *\n * @example\n * import { NormalizedWeChatArticle } from 'wearticle'\n * const aboutHolaArticle = new NormalizedWeChatArticle('http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw')\n * await article.normalize()\n * console.log(article.content)\n *\n * @since 0.3.0\n */\nexport default class NormalizedWeChatArticle extends WeChatArticle {\n  /**\n   * Does normalization. Simply overrides {@link NormalizedWeChatArticle#content}\n   * with normalized content.\n   *\n   * If the article instance is not parsed yet, this method will get it parsed first.\n   *\n   * @return {NormalizedWeChatArticle}\n   */\n  async normalize () {\n    if (!this.isParsed()) await this.fetchAndParse()\n    this._origContent = this.content\n    const $ = super.getContent$()\n    this.content = normalize($)('*').first().parent().html().trim()\n    return this\n  }\n}\n",
     "static": true,
     "longname": "/Users/laosb/Documents/SoftwareProj/wan/src/class/NormalizedWeChatArticle.js",
     "access": "public",
@@ -617,7 +617,11 @@
     "importPath": "wearticle/src/class/NormalizedWeChatArticle.js",
     "importStyle": "NormalizedWeChatArticle",
     "description": "`NormalizedWeChatArticle` is for fetching & normalize a WeChat article. It\nextends {@link WeChatArticle}, and has an extra method\n{@link NormalizedWeChatArticle#normalize}.\n\nJust to clarify, this class does nothing more than normalize. Except you don't\nneed to `fetchAndParse` before normalization. But you can still do this\nmanually, so you get the chance to make your own normalization work before our\nprocess, with a cheerio instance from {@link NormalizedWeChatArticle#getContent$}.",
-    "lineNumber": 14,
+    "examples": [
+      "import { NormalizedWeChatArticle } from 'wearticle'\nconst aboutHolaArticle = new NormalizedWeChatArticle('http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw')\nawait article.normalize()\nconsole.log(article.content)"
+    ],
+    "lineNumber": 22,
+    "since": "0.3.0",
     "interface": false,
     "extends": [
       "src/class/WeChatArticle.js~WeChatArticle"
@@ -634,7 +638,7 @@
     "longname": "src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle#normalize",
     "access": "public",
     "description": "Does normalization. Simply overrides {@link NormalizedWeChatArticle#content}\nwith normalized content.\n\nIf the article instance is not parsed yet, this method will get it parsed first.",
-    "lineNumber": 23,
+    "lineNumber": 31,
     "return": {
       "nullable": null,
       "types": [
@@ -654,7 +658,7 @@
     "longname": "src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle#_origContent",
     "access": "private",
     "description": null,
-    "lineNumber": 25,
+    "lineNumber": 33,
     "undocument": true,
     "type": {
       "types": [
@@ -671,7 +675,7 @@
     "longname": "src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle#content",
     "access": "public",
     "description": null,
-    "lineNumber": 27,
+    "lineNumber": 35,
     "undocument": true,
     "type": {
       "types": [
@@ -683,7 +687,7 @@
     "__docId__": 55,
     "kind": "file",
     "name": "src/class/WeChatArticle.js",
-    "content": "import { fetchAndParse } from '../utils'\nimport moment from 'moment'\nimport { VM } from 'vm2'\n\n/** @external {$} https://cheerio.js.org/ */\n\n/**\n * This class is for a typical WeChat article. Takes an URL to that article.\n * e.g. http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw\n *\n * In most cases you don't really need to use this class. Use {@link NormalizedWeChatArticle}\n * if you need normalization on articles.\n *\n * All content-based properties are only available after {@link WeChatArticle#fetchAndParse}.\n *\n * @example\n * import { WeChatArticle } from 'wearticle'\n * const article = new WeChatArticle('http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw')\n * await article.fetchAndParse()\n * console.log(article.toString())\n * // -> WeChatArticle (\"关于 ¡Hola!\" by \"Holateens\")\n *\n * @since 0.1.0\n */\nexport default class WeChatArticle {\n  /**\n   * Take the url. Just note the article won't be actually loaded and parsed\n   * before you call {@link WeChatArticle#fetchAndParse} manually.\n   *\n   * You could see if this article is parsed or not, by using {@link WeChatArticle#isParsed}.\n   *\n   * @param {String} url - A valid WeChat article URL, begins with\n   * http(s)://mp.weixin.qq.com/s\n   */\n  constructor (url) {\n    if (!url.startsWith('https://mp.weixin.qq.com/s') &&\n      !url.startsWith('http://mp.weixin.qq.com/s')) {\n      throw new Error('url is not a WeChat article url')\n    }\n\n    /** @type {String} */\n    this.url = url\n\n    /** @type {Boolean} */\n    this._parsed = false\n  }\n\n  /**\n   * See if this article has been loaded & parsed.\n   *\n   * Load & parse with {@link WeChatArticle#fetchAndParse}.\n   *\n   * @return {Boolean} Parsed or not.\n   */\n  isParsed () { return this._parsed }\n\n  /**\n   * Fetch & parse the article.\n   *\n   * @return {WeChatArticle} Returns `this` so you can chain calls.\n   */\n  async fetchAndParse () {\n    const $ = await fetchAndParse(this.url)\n    this._$ = $\n    let usefulCode = 'const window = {}; const __getInfoFunc = () => {'\n    usefulCode += $('#activity-detail > script:nth-child(7)').get()[0].children[0].data\n    usefulCode += `\n        return {\n          copyrightStat: copyright_stat,\n          account: {\n            id: user_name,\n            name: nickname,\n            avatarUrl: round_head_img\n          },\n          title: msg_title,\n          description: msg_desc,\n          sourceUrl: msg_source_url,\n          headPicUrl: msg_cdn_url\n        };\n      };\n      __getInfoFunc();\n    `\n    const infoObj = (new VM()).run(usefulCode)\n\n    /** @type {String} */\n    this.title = infoObj.title\n\n    /** @type {Date} */\n    this.publishedAt = moment($('#post-date').text().trim()).toDate()\n    const authorEl = $('#meta_content > em:nth-child(2)')\n\n    /**\n     * The author. Only exists when it does have an author field.\n     *\n     * To get a must-have author name, use {@link WeChatArticle.getAuthorName}.\n     * @type {String}\n     */\n    this.author = authorEl ? authorEl.text().trim() : undefined\n    this.account = infoObj.account\n\n    /**\n     * The original content fetched from WeChat public platform. Actually from\n     * `#js_content` part of the whole raw HTML.\n     * @type {String}\n     */\n    this.content = $('#js_content').html()\n    this._parsed = true\n    return this\n  }\n\n  /**\n   * Returns a cheerio $ of the content.\n   *\n   * @return {$} The cheerio $.\n   * @since 0.2.0\n   */\n  getContent$ () { return selector => this._$(selector, '#js_content') }\n\n  /**\n   * Returns author's name if the author does specify an author name on the\n   * article, or the name of the Official Account if not.\n   *\n   * @return {String} The author's name.\n   */\n  getAuthorName () { return this.author || this.account.name }\n  toString () {\n    return this._parsed\n      ? `WeChatArticle (\"${this.title}\" by \"${this.getAuthorName()}\")`\n      : `WeChatArticle (unparsed ${this.url})`\n  }\n}\n",
+    "content": "import { fetchAndParse } from '../utils'\nimport moment from 'moment'\nimport { VM } from 'vm2'\n\n/** @external {$} https://cheerio.js.org/ */\n\n/**\n * This class is for a typical WeChat article. Takes an URL to that article.\n * e.g. http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw\n *\n * In most cases you don't really need to use this class. Use {@link NormalizedWeChatArticle}\n * if you need normalization on articles.\n *\n * All content-based properties are only available after {@link WeChatArticle#fetchAndParse}.\n *\n * @example\n * import { WeChatArticle } from 'wearticle'\n * const article = new WeChatArticle('http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw')\n * await article.fetchAndParse()\n * console.log(article.toString())\n * // -> WeChatArticle (\"关于 ¡Hola!\" by \"Holateens\")\n *\n * @since 0.1.0\n */\nexport default class WeChatArticle {\n  /**\n   * Take the url. Just note the article won't be actually loaded and parsed\n   * before you call {@link WeChatArticle#fetchAndParse} manually.\n   *\n   * You could see if this article is parsed or not, by using {@link WeChatArticle#isParsed}.\n   *\n   * @param {String} url - A valid WeChat article URL, begins with\n   * `http(s)://mp.weixin.qq.com/s`\n   */\n  constructor (url) {\n    if (!url.startsWith('https://mp.weixin.qq.com/s') &&\n      !url.startsWith('http://mp.weixin.qq.com/s')) {\n      throw new Error('url is not a WeChat article url')\n    }\n\n    /** @type {String} */\n    this.url = url\n\n    this._parsed = false\n  }\n\n  /**\n   * See if this article has been loaded & parsed.\n   *\n   * Load & parse with {@link WeChatArticle#fetchAndParse}.\n   *\n   * @return {Boolean} Parsed or not.\n   */\n  isParsed () { return this._parsed }\n\n  /**\n   * Fetch & parse the article.\n   *\n   * @return {WeChatArticle} Returns `this` so you can chain calls.\n   */\n  async fetchAndParse () {\n    const $ = await fetchAndParse(this.url)\n\n    /** @type {$} */\n    this._$ = $\n    let usefulCode = 'const window = {}; const __getInfoFunc = () => {'\n    usefulCode += $('#activity-detail > script:nth-child(7)').get()[0].children[0].data\n    usefulCode += `\n        return {\n          copyrightStat: copyright_stat,\n          account: {\n            id: user_name,\n            name: nickname,\n            avatarUrl: round_head_img\n          },\n          title: msg_title,\n          description: msg_desc,\n          sourceUrl: msg_source_url,\n          headPicUrl: msg_cdn_url\n        };\n      };\n      __getInfoFunc();\n    `\n    const infoObj = (new VM()).run(usefulCode)\n\n    /** @type {String} */\n    this.title = infoObj.title\n\n    /** @type {Date} */\n    this.publishedAt = moment($('#post-date').text().trim()).toDate()\n    const authorEl = $('#meta_content > em:nth-child(2)')\n\n    /**\n     * The author. Only exists when it does have an author field.\n     *\n     * To get a must-have author name, use {@link WeChatArticle#getAuthorName}.\n     * @type {String}\n     */\n    this.author = authorEl ? authorEl.text().trim() : undefined\n    this.account = infoObj.account\n\n    /**\n     * The original content fetched from WeChat public platform. Actually from\n     * `#js_content` part of the whole raw HTML.\n     * @type {String}\n     */\n    this.content = $('#js_content').html()\n    this._parsed = true\n    return this\n  }\n\n  /**\n   * Returns a cheerio $ of the content.\n   *\n   * To tell the truth, this $ is not a fully functional $. It's actually a\n   * function delegates cheerio instance in some way. You can only use `$(selector)`\n   * there, and even can't use a context.\n   *\n   * @return {$} The cheerio $.\n   * @since 0.2.0\n   */\n  getContent$ () { return selector => this._$(selector, '#js_content') }\n\n  /**\n   * Returns author's name if the author does specify an author name on the\n   * article, or the name of the Official Account if not.\n   *\n   * @return {String} The author's name.\n   */\n  getAuthorName () { return this.author || this.account.name }\n  toString () {\n    return this._parsed\n      ? `WeChatArticle (\"${this.title}\" by \"${this.getAuthorName()}\")`\n      : `WeChatArticle (unparsed ${this.url})`\n  }\n}\n",
     "static": true,
     "longname": "/Users/laosb/Documents/SoftwareProj/wan/src/class/WeChatArticle.js",
     "access": "public",
@@ -741,7 +745,7 @@
         "spread": false,
         "optional": false,
         "name": "url",
-        "description": "A valid WeChat article URL, begins with\nhttp(s)://mp.weixin.qq.com/s"
+        "description": "A valid WeChat article URL, begins with\n`http(s)://mp.weixin.qq.com/s`"
       }
     ]
   },
@@ -773,14 +777,12 @@
     "longname": "src/class/WeChatArticle.js~WeChatArticle#_parsed",
     "access": "private",
     "description": null,
-    "lineNumber": 45,
+    "lineNumber": 44,
+    "undocument": true,
     "type": {
-      "nullable": null,
       "types": [
-        "Boolean"
-      ],
-      "spread": false,
-      "description": null
+        "boolean"
+      ]
     }
   },
   {
@@ -794,7 +796,7 @@
     "longname": "src/class/WeChatArticle.js~WeChatArticle#isParsed",
     "access": "public",
     "description": "See if this article has been loaded & parsed.\n\nLoad & parse with {@link WeChatArticle#fetchAndParse}.",
-    "lineNumber": 55,
+    "lineNumber": 54,
     "return": {
       "nullable": null,
       "types": [
@@ -816,7 +818,7 @@
     "longname": "src/class/WeChatArticle.js~WeChatArticle#fetchAndParse",
     "access": "public",
     "description": "Fetch & parse the article.",
-    "lineNumber": 62,
+    "lineNumber": 61,
     "return": {
       "nullable": null,
       "types": [
@@ -836,12 +838,14 @@
     "longname": "src/class/WeChatArticle.js~WeChatArticle#_$",
     "access": "private",
     "description": null,
-    "lineNumber": 64,
-    "undocument": true,
+    "lineNumber": 65,
     "type": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "$"
+      ],
+      "spread": false,
+      "description": null
     }
   },
   {
@@ -853,7 +857,7 @@
     "longname": "src/class/WeChatArticle.js~WeChatArticle#title",
     "access": "public",
     "description": null,
-    "lineNumber": 86,
+    "lineNumber": 87,
     "type": {
       "nullable": null,
       "types": [
@@ -872,7 +876,7 @@
     "longname": "src/class/WeChatArticle.js~WeChatArticle#publishedAt",
     "access": "public",
     "description": null,
-    "lineNumber": 89,
+    "lineNumber": 90,
     "type": {
       "nullable": null,
       "types": [
@@ -890,8 +894,8 @@
     "static": false,
     "longname": "src/class/WeChatArticle.js~WeChatArticle#author",
     "access": "public",
-    "description": "The author. Only exists when it does have an author field.\n\nTo get a must-have author name, use {@link WeChatArticle.getAuthorName}.",
-    "lineNumber": 98,
+    "description": "The author. Only exists when it does have an author field.\n\nTo get a must-have author name, use {@link WeChatArticle#getAuthorName}.",
+    "lineNumber": 99,
     "type": {
       "nullable": null,
       "types": [
@@ -910,7 +914,7 @@
     "longname": "src/class/WeChatArticle.js~WeChatArticle#account",
     "access": "public",
     "description": null,
-    "lineNumber": 99,
+    "lineNumber": 100,
     "undocument": true,
     "type": {
       "types": [
@@ -927,7 +931,7 @@
     "longname": "src/class/WeChatArticle.js~WeChatArticle#content",
     "access": "public",
     "description": "The original content fetched from WeChat public platform. Actually from\n`#js_content` part of the whole raw HTML.",
-    "lineNumber": 106,
+    "lineNumber": 107,
     "type": {
       "nullable": null,
       "types": [
@@ -947,8 +951,8 @@
     "static": false,
     "longname": "src/class/WeChatArticle.js~WeChatArticle#getContent$",
     "access": "public",
-    "description": "Returns a cheerio $ of the content.",
-    "lineNumber": 117,
+    "description": "Returns a cheerio $ of the content.\n\nTo tell the truth, this $ is not a fully functional $. It's actually a\nfunction delegates cheerio instance in some way. You can only use `$(selector)`\nthere, and even can't use a context.",
+    "lineNumber": 122,
     "since": "0.2.0",
     "return": {
       "nullable": null,
@@ -971,7 +975,7 @@
     "longname": "src/class/WeChatArticle.js~WeChatArticle#getAuthorName",
     "access": "public",
     "description": "Returns author's name if the author does specify an author name on the\narticle, or the name of the Official Account if not.",
-    "lineNumber": 125,
+    "lineNumber": 130,
     "return": {
       "nullable": null,
       "types": [
@@ -993,7 +997,7 @@
     "longname": "src/class/WeChatArticle.js~WeChatArticle#toString",
     "access": "public",
     "description": null,
-    "lineNumber": 126,
+    "lineNumber": 131,
     "undocument": true,
     "params": [],
     "return": {
@@ -1100,7 +1104,7 @@
     "__docId__": 78,
     "kind": "file",
     "name": "src/normalize.js",
-    "content": "import { cleanStyle } from './lib/style'\n\n/**\n * **Don't use.** Internal function of {@link NormalizedWeChatArticle}.\n *\n * In case you really need it, it proceeds the content cheerio instance.\n *\n * @private\n *\n * @param {$} $\n *\n * @return {$}\n */\nexport function normalize ($) {\n  $('[style]').each((i, el) => $(el).attr('style', cleanStyle($(el).attr('style'))))\n  $('[powered-by]').attr('powered-by', null)\n  $('[class=\"Powered-by-XIUMI V5\"]').attr('class', null)\n  $('[class=\"\"]').attr('class', null)\n  $('section:not([class],[style])').each((e, el) => {\n    if ($(el).children().length <= 1) $(el).remove()\n  })\n  return $\n}\n",
+    "content": "import { cleanStyle } from './lib/style'\n\n/**\n * **Don't use.** Internal function of {@link NormalizedWeChatArticle}.\n *\n * In case you really need it, it proceeds the content cheerio instance.\n *\n * @private\n *\n * @param {$} $\n *\n * @return {$}\n *\n * @since 0.3.0\n */\nexport function normalize ($) {\n  $('[style]').each((i, el) => $(el).attr('style', cleanStyle($(el).attr('style'))))\n  $('[powered-by]').attr('powered-by', null)\n  $('[class=\"Powered-by-XIUMI V5\"]').attr('class', null)\n  $('[class=\"\"]').attr('class', null)\n  $('section:not([class],[style])').each((e, el) => {\n    if ($(el).children().length <= 1) $(el).remove()\n  })\n  return $\n}\n",
     "static": true,
     "longname": "/Users/laosb/Documents/SoftwareProj/wan/src/normalize.js",
     "access": "public",
@@ -1121,7 +1125,8 @@
     "importPath": "wearticle/src/normalize.js",
     "importStyle": "{normalize}",
     "description": "**Don't use.** Internal function of {@link NormalizedWeChatArticle}.\n\nIn case you really need it, it proceeds the content cheerio instance.",
-    "lineNumber": 14,
+    "lineNumber": 16,
+    "since": "0.3.0",
     "params": [
       {
         "nullable": null,
@@ -1147,7 +1152,7 @@
     "__docId__": 80,
     "kind": "file",
     "name": "src/utils.js",
-    "content": "import cheerio from 'cheerio'\nimport axios from 'axios'\nimport throttle from 'p-throttle'\n\nconst axiosGet = throttle(axios.get, 7, 1000)\n\n/**\n * Internal shorthand for fetching & parsing a general webpage.\n *\n * @private\n *\n * @param {String} url - URL to that page.\n *\n * @return {$} Returns a cheerio instance with the whole HTML from axios.\n */\nexport async function fetchAndParse (url) {\n  try {\n    const { data } = await axiosGet(url)\n    return cheerio.load(data)\n  } catch (e) { console.log(e) }\n}\n",
+    "content": "import cheerio from 'cheerio'\nimport axios from 'axios'\nimport throttle from 'p-throttle'\n\nconst axiosGet = throttle(axios.get, 7, 1000)\n\n/**\n * Internal shorthand for fetching & parsing a general webpage.\n *\n * @private\n *\n * @param {String} url - URL to that page.\n *\n * @return {$} Returns a cheerio instance with the whole HTML from axios.\n *\n * @since 0.2.0\n */\nexport async function fetchAndParse (url) {\n  try {\n    const { data } = await axiosGet(url)\n    return cheerio.load(data)\n  } catch (e) { console.log(e) }\n}\n",
     "static": true,
     "longname": "/Users/laosb/Documents/SoftwareProj/wan/src/utils.js",
     "access": "public",
@@ -1189,7 +1194,8 @@
     "importPath": "wearticle/src/utils.js",
     "importStyle": "{fetchAndParse}",
     "description": "Internal shorthand for fetching & parsing a general webpage.",
-    "lineNumber": 16,
+    "lineNumber": 18,
+    "since": "0.2.0",
     "params": [
       {
         "nullable": null,

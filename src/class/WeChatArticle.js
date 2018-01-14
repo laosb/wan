@@ -41,7 +41,6 @@ export default class WeChatArticle {
     /** @type {String} */
     this.url = url
 
-    /** @type {Boolean} */
     this._parsed = false
   }
 
@@ -61,6 +60,8 @@ export default class WeChatArticle {
    */
   async fetchAndParse () {
     const $ = await fetchAndParse(this.url)
+
+    /** @type {$} */
     this._$ = $
     let usefulCode = 'const window = {}; const __getInfoFunc = () => {'
     usefulCode += $('#activity-detail > script:nth-child(7)').get()[0].children[0].data

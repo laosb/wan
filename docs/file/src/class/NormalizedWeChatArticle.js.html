@@ -52,6 +52,14 @@ import { normalize } from &apos;../normalize&apos;
  * need to `fetchAndParse` before normalization. But you can still do this
  * manually, so you get the chance to make your own normalization work before our
  * process, with a cheerio instance from {@link NormalizedWeChatArticle#getContent$}.
+ *
+ * @example
+ * import { NormalizedWeChatArticle } from &apos;wearticle&apos;
+ * const aboutHolaArticle = new NormalizedWeChatArticle(&apos;http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw&apos;)
+ * await article.normalize()
+ * console.log(article.content)
+ *
+ * @since 0.3.0
  */
 export default class NormalizedWeChatArticle extends WeChatArticle {
   /**

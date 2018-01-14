@@ -14,17 +14,17 @@
       "expectCount": 4,
       "actualCount": 2,
       "undocumentLines": [
-        25,
-        27
+        33,
+        35
       ]
     },
     "src/class/WeChatArticle.js": {
       "expectCount": 15,
       "actualCount": 12,
       "undocumentLines": [
-        64,
-        99,
-        126
+        44,
+        100,
+        131
       ]
     },
     "src/lib/style.js": {
