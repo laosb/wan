@@ -1,14 +1,32 @@
 window.esdocSearchIndex = [
   [
+    "wearticle/src/class/normalizedwechatarticle.js~normalizedwechatarticle",
+    "class/src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle.html",
+    "<span>NormalizedWeChatArticle</span> <span class=\"search-result-import-path\">wearticle/src/class/NormalizedWeChatArticle.js</span>",
+    "class"
+  ],
+  [
     "wearticle/src/class/wechatarticle.js~wechatarticle",
     "class/src/class/WeChatArticle.js~WeChatArticle.html",
     "<span>WeChatArticle</span> <span class=\"search-result-import-path\">wearticle/src/class/WeChatArticle.js</span>",
     "class"
   ],
   [
+    "wearticle/src/lib/style.js~cleanstyle",
+    "function/index.html#static-function-cleanStyle",
+    "<span>cleanStyle</span> <span class=\"search-result-import-path\">wearticle/src/lib/style.js</span>",
+    "function"
+  ],
+  [
     "wearticle/src/utils.js~fetchandparse",
     "function/index.html#static-function-fetchAndParse",
     "<span>fetchAndParse</span> <span class=\"search-result-import-path\">wearticle/src/utils.js</span>",
+    "function"
+  ],
+  [
+    "wearticle/src/normalize.js~normalize",
+    "function/index.html#static-function-normalize",
+    "<span>normalize</span> <span class=\"search-result-import-path\">wearticle/src/normalize.js</span>",
     "function"
   ],
   [
@@ -300,10 +318,52 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/class/normalizedwechatarticle.js",
+    "file/src/class/NormalizedWeChatArticle.js.html",
+    "src/class/NormalizedWeChatArticle.js",
+    "file"
+  ],
+  [
+    "src/class/normalizedwechatarticle.js~normalizedwechatarticle#_origcontent",
+    "class/src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle.html#instance-member-_origContent",
+    "src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle#_origContent",
+    "member"
+  ],
+  [
+    "src/class/normalizedwechatarticle.js~normalizedwechatarticle#constructor",
+    "class/src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle.html#instance-constructor-constructor",
+    "src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle#constructor",
+    "method"
+  ],
+  [
+    "src/class/normalizedwechatarticle.js~normalizedwechatarticle#content",
+    "class/src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle.html#instance-member-content",
+    "src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle#content",
+    "member"
+  ],
+  [
+    "src/class/normalizedwechatarticle.js~normalizedwechatarticle#normalize",
+    "class/src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle.html#instance-method-normalize",
+    "src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle#normalize",
+    "method"
+  ],
+  [
     "src/class/wechatarticle.js",
     "file/src/class/WeChatArticle.js.html",
     "src/class/WeChatArticle.js",
     "file"
+  ],
+  [
+    "src/class/wechatarticle.js~$",
+    "https://cheerio.js.org/",
+    "src/class/WeChatArticle.js~$",
+    "external"
+  ],
+  [
+    "src/class/wechatarticle.js~wechatarticle#_$",
+    "class/src/class/WeChatArticle.js~WeChatArticle.html#instance-member-_$",
+    "src/class/WeChatArticle.js~WeChatArticle#_$",
+    "member"
   ],
   [
     "src/class/wechatarticle.js~wechatarticle#_parsed",
@@ -348,6 +408,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/class/wechatarticle.js~wechatarticle#getcontent$",
+    "class/src/class/WeChatArticle.js~WeChatArticle.html#instance-method-getContent$",
+    "src/class/WeChatArticle.js~WeChatArticle#getContent$",
+    "method"
+  ],
+  [
     "src/class/wechatarticle.js~wechatarticle#isparsed",
     "class/src/class/WeChatArticle.js~WeChatArticle.html#instance-method-isParsed",
     "src/class/WeChatArticle.js~WeChatArticle#isParsed",
@@ -381,6 +447,18 @@ window.esdocSearchIndex = [
     "src/index.js",
     "file/src/index.js.html",
     "src/index.js",
+    "file"
+  ],
+  [
+    "src/lib/style.js",
+    "file/src/lib/style.js.html",
+    "src/lib/style.js",
+    "file"
+  ],
+  [
+    "src/normalize.js",
+    "file/src/normalize.js.html",
+    "src/normalize.js",
     "file"
   ],
   [

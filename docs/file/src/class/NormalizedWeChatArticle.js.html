@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl" href="../../">
-  <title data-ice="title">src/app.js | wearticle</title>
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/class/NormalizedWeChatArticle.js | wearticle</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -39,18 +39,24 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/app.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { NormalizedWeChatArticle } from &apos;./&apos;
+<div class="content" data-ice="content"><h1 data-ice="title">src/class/NormalizedWeChatArticle.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import WeChatArticle from &apos;./WeChatArticle&apos;
+import { normalize } from &apos;../normalize&apos;
 
-const main = async () =&gt; {
-  const aboutHolaArticle = new NormalizedWeChatArticle(&apos;http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw&apos;)
-  await aboutHolaArticle.fetchAndParse()
-  console.log(&apos;BEFORE:&apos;, aboutHolaArticle.content, &apos;\n&apos;)
-  await aboutHolaArticle.normalize()
-  console.log(&apos;AFTER: &apos;, aboutHolaArticle.content)
+export default class NormalizedWeChatArticle extends WeChatArticle {
+  constructor (url) {
+    super(url)
+    this._origContent = &apos;&apos;
+    this.content = &apos;&apos;
+  }
+  async normalize () {
+    if (!this.isParsed()) await this.fetchAndParse()
+    this._origContent = this.content
+    const $ = super.getContent$()
+    this.content = normalize($)(&apos;*&apos;).first().parent().html().trim()
+    return this
+  }
 }
-
-main()
 </code></pre>
 
 </div>

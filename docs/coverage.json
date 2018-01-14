@@ -1,22 +1,49 @@
 {
-  "coverage": "64.7%",
-  "expectCount": 17,
-  "actualCount": 11,
+  "coverage": "44.44%",
+  "expectCount": 27,
+  "actualCount": 12,
   "files": {
     "src/app.js": {
-      "expectCount": 2,
+      "expectCount": 1,
       "actualCount": 0,
       "undocumentLines": [
-        3,
-        8
+        3
+      ]
+    },
+    "src/class/NormalizedWeChatArticle.js": {
+      "expectCount": 5,
+      "actualCount": 0,
+      "undocumentLines": [
+        4,
+        5,
+        7,
+        8,
+        10
       ]
     },
     "src/class/WeChatArticle.js": {
-      "expectCount": 13,
-      "actualCount": 11,
+      "expectCount": 15,
+      "actualCount": 12,
       "undocumentLines": [
-        92,
-        111
+        62,
+        97,
+        124
+      ]
+    },
+    "src/lib/style.js": {
+      "expectCount": 3,
+      "actualCount": 0,
+      "undocumentLines": [
+        1,
+        18,
+        29
+      ]
+    },
+    "src/normalize.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        3
       ]
     },
     "src/utils.js": {

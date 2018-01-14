@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../../">
-  <title data-ice="title">WeChatArticle | wearticle</title>
+  <title data-ice="title">NormalizedWeChatArticle | wearticle</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -40,24 +40,24 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import WeChatArticle from &apos;<span><a href="file/src/class/WeChatArticle.js.html#lineNumber23">wearticle/src/class/WeChatArticle.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import NormalizedWeChatArticle from &apos;<span><a href="file/src/class/NormalizedWeChatArticle.js.html#lineNumber4">wearticle/src/class/NormalizedWeChatArticle.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
-  <span data-ice="since">| since 0.1.0</span>
-  <span data-ice="source">| <span><a href="file/src/class/WeChatArticle.js.html#lineNumber23">source</a></span></span>
+  
+  <span data-ice="source">| <span><a href="file/src/class/NormalizedWeChatArticle.js.html#lineNumber4">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
-  <h1 data-ice="name">WeChatArticle</h1>
+  <h1 data-ice="name">NormalizedWeChatArticle</h1>
 
   
 
   
   
+  <div class="flat-list" data-ice="extendsChain"><h4>Extends:</h4><div><span><a href="class/src/class/WeChatArticle.js~WeChatArticle.html">WeChatArticle</a></span> &#x2192; NormalizedWeChatArticle</div></div>
   
-  <div class="flat-list" data-ice="directSubclass"><h4>Direct Subclass:</h4><div><span><a href="class/src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle.html">NormalizedWeChatArticle</a></span></div></div>
   
   
   
@@ -66,27 +66,12 @@
 
   
   
-  <div class="description" data-ice="description"><p>WeChatArticle
-This class is for a typical WeChat article. Takes an URL to that article.
-e.g. <a href="http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw">http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw</a></p>
-<p>All content-based properties are only available after <span><a href="class/src/class/WeChatArticle.js~WeChatArticle.html#instance-method-fetchAndParse">WeChatArticle#fetchAndParse</a></span>.</p>
-</div>
+  
   
 
   
 
-  <div data-ice="exampleDocs">
-    <h4>Example:</h4>
-    
-  <div class="example-doc" data-ice="exampleDoc">
-      
-      <pre class="prettyprint source-code"><code data-ice="exampleCode">import { WeChatArticle } from &apos;wearticle&apos;
-const article = new WeChatArticle(&apos;http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw&apos;)
-await article.fetchAndParse()
-console.log(article.toString())
-// -&gt; WeChatArticle (&quot;&#x5173;&#x4E8E; &#xA1;Hola!&quot; by &quot;Holateens&quot;)</code></pre>
-    </div>
-</div>
+  
 
   
 
@@ -113,14 +98,13 @@ console.log(article.toString())
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/class/WeChatArticle.js~WeChatArticle.html#instance-constructor-constructor">constructor</a></span></span><span class="code" data-ice="signature">(url: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>)</span>
+          <span class="code" data-ice="name"><span><a href="class/src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle.html#instance-constructor-constructor">constructor</a></span></span><span class="code" data-ice="signature">()</span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>Take the url.</p>
-</div>
+        
       </div>
     </td>
     <td>
@@ -133,6 +117,111 @@ console.log(article.toString())
 </div>
 <div data-ice="memberSummary"><h2>Member Summary</h2><table class="summary" data-ice="summary">
   <thead><tr><td data-ice="title" colspan="3">Public Members</td></tr></thead>
+  <tbody>
+  
+  <tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle.html#instance-member-content">content</a></span></span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+</tbody>
+</table>
+<table class="summary" data-ice="summary">
+  <thead><tr><td data-ice="title" colspan="3">Private Members</td></tr></thead>
+  <tbody>
+  
+  <tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">private</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          
+          <span class="code" data-ice="name"><span><a href="class/src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle.html#instance-member-_origContent">_origContent</a></span></span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+</tbody>
+</table>
+</div>
+<div data-ice="methodSummary"><h2>Method Summary</h2><table class="summary" data-ice="summary">
+  <thead><tr><td data-ice="title" colspan="3">Public Methods</td></tr></thead>
+  <tbody>
+  
+  <tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          <span data-ice="async">async</span>
+          
+          <span class="code" data-ice="name"><span><a href="class/src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle.html#instance-method-normalize">normalize</a></span></span><span class="code" data-ice="signature">(): <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+</tbody>
+</table>
+</div>
+
+<div class="inherited-summary" data-ice="inheritedSummary"><h2>Inherited Summary</h2><table class="summary" data-ice="summary">
+  <thead><tr><td data-ice="title" colspan="3"><span class="toggle closed"></span> From class <span><a href="class/src/class/WeChatArticle.js~WeChatArticle.html">WeChatArticle</a></span></td></tr></thead>
   <tbody>
   
   <tr data-ice="target">
@@ -305,13 +394,7 @@ console.log(article.toString())
       
     </td>
   </tr>
-</tbody>
-</table>
-<table class="summary" data-ice="summary">
-  <thead><tr><td data-ice="title" colspan="3">Private Members</td></tr></thead>
-  <tbody>
-  
-  <tr data-ice="target">
+<tr data-ice="target">
     <td>
       <span class="access" data-ice="access">private</span>
       
@@ -367,14 +450,7 @@ console.log(article.toString())
       
     </td>
   </tr>
-</tbody>
-</table>
-</div>
-<div data-ice="methodSummary"><h2>Method Summary</h2><table class="summary" data-ice="summary">
-  <thead><tr><td data-ice="title" colspan="3">Public Methods</td></tr></thead>
-  <tbody>
-  
-  <tr data-ice="target">
+<tr data-ice="target">
     <td>
       <span class="access" data-ice="access">public</span>
       
@@ -525,8 +601,6 @@ article, or the name of the Official Account if not.</p>
 
 
 
-
-
 <div data-ice="constructorDetails"><h2 data-ice="title">Public Constructors</h2>
 
 <div class="detail" data-ice="detail">
@@ -537,11 +611,11 @@ article, or the name of the Official Account if not.</p>
     
     
     
-    <span class="code" data-ice="name">constructor</span><span class="code" data-ice="signature">(url: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>)</span>
+    <span class="code" data-ice="name">constructor</span><span class="code" data-ice="signature">()</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/class/WeChatArticle.js.html#lineNumber33">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/class/NormalizedWeChatArticle.js.html#lineNumber5">source</a></span></span>
     </span>
   </h3>
 
@@ -553,27 +627,9 @@ before you call <span><a href="class/src/class/WeChatArticle.js~WeChatArticle.ht
 <p>You could see if this article is parsed or not, by using <span><a href="class/src/class/WeChatArticle.js~WeChatArticle.html#instance-method-isParsed">WeChatArticle#isParsed</a></span>.</p>
 </div>
 
-  
+  <div data-ice="override"><h4>Override:</h4><span><a href="class/src/class/WeChatArticle.js~WeChatArticle.html#instance-constructor-constructor">WeChatArticle#constructor</a></span></div>
 
-  <div data-ice="properties"><div data-ice="properties">
-  <h4 data-ice="title">Params:</h4>
-  <table class="params">
-    <thead>
-    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-    
-    <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">url</td>
-      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"><p>A valid WeChat article URL, begins with
-http(s)://mp.weixin.qq.com/s</p>
-</td>
-    </tr>
-</tbody>
-  </table>
-</div>
+  <div data-ice="properties">
 </div>
 
   
@@ -597,94 +653,6 @@ http(s)://mp.weixin.qq.com/s</p>
 <div data-ice="memberDetails"><h2 data-ice="title">Public Members</h2>
 
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-member-account">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    
-    <span class="code" data-ice="name">account</span><span class="code" data-ice="signature">: <span>*</span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/class/WeChatArticle.js.html#lineNumber97">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-member-author">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    
-    <span class="code" data-ice="name">author</span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/class/WeChatArticle.js.html#lineNumber96">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  <div data-ice="description"><p>The author. Only exists when it does have an author field.</p>
-<p>To get a must-have author name, use <span><a href="class/src/class/WeChatArticle.js~WeChatArticle.html#instance-method-getAuthorName">WeChatArticle.getAuthorName</a></span>.</p>
-</div>
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-member-content">
     <span class="access" data-ice="access">public</span>
     
@@ -692,11 +660,11 @@ http(s)://mp.weixin.qq.com/s</p>
     
     
     
-    <span class="code" data-ice="name">content</span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span></span>
+    <span class="code" data-ice="name">content</span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/class/WeChatArticle.js.html#lineNumber104">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/class/NormalizedWeChatArticle.js.html#lineNumber8">source</a></span></span>
     </span>
   </h3>
 
@@ -707,136 +675,7 @@ http(s)://mp.weixin.qq.com/s</p>
 <code>#js_content</code> part of the whole raw HTML.</p>
 </div>
 
-  
-
-  <div data-ice="properties">
-</div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-member-publishedAt">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    
-    <span class="code" data-ice="name">publishedAt</span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">Date</a></span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/class/WeChatArticle.js.html#lineNumber87">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-member-title">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    
-    <span class="code" data-ice="name">title</span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/class/WeChatArticle.js.html#lineNumber84">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-member-url">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    
-    <span class="code" data-ice="name">url</span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/class/WeChatArticle.js.html#lineNumber40">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  
-
-  
+  <div data-ice="override"><h4>Override:</h4><span><a href="class/src/class/WeChatArticle.js~WeChatArticle.html#instance-member-content">WeChatArticle#content</a></span></div>
 
   <div data-ice="properties">
 </div>
@@ -861,61 +700,18 @@ http(s)://mp.weixin.qq.com/s</p>
 <h2 data-ice="title">Private Members</h2>
 
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-member-_$">
+  <h3 data-ice="anchor" id="instance-member-_origContent">
     <span class="access" data-ice="access">private</span>
     
     
     
     
     
-    <span class="code" data-ice="name">_$</span><span class="code" data-ice="signature">: <span>*</span></span>
+    <span class="code" data-ice="name">_origContent</span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/class/WeChatArticle.js.html#lineNumber62">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-member-_parsed">
-    <span class="access" data-ice="access">private</span>
-    
-    
-    
-    
-    
-    <span class="code" data-ice="name">_parsed</span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a></span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/class/WeChatArticle.js.html#lineNumber43">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/class/NormalizedWeChatArticle.js.html#lineNumber7">source</a></span></span>
     </span>
   </h3>
 
@@ -950,248 +746,18 @@ http(s)://mp.weixin.qq.com/s</p>
 <div data-ice="methodDetails"><h2 data-ice="title">Public Methods</h2>
 
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-fetchAndParse">
+  <h3 data-ice="anchor" id="instance-method-normalize">
     <span class="access" data-ice="access">public</span>
     
     
     
     <span data-ice="async">async</span>
     
-    <span class="code" data-ice="name">fetchAndParse</span><span class="code" data-ice="signature">(): <span><a href="class/src/class/WeChatArticle.js~WeChatArticle.html">WeChatArticle</a></span></span>
+    <span class="code" data-ice="name">normalize</span><span class="code" data-ice="signature">(): <span>*</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/class/WeChatArticle.js.html#lineNumber60">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  <div data-ice="description"><p>Fetch &amp; parse the article.</p>
-</div>
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  <div class="return-params" data-ice="returnParams">
-    <h4>Return:</h4>
-    <table>
-      <tbody>
-        <tr>
-          <td class="return-type code" data-ice="returnType"><span><a href="class/src/class/WeChatArticle.js~WeChatArticle.html">WeChatArticle</a></span></td>
-          <td class="return-desc" data-ice="returnDescription"><p>Returns <code>this</code> so you can chain calls.</p>
-</td>
-        </tr>
-      </tbody>
-    </table>
-    <div data-ice="returnProperties">
-</div>
-  </div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-getAuthorName">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    
-    <span class="code" data-ice="name">getAuthorName</span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/class/WeChatArticle.js.html#lineNumber123">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  <div data-ice="description"><p>Returns author&apos;s name if the author does specify an author name on the
-article, or the name of the Official Account if not.</p>
-</div>
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  <div class="return-params" data-ice="returnParams">
-    <h4>Return:</h4>
-    <table>
-      <tbody>
-        <tr>
-          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span></td>
-          <td class="return-desc" data-ice="returnDescription"><p>The author&apos;s name.</p>
-</td>
-        </tr>
-      </tbody>
-    </table>
-    <div data-ice="returnProperties">
-</div>
-  </div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-getContent$">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    
-    <span class="code" data-ice="name">getContent$</span><span class="code" data-ice="signature">(): <span><a href="https://cheerio.js.org/">$</a></span></span>
-    <span class="right-info">
-      
-      <span class="since" data-ice="since">since 0.2.0</span>
-      <span data-ice="source"><span><a href="file/src/class/WeChatArticle.js.html#lineNumber115">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  <div data-ice="description"><p>Returns a cheerio $ of the content.</p>
-</div>
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  <div class="return-params" data-ice="returnParams">
-    <h4>Return:</h4>
-    <table>
-      <tbody>
-        <tr>
-          <td class="return-type code" data-ice="returnType"><span><a href="https://cheerio.js.org/">$</a></span></td>
-          <td class="return-desc" data-ice="returnDescription"><p>The cheerio $.</p>
-</td>
-        </tr>
-      </tbody>
-    </table>
-    <div data-ice="returnProperties">
-</div>
-  </div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-isParsed">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    
-    <span class="code" data-ice="name">isParsed</span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a></span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/class/WeChatArticle.js.html#lineNumber53">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  <div data-ice="description"><p>See if this article has been loaded &amp; parsed.</p>
-<p>Load &amp; parse with <span><a href="class/src/class/WeChatArticle.js~WeChatArticle.html#instance-method-fetchAndParse">WeChatArticle#fetchAndParse</a></span>.</p>
-</div>
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  <div class="return-params" data-ice="returnParams">
-    <h4>Return:</h4>
-    <table>
-      <tbody>
-        <tr>
-          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a></span></td>
-          <td class="return-desc" data-ice="returnDescription"><p>Parsed or not.</p>
-</td>
-        </tr>
-      </tbody>
-    </table>
-    <div data-ice="returnProperties">
-</div>
-  </div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-toString">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    
-    <span class="code" data-ice="name">toString</span><span class="code" data-ice="signature">(): <span>*</span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/class/WeChatArticle.js.html#lineNumber124">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/class/NormalizedWeChatArticle.js.html#lineNumber10">source</a></span></span>
     </span>
   </h3>
 

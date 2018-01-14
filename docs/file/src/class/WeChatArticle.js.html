@@ -29,8 +29,12 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-fetchAndParse">fetchAndParse</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#class">class</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/class/WeChatArticle.js~WeChatArticle.html">WeChatArticle</a></span></span></li>
+  <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-normalize">normalize</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-fetchAndParse">fetchAndParse</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#class">class</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle.html">NormalizedWeChatArticle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/class/WeChatArticle.js~WeChatArticle.html">WeChatArticle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://cheerio.js.org/">$</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib">lib</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-cleanStyle">cleanStyle</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -39,6 +43,8 @@
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { fetchAndParse } from &apos;../utils&apos;
 import moment from &apos;moment&apos;
 import { VM } from &apos;vm2&apos;
+
+/** @external {$} https://cheerio.js.org/ */
 
 /**
  * WeChatArticle
@@ -53,6 +59,8 @@ import { VM } from &apos;vm2&apos;
  * await article.fetchAndParse()
  * console.log(article.toString())
  * // -&gt; WeChatArticle (&quot;&#x5173;&#x4E8E; &#xA1;Hola!&quot; by &quot;Holateens&quot;)
+ *
+ * @since 0.1.0
  */
 export default class WeChatArticle {
   /**
@@ -89,10 +97,11 @@ export default class WeChatArticle {
   /**
    * Fetch &amp; parse the article.
    *
-   * @return {Boolean} Returns `true` on success.
+   * @return {WeChatArticle} Returns `this` so you can chain calls.
    */
   async fetchAndParse () {
     const $ = await fetchAndParse(this.url)
+    this._$ = $
     let usefulCode = &apos;const window = {}; const __getInfoFunc = () =&gt; {&apos;
     usefulCode += $(&apos;#activity-detail &gt; script:nth-child(7)&apos;).get()[0].children[0].data
     usefulCode += `
@@ -131,13 +140,21 @@ export default class WeChatArticle {
 
     /**
      * The original content fetched from WeChat public platform. Actually from
-     * `#js-content` part of the whole raw HTML.
+     * `#js_content` part of the whole raw HTML.
      * @type {String}
      */
     this.content = $(&apos;#js_content&apos;).html()
     this._parsed = true
-    return true
+    return this
   }
+
+  /**
+   * Returns a cheerio $ of the content.
+   *
+   * @return {$} The cheerio $.
+   * @since 0.2.0
+   */
+  getContent$ () { return selector =&gt; this._$(selector, &apos;#js_content&apos;) }
 
   /**
    * Returns author&apos;s name if the author does specify an author name on the
