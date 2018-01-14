@@ -29,7 +29,9 @@ and style them with your website's styles. No problem.
 
 ## Docs
 
-See `/docs`. Or use `npm run doc`.
+Hosted: https://laosb.github.io/wan
+
+For local, See `/docs`. Or use `npm run doc` when you tweaked a bit.
 
 ## Status
 
