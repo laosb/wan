@@ -112,7 +112,7 @@ export default class WeChatArticle {
    * @return {$} The cheerio $.
    * @since 0.2.0
    */
-  getContent$ () { return this._$(this._$('#js_content')) }
+  getContent$ (selector) { return this._$(selector, '#js_content') }
 
   /**
    * Returns author's name if the author does specify an author name on the
