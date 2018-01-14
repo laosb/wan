@@ -11,6 +11,12 @@ import { normalize } from '../normalize'
  * manually, so you get the chance to make your own normalization work before our
  * process, with a cheerio instance from {@link NormalizedWeChatArticle#getContent$}.
  *
+ * @example
+ * import { NormalizedWeChatArticle } from 'wearticle'
+ * const aboutHolaArticle = new NormalizedWeChatArticle('http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw')
+ * await article.normalize()
+ * console.log(article.content)
+ *
  * @since 0.3.0
  */
 export default class NormalizedWeChatArticle extends WeChatArticle {
