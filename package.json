@@ -1,5 +1,5 @@
 {
-  "name": "wan",
+  "name": "wearticle",
   "version": "0.1.0",
   "description": "A server that normalize WeChat articles to webpages.",
   "main": "src/index.js",
