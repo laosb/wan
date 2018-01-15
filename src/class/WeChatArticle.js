@@ -1,4 +1,5 @@
 import { fetchAndParse } from '../utils'
+import { collectMedia } from '../lib/media'
 import moment from 'moment'
 import { VM } from 'vm2'
 
@@ -63,6 +64,8 @@ export default class WeChatArticle {
 
     /** @type {$} */
     this._$ = $
+
+    this._media = collectMedia($)
     let usefulCode = 'const window = {}; const __getInfoFunc = () => {'
     usefulCode += $('#activity-detail > script:nth-child(7)').get()[0].children[0].data
     usefulCode += `
@@ -120,6 +123,8 @@ export default class WeChatArticle {
    * @since 0.2.0
    */
   getContent$ () { return selector => this._$(selector, '#js_content') }
+
+  getMedia () { return this._media }
 
   /**
    * Returns author's name if the author does specify an author name on the
