@@ -1,6 +1,6 @@
 {
   "name": "wearticle",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "A server that normalize WeChat articles to webpages.",
   "main": "src/index.js",
   "scripts": {

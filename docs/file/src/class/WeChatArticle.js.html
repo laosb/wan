@@ -169,18 +169,28 @@ export default class WeChatArticle {
 
   /**
    * Update content with your modified `$`. Don&apos;t forget to do this.
+   *
+   * @since 0.4.0
    */
   updateContent () { this.content = this._$(&apos;#js_content&apos;).html() }
 
   /**
    * Get an array of media in the article. Useful when you need to deal with it.
+   * An empty array will be returned in case there is no media.
    *
    * Currently we only parse images, so it will be an array of {@link ArticleImage}.
    * See its documentation for reference.
    *
+   * Only available after you {@link WeChatArticle#fetAndParse}ed.
+   *
    * @return {Array}
+   *
+   * @since 0.4.0
    */
-  getMedia () { return this._media }
+  getMedia () {
+    if (!this._parsed) throw new Error(&quot;Can&apos;t get media before parse.&quot;)
+    return this._media
+  }
 
   /**
    * Returns author&apos;s name if the author does specify an author name on the

@@ -519,7 +519,7 @@ article, or the name of the Official Account if not.</p>
     </td>
     <td>
       
-      
+      <span class="since" data-ice="since">since 0.4.0</span>
     </td>
   </tr>
 <tr data-ice="target">
@@ -605,7 +605,7 @@ article, or the name of the Official Account if not.</p>
     </td>
     <td>
       
-      
+      <span class="since" data-ice="since">since 0.4.0</span>
     </td>
   </tr>
 </tbody>
@@ -1150,7 +1150,7 @@ before you call <span><a href="class/src/class/WeChatArticle.js~WeChatArticle.ht
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/class/WeChatArticle.js.html#lineNumber147">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/class/WeChatArticle.js.html#lineNumber157">source</a></span></span>
     </span>
   </h3>
 
@@ -1267,17 +1267,19 @@ there, and even can&apos;t use a context.</p>
     <span class="code" data-ice="name">getMedia</span><span class="code" data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span></span>
     <span class="right-info">
       
-      
-      <span data-ice="source"><span><a href="file/src/class/WeChatArticle.js.html#lineNumber139">source</a></span></span>
+      <span class="since" data-ice="since">since 0.4.0</span>
+      <span data-ice="source"><span><a href="file/src/class/WeChatArticle.js.html#lineNumber146">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Get an array of media in the article. Useful when you need to deal with it.</p>
+  <div data-ice="description"><p>Get an array of media in the article. Useful when you need to deal with it.
+An empty array will be returned in case there is no media.</p>
 <p>Currently we only parse images, so it will be an array of <span><a href="class/src/class/ArticleImage.js~ArticleImage.html">ArticleImage</a></span>.
 See its documentation for reference.</p>
+<p>Only available after you <span>WeChatArticle#fetAndParse</span>ed.</p>
 </div>
 
   
@@ -1384,7 +1386,7 @@ See its documentation for reference.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/class/WeChatArticle.js.html#lineNumber148">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/class/WeChatArticle.js.html#lineNumber158">source</a></span></span>
     </span>
   </h3>
 
@@ -1438,8 +1440,8 @@ See its documentation for reference.</p>
     <span class="code" data-ice="name">updateContent</span><span class="code" data-ice="signature">()</span>
     <span class="right-info">
       
-      
-      <span data-ice="source"><span><a href="file/src/class/WeChatArticle.js.html#lineNumber129">source</a></span></span>
+      <span class="since" data-ice="since">since 0.4.0</span>
+      <span data-ice="source"><span><a href="file/src/class/WeChatArticle.js.html#lineNumber131">source</a></span></span>
     </span>
   </h3>
 
