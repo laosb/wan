@@ -28,7 +28,7 @@ export function normalize ($) {
   $('[class=""]').attr('class', null)
   $('section:not([class],[style])').each((e, el) => {
     if ($(el).children().length === 1) {
-      $(el).children()[0].insertAfter($(el))
+      $($(el).children()[0]).insertAfter($(el))
       $(el).remove()
     }
   }) // Unwrap elements in nonsense sections.
