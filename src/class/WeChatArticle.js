@@ -124,6 +124,8 @@ export default class WeChatArticle {
    */
   getContent$ () { return selector => this._$(selector, '#js_content') }
 
+  updateContent () { this.content = this._$('#js_content').html() }
+
   getMedia () { return this._media }
 
   /**
