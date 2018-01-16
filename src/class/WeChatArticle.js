@@ -132,15 +132,21 @@ export default class WeChatArticle {
 
   /**
    * Get an array of media in the article. Useful when you need to deal with it.
+   * An empty array will be returned in case there is no media.
    *
    * Currently we only parse images, so it will be an array of {@link ArticleImage}.
    * See its documentation for reference.
+   *
+   * Only available after you {@link WeChatArticle#fetAndParse}ed.
    *
    * @return {Array}
    *
    * @since 0.4.0
    */
-  getMedia () { return this._media }
+  getMedia () {
+    if (!this._parsed) throw new Error("Can't get media before parse.")
+    return this._media
+  }
 
   /**
    * Returns author's name if the author does specify an author name on the
