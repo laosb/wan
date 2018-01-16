@@ -137,7 +137,7 @@ export default class WeChatArticle {
    * Currently we only parse images, so it will be an array of {@link ArticleImage}.
    * See its documentation for reference.
    *
-   * Only available after you {@link WeChatArticle#fetAndParse}ed.
+   * Only available after you {@link WeChatArticle#fetchAndParse}ed.
    *
    * @return {Array}
    *
