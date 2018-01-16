@@ -26,11 +26,18 @@ export function normalize ($) {
   $('[class="Powered-by-XIUMI V5"]').attr('class', null)
   $('[data-label="powered by xmt.cn"]').remove()
   $('[class=""]').attr('class', null)
-  $('section:not([class],[style])').each((e, el) => {
-    if ($(el).children().length === 1) {
-      $($(el).children()[0]).insertAfter($(el))
-      $(el).remove()
-    }
-  }) // Unwrap elements in nonsense sections.
+  let removals = 1
+  while (removals > 0) {
+    removals = 0
+    $('section').each((e, el) => {
+      if (!$(el).attr('class') && !$(el).attr('style')) {
+        for (let i = 0; i < $(el).children().length; i++) {
+          $($(el).children()[i]).insertAfter($(el))
+        }
+        $(el).remove()
+        removals++
+      }
+    }) // Unwrap elements in nonsense sections.
+  }
   return $
 }
