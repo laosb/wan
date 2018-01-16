@@ -70,7 +70,7 @@ Object.keys(uselessStyle).forEach(key =&gt; {
   let values = uselessStyle[key]
   if (!Array.isArray(values)) values = [values]
   values.map(value =&gt; {
-    cleanStyleRegexs.push(new RegExp(` *${key}: *${value} *[ ;]*`, &apos;gi&apos;))
+    cleanStyleRegexs.push(new RegExp(` *${key}: *${value} *!?[a-z]*[ ;]*`, &apos;gi&apos;))
   })
 })
 

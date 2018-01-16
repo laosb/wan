@@ -78,8 +78,7 @@ export default class WeChatArticle {
    * `http(s)://mp.weixin.qq.com/s`
    */
   constructor (url) {
-    if (!url.startsWith(&apos;https://mp.weixin.qq.com/s&apos;) &amp;&amp;
-      !url.startsWith(&apos;http://mp.weixin.qq.com/s&apos;)) {
+    if (!url.match(/https*:\/\/mp\.weixin\.qq\.com\/s[/?]/ig)) {
       throw new Error(&apos;url is not a WeChat article url&apos;)
     }
 
@@ -167,6 +166,8 @@ export default class WeChatArticle {
    * @since 0.2.0
    */
   getContent$ () { return selector =&gt; this._$(selector, &apos;#js_content&apos;) }
+
+  updateContent () { this.content = this._$(&apos;#js_content&apos;).html() }
 
   getMedia () { return this._media }
 

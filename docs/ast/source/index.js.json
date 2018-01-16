@@ -1,28 +1,28 @@
 {
   "type": "File",
   "start": 0,
-  "end": 175,
+  "end": 239,
   "loc": {
     "start": {
       "line": 1,
       "column": 0
     },
     "end": {
-      "line": 8,
+      "line": 10,
       "column": 0
     }
   },
   "program": {
     "type": "Program",
     "start": 0,
-    "end": 175,
+    "end": 239,
     "loc": {
       "start": {
         "line": 1,
         "column": 0
       },
       "end": {
-        "line": 8,
+        "line": 10,
         "column": 0
       }
     },
@@ -167,16 +167,85 @@
         }
       },
       {
-        "type": "ExportNamedDeclaration",
-        "start": 121,
-        "end": 174,
+        "type": "ImportDeclaration",
+        "start": 120,
+        "end": 167,
         "loc": {
           "start": {
-            "line": 4,
+            "line": 3,
             "column": 0
           },
           "end": {
-            "line": 7,
+            "line": 3,
+            "column": 47
+          }
+        },
+        "specifiers": [
+          {
+            "type": "ImportDefaultSpecifier",
+            "start": 127,
+            "end": 139,
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 7
+              },
+              "end": {
+                "line": 3,
+                "column": 19
+              }
+            },
+            "local": {
+              "type": "Identifier",
+              "start": 127,
+              "end": 139,
+              "loc": {
+                "start": {
+                  "line": 3,
+                  "column": 7
+                },
+                "end": {
+                  "line": 3,
+                  "column": 19
+                },
+                "identifierName": "ArticleImage"
+              },
+              "name": "ArticleImage"
+            }
+          }
+        ],
+        "source": {
+          "type": "StringLiteral",
+          "start": 145,
+          "end": 167,
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 25
+            },
+            "end": {
+              "line": 3,
+              "column": 47
+            }
+          },
+          "extra": {
+            "rawValue": "./class/ArticleImage",
+            "raw": "'./class/ArticleImage'"
+          },
+          "value": "./class/ArticleImage"
+        }
+      },
+      {
+        "type": "ExportNamedDeclaration",
+        "start": 169,
+        "end": 238,
+        "loc": {
+          "start": {
+            "line": 5,
+            "column": 0
+          },
+          "end": {
+            "line": 9,
             "column": 1
           }
         },
@@ -184,29 +253,29 @@
         "specifiers": [
           {
             "type": "ExportSpecifier",
-            "start": 132,
-            "end": 145,
+            "start": 180,
+            "end": 193,
             "loc": {
               "start": {
-                "line": 5,
+                "line": 6,
                 "column": 2
               },
               "end": {
-                "line": 5,
+                "line": 6,
                 "column": 15
               }
             },
             "local": {
               "type": "Identifier",
-              "start": 132,
-              "end": 145,
+              "start": 180,
+              "end": 193,
               "loc": {
                 "start": {
-                  "line": 5,
+                  "line": 6,
                   "column": 2
                 },
                 "end": {
-                  "line": 5,
+                  "line": 6,
                   "column": 15
                 },
                 "identifierName": "WeChatArticle"
@@ -215,15 +284,15 @@
             },
             "exported": {
               "type": "Identifier",
-              "start": 132,
-              "end": 145,
+              "start": 180,
+              "end": 193,
               "loc": {
                 "start": {
-                  "line": 5,
+                  "line": 6,
                   "column": 2
                 },
                 "end": {
-                  "line": 5,
+                  "line": 6,
                   "column": 15
                 },
                 "identifierName": "WeChatArticle"
@@ -233,29 +302,29 @@
           },
           {
             "type": "ExportSpecifier",
-            "start": 149,
-            "end": 172,
+            "start": 197,
+            "end": 220,
             "loc": {
               "start": {
-                "line": 6,
+                "line": 7,
                 "column": 2
               },
               "end": {
-                "line": 6,
+                "line": 7,
                 "column": 25
               }
             },
             "local": {
               "type": "Identifier",
-              "start": 149,
-              "end": 172,
+              "start": 197,
+              "end": 220,
               "loc": {
                 "start": {
-                  "line": 6,
+                  "line": 7,
                   "column": 2
                 },
                 "end": {
-                  "line": 6,
+                  "line": 7,
                   "column": 25
                 },
                 "identifierName": "NormalizedWeChatArticle"
@@ -264,20 +333,69 @@
             },
             "exported": {
               "type": "Identifier",
-              "start": 149,
-              "end": 172,
+              "start": 197,
+              "end": 220,
               "loc": {
                 "start": {
-                  "line": 6,
+                  "line": 7,
                   "column": 2
                 },
                 "end": {
-                  "line": 6,
+                  "line": 7,
                   "column": 25
                 },
                 "identifierName": "NormalizedWeChatArticle"
               },
               "name": "NormalizedWeChatArticle"
+            }
+          },
+          {
+            "type": "ExportSpecifier",
+            "start": 224,
+            "end": 236,
+            "loc": {
+              "start": {
+                "line": 8,
+                "column": 2
+              },
+              "end": {
+                "line": 8,
+                "column": 14
+              }
+            },
+            "local": {
+              "type": "Identifier",
+              "start": 224,
+              "end": 236,
+              "loc": {
+                "start": {
+                  "line": 8,
+                  "column": 2
+                },
+                "end": {
+                  "line": 8,
+                  "column": 14
+                },
+                "identifierName": "ArticleImage"
+              },
+              "name": "ArticleImage"
+            },
+            "exported": {
+              "type": "Identifier",
+              "start": 224,
+              "end": 236,
+              "loc": {
+                "start": {
+                  "line": 8,
+                  "column": 2
+                },
+                "end": {
+                  "line": 8,
+                  "column": 14
+                },
+                "identifierName": "ArticleImage"
+              },
+              "name": "ArticleImage"
             }
           }
         ],
@@ -504,6 +622,113 @@
     },
     {
       "type": {
+        "label": "import",
+        "keyword": "import",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "import",
+      "start": 120,
+      "end": 126,
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 0
+        },
+        "end": {
+          "line": 3,
+          "column": 6
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "ArticleImage",
+      "start": 127,
+      "end": 139,
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 7
+        },
+        "end": {
+          "line": 3,
+          "column": 19
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "from",
+      "start": 140,
+      "end": 144,
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 20
+        },
+        "end": {
+          "line": 3,
+          "column": 24
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "string",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "./class/ArticleImage",
+      "start": 145,
+      "end": 167,
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 25
+        },
+        "end": {
+          "line": 3,
+          "column": 47
+        }
+      }
+    },
+    {
+      "type": {
         "label": "export",
         "keyword": "export",
         "beforeExpr": false,
@@ -517,15 +742,15 @@
         "updateContext": null
       },
       "value": "export",
-      "start": 121,
-      "end": 127,
+      "start": 169,
+      "end": 175,
       "loc": {
         "start": {
-          "line": 4,
+          "line": 5,
           "column": 0
         },
         "end": {
-          "line": 4,
+          "line": 5,
           "column": 6
         }
       }
@@ -542,15 +767,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 128,
-      "end": 129,
+      "start": 176,
+      "end": 177,
       "loc": {
         "start": {
-          "line": 4,
+          "line": 5,
           "column": 7
         },
         "end": {
-          "line": 4,
+          "line": 5,
           "column": 8
         }
       }
@@ -568,15 +793,15 @@
         "binop": null
       },
       "value": "WeChatArticle",
-      "start": 132,
-      "end": 145,
+      "start": 180,
+      "end": 193,
       "loc": {
         "start": {
-          "line": 5,
+          "line": 6,
           "column": 2
         },
         "end": {
-          "line": 5,
+          "line": 6,
           "column": 15
         }
       }
@@ -594,15 +819,15 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 145,
-      "end": 146,
+      "start": 193,
+      "end": 194,
       "loc": {
         "start": {
-          "line": 5,
+          "line": 6,
           "column": 15
         },
         "end": {
-          "line": 5,
+          "line": 6,
           "column": 16
         }
       }
@@ -620,16 +845,68 @@
         "binop": null
       },
       "value": "NormalizedWeChatArticle",
-      "start": 149,
-      "end": 172,
+      "start": 197,
+      "end": 220,
       "loc": {
         "start": {
-          "line": 6,
+          "line": 7,
           "column": 2
         },
         "end": {
-          "line": 6,
+          "line": 7,
           "column": 25
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ",",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 220,
+      "end": 221,
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 25
+        },
+        "end": {
+          "line": 7,
+          "column": 26
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "ArticleImage",
+      "start": 224,
+      "end": 236,
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 2
+        },
+        "end": {
+          "line": 8,
+          "column": 14
         }
       }
     },
@@ -645,15 +922,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 173,
-      "end": 174,
+      "start": 237,
+      "end": 238,
       "loc": {
         "start": {
-          "line": 7,
+          "line": 9,
           "column": 0
         },
         "end": {
-          "line": 7,
+          "line": 9,
           "column": 1
         }
       }
@@ -671,15 +948,15 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 175,
-      "end": 175,
+      "start": 239,
+      "end": 239,
       "loc": {
         "start": {
-          "line": 8,
+          "line": 10,
           "column": 0
         },
         "end": {
-          "line": 8,
+          "line": 10,
           "column": 0
         }
       }

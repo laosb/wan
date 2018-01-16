@@ -558,6 +558,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/class/wechatarticle.js~wechatarticle#updatecontent",
+    "class/src/class/WeChatArticle.js~WeChatArticle.html#instance-method-updateContent",
+    "src/class/WeChatArticle.js~WeChatArticle#updateContent",
+    "method"
+  ],
+  [
     "src/class/wechatarticle.js~wechatarticle#url",
     "class/src/class/WeChatArticle.js~WeChatArticle.html#instance-member-url",
     "src/class/WeChatArticle.js~WeChatArticle#url",

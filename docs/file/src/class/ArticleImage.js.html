@@ -66,6 +66,7 @@ export default class ArticleImage {
     this._$img.attr(&apos;data-ratio&apos;, null)
     this._$img.attr(&apos;data-s&apos;, null)
     this._$img.attr(&apos;src&apos;, this.url)
+    // this._$img.attr(&apos;width&apos;, this.size ? this.size[0] : this.width * this.ratio)
   }
   remove () {
     if (this._removed) throw new Error(&apos;This image has already been removed.&apos;)

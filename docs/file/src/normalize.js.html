@@ -69,6 +69,7 @@ export function normalize ($) {
   $(&apos;[powered-by]&apos;).attr(&apos;powered-by&apos;, null)
   $(&apos;[class=&quot;Powered-by-XIUMI V5&quot;]&apos;).attr(&apos;class&apos;, null)
   $(&apos;[data-label=&quot;powered by xmt.cn&quot;]&apos;).remove()
+  $(&apos;[label]&apos;).attr(&apos;label&apos;, null) // Mostly used to attach copyright of editors.
   $(&apos;[class=&quot;&quot;]&apos;).attr(&apos;class&apos;, null)
   let removals = 1
   while (removals &gt; 0) {
