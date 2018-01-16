@@ -42,13 +42,13 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import ArticleImage from &apos;<span><a href="file/src/class/ArticleImage.js.html#lineNumber3">wearticle/src/class/ArticleImage.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import ArticleImage from &apos;<span><a href="file/src/class/ArticleImage.js.html#lineNumber17">wearticle/src/class/ArticleImage.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
-  
-  <span data-ice="source">| <span><a href="file/src/class/ArticleImage.js.html#lineNumber3">source</a></span></span>
+  <span data-ice="since">| since 0.4.0</span>
+  <span data-ice="source">| <span><a href="file/src/class/ArticleImage.js.html#lineNumber17">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -68,7 +68,15 @@
 
   
   
-  
+  <div class="description" data-ice="description"><p>A class for images in WeChat articles.</p>
+<p>You&apos;ll find this in the returned array of <span><a href="class/src/class/WeChatArticle.js~WeChatArticle.html#instance-method-getMedia">WeChatArticle#getMedia</a></span>. You
+can use <code>instanceof</code> to find out if that element is an image.</p>
+<p>This library itself doesn&apos;t handle images, since many problems are closely
+related to your implementations. But we do provide a set of API for easier
+image handling. You can get the URL, remove it out of the article and set a
+new URL to where you caches all images. Additionally you can directly stream
+the image, and clean up that <code>&lt;img&gt;</code> for cleaner markup.</p>
+</div>
   
 
   
@@ -100,13 +108,14 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/class/ArticleImage.js~ArticleImage.html#instance-constructor-constructor">constructor</a></span></span><span class="code" data-ice="signature">()</span>
+          <span class="code" data-ice="name"><span><a href="class/src/class/ArticleImage.js~ArticleImage.html#instance-constructor-constructor">constructor</a></span></span><span class="code" data-ice="signature">($img: <span>$()</span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Takes a cheerio object(<code>$(someSelector)</code>).</p>
+</div>
       </div>
     </td>
     <td>
@@ -135,7 +144,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/class/ArticleImage.js~ArticleImage.html#instance-member-copyright">copyright</a></span></span><span class="code" data-ice="signature">: <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/class/ArticleImage.js~ArticleImage.html#instance-member-copyright">copyright</a></span></span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
         </p>
       </div>
       <div>
@@ -163,7 +172,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/class/ArticleImage.js~ArticleImage.html#instance-member-ratio">ratio</a></span></span><span class="code" data-ice="signature">: <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/class/ArticleImage.js~ArticleImage.html#instance-member-ratio">ratio</a></span></span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
         </p>
       </div>
       <div>
@@ -219,7 +228,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/class/ArticleImage.js~ArticleImage.html#instance-member-type">type</a></span></span><span class="code" data-ice="signature">: <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/class/ArticleImage.js~ArticleImage.html#instance-member-type">type</a></span></span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
         </p>
       </div>
       <div>
@@ -247,7 +256,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/class/ArticleImage.js~ArticleImage.html#instance-member-url">url</a></span></span><span class="code" data-ice="signature">: <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/class/ArticleImage.js~ArticleImage.html#instance-member-url">url</a></span></span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
         </p>
       </div>
       <div>
@@ -275,7 +284,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/class/ArticleImage.js~ArticleImage.html#instance-member-width">width</a></span></span><span class="code" data-ice="signature">: <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/class/ArticleImage.js~ArticleImage.html#instance-member-width">width</a></span></span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
         </p>
       </div>
       <div>
@@ -337,7 +346,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="class/src/class/ArticleImage.js~ArticleImage.html#instance-member-_origUrl">_origUrl</a></span></span><span class="code" data-ice="signature">: <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/class/ArticleImage.js~ArticleImage.html#instance-member-_origUrl">_origUrl</a></span></span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
         </p>
       </div>
       <div>
@@ -406,7 +415,8 @@
       <div>
         
         
-        
+        <div data-ice="description"><p>Cleans up the <code>&lt;img&gt;</code> tag.</p>
+</div>
       </div>
     </td>
     <td>
@@ -434,7 +444,8 @@
       <div>
         
         
-        
+        <div data-ice="description"><p>Get the underlying $(img).</p>
+</div>
       </div>
     </td>
     <td>
@@ -462,7 +473,8 @@
       <div>
         
         
-        
+        <div data-ice="description"><p>See if you&apos;ve already removed it.</p>
+</div>
       </div>
     </td>
     <td>
@@ -490,7 +502,8 @@
       <div>
         
         
-        
+        <div data-ice="description"><p>Removes current image from the HTML.</p>
+</div>
       </div>
     </td>
     <td>
@@ -518,7 +531,8 @@
       <div>
         
         
-        
+        <div data-ice="description"><p>Set <code>src</code> for the picture.</p>
+</div>
       </div>
     </td>
     <td>
@@ -540,13 +554,14 @@
           
           <span data-ice="async">async</span>
           
-          <span class="code" data-ice="name"><span><a href="class/src/class/ArticleImage.js~ArticleImage.html#instance-method-stream">stream</a></span></span><span class="code" data-ice="signature">(): <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="class/src/class/ArticleImage.js~ArticleImage.html#instance-method-stream">stream</a></span></span><span class="code" data-ice="signature">(): <span>Stream</span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Returns a stream of that iamges.</p>
+</div>
       </div>
     </td>
     <td>
@@ -572,22 +587,42 @@
     
     
     
-    <span class="code" data-ice="name">constructor</span><span class="code" data-ice="signature">()</span>
+    <span class="code" data-ice="name">constructor</span><span class="code" data-ice="signature">($img: <span>$()</span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/class/ArticleImage.js.html#lineNumber4">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/class/ArticleImage.js.html#lineNumber25">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Takes a cheerio object(<code>$(someSelector)</code>). You won&apos;t <code>new</code> one in most cases.
+You can get all meta information of this image immediately.</p>
+</div>
 
   
 
-  <div data-ice="properties">
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">$img</td>
+      <td data-ice="type" class="code"><span>$()</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>a cheerio object representing an <code>&lt;img&gt;</code> in original WeChat
+article.</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
 </div>
 
   
@@ -618,11 +653,11 @@
     
     
     
-    <span class="code" data-ice="name">copyright</span><span class="code" data-ice="signature">: <span>*</span></span>
+    <span class="code" data-ice="name">copyright</span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/class/ArticleImage.js.html#lineNumber10">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/class/ArticleImage.js.html#lineNumber42">source</a></span></span>
     </span>
   </h3>
 
@@ -661,11 +696,11 @@
     
     
     
-    <span class="code" data-ice="name">ratio</span><span class="code" data-ice="signature">: <span>*</span></span>
+    <span class="code" data-ice="name">ratio</span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/class/ArticleImage.js.html#lineNumber11">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/class/ArticleImage.js.html#lineNumber45">source</a></span></span>
     </span>
   </h3>
 
@@ -708,7 +743,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/class/ArticleImage.js.html#lineNumber7">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/class/ArticleImage.js.html#lineNumber30">source</a></span></span>
     </span>
   </h3>
 
@@ -747,11 +782,11 @@
     
     
     
-    <span class="code" data-ice="name">type</span><span class="code" data-ice="signature">: <span>*</span></span>
+    <span class="code" data-ice="name">type</span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/class/ArticleImage.js.html#lineNumber8">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/class/ArticleImage.js.html#lineNumber33">source</a></span></span>
     </span>
   </h3>
 
@@ -790,11 +825,11 @@
     
     
     
-    <span class="code" data-ice="name">url</span><span class="code" data-ice="signature">: <span>*</span></span>
+    <span class="code" data-ice="name">url</span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/class/ArticleImage.js.html#lineNumber35">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/class/ArticleImage.js.html#lineNumber39">source</a></span></span>
     </span>
   </h3>
 
@@ -833,11 +868,11 @@
     
     
     
-    <span class="code" data-ice="name">width</span><span class="code" data-ice="signature">: <span>*</span></span>
+    <span class="code" data-ice="name">width</span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/class/ArticleImage.js.html#lineNumber12">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/class/ArticleImage.js.html#lineNumber48">source</a></span></span>
     </span>
   </h3>
 
@@ -882,7 +917,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/class/ArticleImage.js.html#lineNumber5">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/class/ArticleImage.js.html#lineNumber26">source</a></span></span>
     </span>
   </h3>
 
@@ -921,11 +956,11 @@
     
     
     
-    <span class="code" data-ice="name">_origUrl</span><span class="code" data-ice="signature">: <span>*</span></span>
+    <span class="code" data-ice="name">_origUrl</span><span class="code" data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/class/ArticleImage.js.html#lineNumber9">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/class/ArticleImage.js.html#lineNumber36">source</a></span></span>
     </span>
   </h3>
 
@@ -968,7 +1003,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/class/ArticleImage.js.html#lineNumber13">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/class/ArticleImage.js.html#lineNumber49">source</a></span></span>
     </span>
   </h3>
 
@@ -1014,14 +1049,17 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/class/ArticleImage.js.html#lineNumber15">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/class/ArticleImage.js.html#lineNumber57">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Cleans up the <code>&lt;img&gt;</code> tag. Actually removes all WeChat-defined <code>data-*</code>,
+removes blank <code>style</code> and <code>class</code> attributes. And correct the URL to what
+you set, in case some of your transformation breaks it.</p>
+</div>
 
   
 
@@ -1057,14 +1095,16 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/class/ArticleImage.js.html#lineNumber33">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/class/ArticleImage.js.html#lineNumber89">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Get the underlying $(img). Good for custom tranformations. But don&apos;t set <code>src</code>
+manually there. Try <span><a href="class/src/class/ArticleImage.js~ArticleImage.html#instance-method-setUrl">ArticleImage#setUrl</a></span>.</p>
+</div>
 
   
 
@@ -1112,14 +1152,15 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/class/ArticleImage.js.html#lineNumber32">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/class/ArticleImage.js.html#lineNumber83">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>See if you&apos;ve already removed it.</p>
+</div>
 
   
 
@@ -1167,14 +1208,16 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/class/ArticleImage.js.html#lineNumber27">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/class/ArticleImage.js.html#lineNumber74">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Removes current image from the HTML. This is useful when you decided to remove
+some decorational gifs &amp; images.</p>
+</div>
 
   
 
@@ -1210,14 +1253,16 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/class/ArticleImage.js.html#lineNumber34">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/class/ArticleImage.js.html#lineNumber95">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Set <code>src</code> for the picture. Please make sure this is correctly pointed to
+where you store the image.</p>
+</div>
 
   
 
@@ -1265,18 +1310,19 @@
     
     <span data-ice="async">async</span>
     
-    <span class="code" data-ice="name">stream</span><span class="code" data-ice="signature">(): <span>*</span></span>
+    <span class="code" data-ice="name">stream</span><span class="code" data-ice="signature">(): <span>Stream</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/class/ArticleImage.js.html#lineNumber38">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/class/ArticleImage.js.html#lineNumber107">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Returns a stream of that iamges. You can use this to persist images to disk.</p>
+</div>
 
   
 
@@ -1288,7 +1334,7 @@
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span>*</span></td>
+          <td class="return-type code" data-ice="returnType"><span>Stream</span></td>
           
         </tr>
       </tbody>
@@ -1305,7 +1351,14 @@
 
   
 
-  
+  <div data-ice="example">
+    <h4>Example:</h4>
+    
+  <div class="example-doc" data-ice="exampleDoc">
+      
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">(await articleImage.stream()).pipe(fs.createWriteStream(&apos;xxx.jpg&apos;))</code></pre>
+    </div>
+</div>
 
   
 

@@ -30,6 +30,13 @@ Object.keys(uselessStyle).forEach(key => {
   })
 })
 
+/**
+ * Internal function to remove unuseful styles from a `style` string.
+ *
+ * @param {string} styleStr - Original style string from `style` attribute.
+ *
+ * @return {string} Cleaned style string.
+ */
 export function cleanStyle (styleStr) {
   for (let i = 0; i < cleanStyleRegexs.length; i++) {
     const regex = Array.isArray(cleanStyleRegexs[i])

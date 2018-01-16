@@ -598,7 +598,7 @@
     "__docId__": 50,
     "kind": "file",
     "name": "src/class/ArticleImage.js",
-    "content": "import axios from 'axios'\n\nexport default class ArticleImage {\n  constructor ($img) {\n    this._$img = $img\n    const size = $img.data('s')\n    if (size) this.size = size.split(',').map(e => e * 1)\n    this.type = $img.data('type') + ''\n    this._origUrl = this.url = $img.data('src') + ''\n    this.copyright = $img.data('copyright') * 1\n    this.ratio = $img.data('ratio') * 1\n    this.width = $img.data('w') * 1\n    this._removed = false\n  }\n  cleanup () {\n    if (!this._$img.attr('style')) this._$img.attr('style', null)\n    if (!this._$img.attr('class')) this._$img.attr('class', null)\n    this._$img.attr('data-type', null)\n    this._$img.attr('data-copyright', null)\n    this._$img.attr('data-src', null)\n    this._$img.attr('data-w', null)\n    this._$img.attr('data-ratio', null)\n    this._$img.attr('data-s', null)\n    this._$img.attr('src', this.url)\n    // this._$img.attr('width', this.size ? this.size[0] : this.width * this.ratio)\n  }\n  remove () {\n    if (this._removed) throw new Error('This image has already been removed.')\n    this._$img.remove()\n    this._removed = true\n  }\n  isRemoved () { return this._removed }\n  get$Img () { return this._$img }\n  setUrl (newUrl) {\n    this.url = newUrl + ''\n    this._$img.attr('src', this.url)\n  }\n  async stream () {\n    const { data } = await axios.get(this._origUrl, { responseType: 'stream' })\n    return data // Pipeable data stream.\n  }\n}\n",
+    "content": "import axios from 'axios'\n\n/**\n * A class for images in WeChat articles.\n *\n * You'll find this in the returned array of {@link WeChatArticle#getMedia}. You\n * can use `instanceof` to find out if that element is an image.\n *\n * This library itself doesn't handle images, since many problems are closely\n * related to your implementations. But we do provide a set of API for easier\n * image handling. You can get the URL, remove it out of the article and set a\n * new URL to where you caches all images. Additionally you can directly stream\n * the image, and clean up that `<img>` for cleaner markup.\n *\n * @since 0.4.0\n */\nexport default class ArticleImage {\n  /**\n   * Takes a cheerio object(`$(someSelector)`). You won't `new` one in most cases.\n   * You can get all meta information of this image immediately.\n   *\n   * @param {$()} $img - a cheerio object representing an `<img>` in original WeChat\n   * article.\n   */\n  constructor ($img) {\n    this._$img = $img\n    const size = $img.data('s')\n\n    /** @type {number[]} */\n    if (size) this.size = size.split(',').map(e => e * 1)\n\n    /** @type {string} */\n    this.type = $img.data('type') + ''\n\n    /** @type {string} */\n    this._origUrl = $img.data('src') + ''\n\n    /** @type {string} */\n    this.url = $img.data('src') + ''\n\n    /** @type {number} */\n    this.copyright = $img.data('copyright') * 1\n\n    /** @type {number} */\n    this.ratio = $img.data('ratio') * 1\n\n    /** @type {number} */\n    this.width = $img.data('w') * 1\n    this._removed = false\n  }\n\n  /**\n   * Cleans up the `<img>` tag. Actually removes all WeChat-defined `data-*`,\n   * removes blank `style` and `class` attributes. And correct the URL to what\n   * you set, in case some of your transformation breaks it.\n   */\n  cleanup () {\n    if (!this._$img.attr('style')) this._$img.attr('style', null)\n    if (!this._$img.attr('class')) this._$img.attr('class', null)\n    this._$img.attr('data-type', null)\n    this._$img.attr('data-copyright', null)\n    this._$img.attr('data-src', null)\n    this._$img.attr('data-w', null)\n    this._$img.attr('data-ratio', null)\n    this._$img.attr('data-s', null)\n    this._$img.attr('src', this.url)\n    // this._$img.attr('width', this.size ? this.size[0] : this.width * this.ratio)\n  }\n\n  /**\n   * Removes current image from the HTML. This is useful when you decided to remove\n   * some decorational gifs & images.\n   */\n  remove () {\n    if (this._removed) throw new Error('This image has already been removed.')\n    this._$img.remove()\n    this._removed = true\n  }\n\n  /**\n   * See if you've already removed it.\n   */\n  isRemoved () { return this._removed }\n\n  /**\n   * Get the underlying $(img). Good for custom tranformations. But don't set `src`\n   * manually there. Try {@link ArticleImage#setUrl}.\n   */\n  get$Img () { return this._$img }\n\n  /**\n   * Set `src` for the picture. Please make sure this is correctly pointed to\n   * where you store the image.\n   */\n  setUrl (newUrl) {\n    this.url = newUrl + ''\n    this._$img.attr('src', this.url)\n  }\n\n  /**\n   * Returns a stream of that iamges. You can use this to persist images to disk.\n   * @example\n   * (await articleImage.stream()).pipe(fs.createWriteStream('xxx.jpg'))\n   *\n   * @return {Stream}\n   */\n  async stream () {\n    const { data } = await axios.get(this._origUrl, { responseType: 'stream' })\n    return data // Pipeable data stream.\n  }\n}\n",
     "static": true,
     "longname": "/Users/laosb/Documents/SoftwareProj/wan/src/class/ArticleImage.js",
     "access": "public",
@@ -616,9 +616,9 @@
     "export": true,
     "importPath": "wearticle/src/class/ArticleImage.js",
     "importStyle": "ArticleImage",
-    "description": null,
-    "lineNumber": 3,
-    "undocument": true,
+    "description": "A class for images in WeChat articles.\n\nYou'll find this in the returned array of {@link WeChatArticle#getMedia}. You\ncan use `instanceof` to find out if that element is an image.\n\nThis library itself doesn't handle images, since many problems are closely\nrelated to your implementations. But we do provide a set of API for easier\nimage handling. You can get the URL, remove it out of the article and set a\nnew URL to where you caches all images. Additionally you can directly stream\nthe image, and clean up that `<img>` for cleaner markup.",
+    "lineNumber": 17,
+    "since": "0.4.0",
     "interface": false
   },
   {
@@ -631,9 +631,20 @@
     "static": false,
     "longname": "src/class/ArticleImage.js~ArticleImage#constructor",
     "access": "public",
-    "description": null,
-    "lineNumber": 4,
-    "undocument": true
+    "description": "Takes a cheerio object(`$(someSelector)`). You won't `new` one in most cases.\nYou can get all meta information of this image immediately.",
+    "lineNumber": 25,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "$()"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "$img",
+        "description": "a cheerio object representing an `<img>` in original WeChat\narticle."
+      }
+    ]
   },
   {
     "__docId__": 53,
@@ -644,7 +655,7 @@
     "longname": "src/class/ArticleImage.js~ArticleImage#_$img",
     "access": "private",
     "description": null,
-    "lineNumber": 5,
+    "lineNumber": 26,
     "undocument": true,
     "type": {
       "types": [
@@ -661,7 +672,7 @@
     "longname": "src/class/ArticleImage.js~ArticleImage#size",
     "access": "public",
     "description": null,
-    "lineNumber": 7,
+    "lineNumber": 30,
     "undocument": true,
     "type": {
       "types": [
@@ -678,12 +689,14 @@
     "longname": "src/class/ArticleImage.js~ArticleImage#type",
     "access": "public",
     "description": null,
-    "lineNumber": 8,
-    "undocument": true,
+    "lineNumber": 33,
     "type": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "string"
+      ],
+      "spread": false,
+      "description": null
     }
   },
   {
@@ -695,16 +708,37 @@
     "longname": "src/class/ArticleImage.js~ArticleImage#_origUrl",
     "access": "private",
     "description": null,
-    "lineNumber": 9,
-    "undocument": true,
+    "lineNumber": 36,
     "type": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "string"
+      ],
+      "spread": false,
+      "description": null
     }
   },
   {
     "__docId__": 57,
+    "kind": "member",
+    "name": "url",
+    "memberof": "src/class/ArticleImage.js~ArticleImage",
+    "static": false,
+    "longname": "src/class/ArticleImage.js~ArticleImage#url",
+    "access": "public",
+    "description": null,
+    "lineNumber": 39,
+    "type": {
+      "nullable": null,
+      "types": [
+        "string"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 58,
     "kind": "member",
     "name": "copyright",
     "memberof": "src/class/ArticleImage.js~ArticleImage",
@@ -712,16 +746,18 @@
     "longname": "src/class/ArticleImage.js~ArticleImage#copyright",
     "access": "public",
     "description": null,
-    "lineNumber": 10,
-    "undocument": true,
+    "lineNumber": 42,
     "type": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "number"
+      ],
+      "spread": false,
+      "description": null
     }
   },
   {
-    "__docId__": 58,
+    "__docId__": 59,
     "kind": "member",
     "name": "ratio",
     "memberof": "src/class/ArticleImage.js~ArticleImage",
@@ -729,16 +765,18 @@
     "longname": "src/class/ArticleImage.js~ArticleImage#ratio",
     "access": "public",
     "description": null,
-    "lineNumber": 11,
-    "undocument": true,
+    "lineNumber": 45,
     "type": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "number"
+      ],
+      "spread": false,
+      "description": null
     }
   },
   {
-    "__docId__": 59,
+    "__docId__": 60,
     "kind": "member",
     "name": "width",
     "memberof": "src/class/ArticleImage.js~ArticleImage",
@@ -746,16 +784,18 @@
     "longname": "src/class/ArticleImage.js~ArticleImage#width",
     "access": "public",
     "description": null,
-    "lineNumber": 12,
-    "undocument": true,
+    "lineNumber": 48,
     "type": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "number"
+      ],
+      "spread": false,
+      "description": null
     }
   },
   {
-    "__docId__": 60,
+    "__docId__": 61,
     "kind": "member",
     "name": "_removed",
     "memberof": "src/class/ArticleImage.js~ArticleImage",
@@ -763,7 +803,7 @@
     "longname": "src/class/ArticleImage.js~ArticleImage#_removed",
     "access": "private",
     "description": null,
-    "lineNumber": 13,
+    "lineNumber": 49,
     "undocument": true,
     "type": {
       "types": [
@@ -772,7 +812,7 @@
     }
   },
   {
-    "__docId__": 61,
+    "__docId__": 62,
     "kind": "method",
     "name": "cleanup",
     "memberof": "src/class/ArticleImage.js~ArticleImage",
@@ -781,14 +821,13 @@
     "static": false,
     "longname": "src/class/ArticleImage.js~ArticleImage#cleanup",
     "access": "public",
-    "description": null,
-    "lineNumber": 15,
-    "undocument": true,
+    "description": "Cleans up the `<img>` tag. Actually removes all WeChat-defined `data-*`,\nremoves blank `style` and `class` attributes. And correct the URL to what\nyou set, in case some of your transformation breaks it.",
+    "lineNumber": 57,
     "params": [],
     "return": null
   },
   {
-    "__docId__": 62,
+    "__docId__": 63,
     "kind": "method",
     "name": "remove",
     "memberof": "src/class/ArticleImage.js~ArticleImage",
@@ -797,14 +836,13 @@
     "static": false,
     "longname": "src/class/ArticleImage.js~ArticleImage#remove",
     "access": "public",
-    "description": null,
-    "lineNumber": 27,
-    "undocument": true,
+    "description": "Removes current image from the HTML. This is useful when you decided to remove\nsome decorational gifs & images.",
+    "lineNumber": 74,
     "params": [],
     "return": null
   },
   {
-    "__docId__": 64,
+    "__docId__": 65,
     "kind": "method",
     "name": "isRemoved",
     "memberof": "src/class/ArticleImage.js~ArticleImage",
@@ -813,29 +851,8 @@
     "static": false,
     "longname": "src/class/ArticleImage.js~ArticleImage#isRemoved",
     "access": "public",
-    "description": null,
-    "lineNumber": 32,
-    "undocument": true,
-    "params": [],
-    "return": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 65,
-    "kind": "method",
-    "name": "get$Img",
-    "memberof": "src/class/ArticleImage.js~ArticleImage",
-    "generator": false,
-    "async": false,
-    "static": false,
-    "longname": "src/class/ArticleImage.js~ArticleImage#get$Img",
-    "access": "public",
-    "description": null,
-    "lineNumber": 33,
-    "undocument": true,
+    "description": "See if you've already removed it.",
+    "lineNumber": 83,
     "params": [],
     "return": {
       "types": [
@@ -846,6 +863,25 @@
   {
     "__docId__": 66,
     "kind": "method",
+    "name": "get$Img",
+    "memberof": "src/class/ArticleImage.js~ArticleImage",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/class/ArticleImage.js~ArticleImage#get$Img",
+    "access": "public",
+    "description": "Get the underlying $(img). Good for custom tranformations. But don't set `src`\nmanually there. Try {@link ArticleImage#setUrl}.",
+    "lineNumber": 89,
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 67,
+    "kind": "method",
     "name": "setUrl",
     "memberof": "src/class/ArticleImage.js~ArticleImage",
     "generator": false,
@@ -853,9 +889,8 @@
     "static": false,
     "longname": "src/class/ArticleImage.js~ArticleImage#setUrl",
     "access": "public",
-    "description": null,
-    "lineNumber": 34,
-    "undocument": true,
+    "description": "Set `src` for the picture. Please make sure this is correctly pointed to\nwhere you store the image.",
+    "lineNumber": 95,
     "params": [
       {
         "name": "newUrl",
@@ -867,24 +902,7 @@
     "return": null
   },
   {
-    "__docId__": 67,
-    "kind": "member",
-    "name": "url",
-    "memberof": "src/class/ArticleImage.js~ArticleImage",
-    "static": false,
-    "longname": "src/class/ArticleImage.js~ArticleImage#url",
-    "access": "public",
-    "description": null,
-    "lineNumber": 35,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 68,
+    "__docId__": 69,
     "kind": "method",
     "name": "stream",
     "memberof": "src/class/ArticleImage.js~ArticleImage",
@@ -893,18 +911,23 @@
     "static": false,
     "longname": "src/class/ArticleImage.js~ArticleImage#stream",
     "access": "public",
-    "description": null,
-    "lineNumber": 38,
-    "undocument": true,
-    "params": [],
+    "description": "Returns a stream of that iamges. You can use this to persist images to disk.",
+    "examples": [
+      "(await articleImage.stream()).pipe(fs.createWriteStream('xxx.jpg'))"
+    ],
+    "lineNumber": 107,
     "return": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
-    }
+        "Stream"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
   },
   {
-    "__docId__": 69,
+    "__docId__": 70,
     "kind": "file",
     "name": "src/class/NormalizedWeChatArticle.js",
     "content": "import WeChatArticle from './WeChatArticle'\nimport { normalize } from '../normalize'\n\n/**\n * `NormalizedWeChatArticle` is for fetching & normalize a WeChat article. It\n * extends {@link WeChatArticle}, and has an extra method\n * {@link NormalizedWeChatArticle#normalize}.\n *\n * Just to clarify, this class does nothing more than normalize. Except you don't\n * need to `fetchAndParse` before normalization. But you can still do this\n * manually, so you get the chance to make your own normalization work before our\n * process, with a cheerio instance from {@link NormalizedWeChatArticle#getContent$}.\n *\n * @example\n * import { NormalizedWeChatArticle } from 'wearticle'\n * const aboutHolaArticle = new NormalizedWeChatArticle('http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw')\n * await article.normalize()\n * console.log(article.content)\n *\n * @since 0.3.0\n */\nexport default class NormalizedWeChatArticle extends WeChatArticle {\n  /**\n   * Does normalization. Simply overrides {@link NormalizedWeChatArticle#content}\n   * with normalized content.\n   *\n   * If the article instance is not parsed yet, this method will get it parsed first.\n   *\n   * @return {NormalizedWeChatArticle}\n   */\n  async normalize () {\n    if (!this.isParsed()) await this.fetchAndParse()\n    /** @type {String} */\n    this._origContent = this.content\n    const $ = super.getContent$()\n    /** @type {String} */\n    this.content = normalize($)('*').first().parent().html().trim()\n    return this\n  }\n}\n",
@@ -915,7 +938,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 70,
+    "__docId__": 71,
     "kind": "class",
     "name": "NormalizedWeChatArticle",
     "memberof": "src/class/NormalizedWeChatArticle.js",
@@ -937,7 +960,7 @@
     ]
   },
   {
-    "__docId__": 71,
+    "__docId__": 72,
     "kind": "method",
     "name": "normalize",
     "memberof": "src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle",
@@ -959,7 +982,7 @@
     "params": []
   },
   {
-    "__docId__": 72,
+    "__docId__": 73,
     "kind": "member",
     "name": "_origContent",
     "memberof": "src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle",
@@ -978,7 +1001,7 @@
     }
   },
   {
-    "__docId__": 73,
+    "__docId__": 74,
     "kind": "member",
     "name": "content",
     "memberof": "src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle",
@@ -997,10 +1020,10 @@
     }
   },
   {
-    "__docId__": 74,
+    "__docId__": 75,
     "kind": "file",
     "name": "src/class/WeChatArticle.js",
-    "content": "import { fetchAndParse } from '../utils'\nimport { collectMedia } from '../lib/media'\nimport moment from 'moment'\nimport { VM } from 'vm2'\n\n/** @external {$} https://cheerio.js.org/ */\n\n/**\n * This class is for a typical WeChat article. Takes an URL to that article.\n * e.g. http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw\n *\n * In most cases you don't really need to use this class. Use {@link NormalizedWeChatArticle}\n * if you need normalization on articles.\n *\n * All content-based properties are only available after {@link WeChatArticle#fetchAndParse}.\n *\n * @example\n * import { WeChatArticle } from 'wearticle'\n * const article = new WeChatArticle('http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw')\n * await article.fetchAndParse()\n * console.log(article.toString())\n * // -> WeChatArticle (\"关于 ¡Hola!\" by \"Holateens\")\n *\n * @since 0.1.0\n */\nexport default class WeChatArticle {\n  /**\n   * Take the url. Just note the article won't be actually loaded and parsed\n   * before you call {@link WeChatArticle#fetchAndParse} manually.\n   *\n   * You could see if this article is parsed or not, by using {@link WeChatArticle#isParsed}.\n   *\n   * @param {String} url - A valid WeChat article URL, begins with\n   * `http(s)://mp.weixin.qq.com/s`\n   */\n  constructor (url) {\n    if (!url.match(/https*:\\/\\/mp\\.weixin\\.qq\\.com\\/s[/?]/ig)) {\n      throw new Error('url is not a WeChat article url')\n    }\n\n    /** @type {String} */\n    this.url = url\n\n    this._parsed = false\n  }\n\n  /**\n   * See if this article has been loaded & parsed.\n   *\n   * Load & parse with {@link WeChatArticle#fetchAndParse}.\n   *\n   * @return {Boolean} Parsed or not.\n   */\n  isParsed () { return this._parsed }\n\n  /**\n   * Fetch & parse the article.\n   *\n   * @return {WeChatArticle} Returns `this` so you can chain calls.\n   */\n  async fetchAndParse () {\n    const $ = await fetchAndParse(this.url)\n\n    /** @type {$} */\n    this._$ = $\n\n    this._media = collectMedia($)\n    let usefulCode = 'const window = {}; const __getInfoFunc = () => {'\n    usefulCode += $('#activity-detail > script:nth-child(7)').get()[0].children[0].data\n    usefulCode += `\n        return {\n          copyrightStat: copyright_stat,\n          account: {\n            id: user_name,\n            name: nickname,\n            avatarUrl: round_head_img\n          },\n          title: msg_title,\n          description: msg_desc,\n          sourceUrl: msg_source_url,\n          headPicUrl: msg_cdn_url\n        };\n      };\n      __getInfoFunc();\n    `\n    const infoObj = (new VM()).run(usefulCode)\n\n    /** @type {String} */\n    this.title = infoObj.title\n\n    /** @type {Date} */\n    this.publishedAt = moment($('#post-date').text().trim()).toDate()\n    const authorEl = $('#meta_content > em:nth-child(2)')\n\n    /**\n     * The author. Only exists when it does have an author field.\n     *\n     * To get a must-have author name, use {@link WeChatArticle#getAuthorName}.\n     * @type {String}\n     */\n    this.author = authorEl ? authorEl.text().trim() : undefined\n    this.account = infoObj.account\n\n    /**\n     * The original content fetched from WeChat public platform. Actually from\n     * `#js_content` part of the whole raw HTML.\n     * @type {String}\n     */\n    this.content = $('#js_content').html()\n    this._parsed = true\n    return this\n  }\n\n  /**\n   * Returns a cheerio $ of the content.\n   *\n   * To tell the truth, this $ is not a fully functional $. It's actually a\n   * function delegates cheerio instance in some way. You can only use `$(selector)`\n   * there, and even can't use a context.\n   *\n   * @return {$} The cheerio $.\n   * @since 0.2.0\n   */\n  getContent$ () { return selector => this._$(selector, '#js_content') }\n\n  updateContent () { this.content = this._$('#js_content').html() }\n\n  getMedia () { return this._media }\n\n  /**\n   * Returns author's name if the author does specify an author name on the\n   * article, or the name of the Official Account if not.\n   *\n   * @return {String} The author's name.\n   */\n  getAuthorName () { return this.author || this.account.name }\n  toString () {\n    return this._parsed\n      ? `WeChatArticle (\"${this.title}\" by \"${this.getAuthorName()}\")`\n      : `WeChatArticle (unparsed ${this.url})`\n  }\n}\n",
+    "content": "import { fetchAndParse } from '../utils'\nimport { collectMedia } from '../lib/media'\nimport moment from 'moment'\nimport { VM } from 'vm2'\n\n/** @external {$} https://cheerio.js.org/ */\n\n/**\n * This class is for a typical WeChat article. Takes an URL to that article.\n * e.g. http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw\n *\n * In most cases you don't really need to use this class. Use {@link NormalizedWeChatArticle}\n * if you need normalization on articles.\n *\n * All content-based properties are only available after {@link WeChatArticle#fetchAndParse}.\n *\n * @example\n * import { WeChatArticle } from 'wearticle'\n * const article = new WeChatArticle('http://mp.weixin.qq.com/s/5NxzEg0N18v-AuOB_RmSDw')\n * await article.fetchAndParse()\n * console.log(article.toString())\n * // -> WeChatArticle (\"关于 ¡Hola!\" by \"Holateens\")\n *\n * @since 0.1.0\n */\nexport default class WeChatArticle {\n  /**\n   * Take the url. Just note the article won't be actually loaded and parsed\n   * before you call {@link WeChatArticle#fetchAndParse} manually.\n   *\n   * You could see if this article is parsed or not, by using {@link WeChatArticle#isParsed}.\n   *\n   * @param {String} url - A valid WeChat article URL, begins with\n   * `http(s)://mp.weixin.qq.com/s`\n   */\n  constructor (url) {\n    if (!url.match(/https*:\\/\\/mp\\.weixin\\.qq\\.com\\/s[/?]/ig)) {\n      throw new Error('url is not a WeChat article url')\n    }\n\n    /** @type {String} */\n    this.url = url\n\n    this._parsed = false\n  }\n\n  /**\n   * See if this article has been loaded & parsed.\n   *\n   * Load & parse with {@link WeChatArticle#fetchAndParse}.\n   *\n   * @return {Boolean} Parsed or not.\n   */\n  isParsed () { return this._parsed }\n\n  /**\n   * Fetch & parse the article.\n   *\n   * @return {WeChatArticle} Returns `this` so you can chain calls.\n   */\n  async fetchAndParse () {\n    const $ = await fetchAndParse(this.url)\n\n    /** @type {$} */\n    this._$ = $\n\n    this._media = collectMedia($)\n    let usefulCode = 'const window = {}; const __getInfoFunc = () => {'\n    usefulCode += $('#activity-detail > script:nth-child(7)').get()[0].children[0].data\n    usefulCode += `\n        return {\n          copyrightStat: copyright_stat,\n          account: {\n            id: user_name,\n            name: nickname,\n            avatarUrl: round_head_img\n          },\n          title: msg_title,\n          description: msg_desc,\n          sourceUrl: msg_source_url,\n          headPicUrl: msg_cdn_url\n        };\n      };\n      __getInfoFunc();\n    `\n    const infoObj = (new VM()).run(usefulCode)\n\n    /** @type {String} */\n    this.title = infoObj.title\n\n    /** @type {Date} */\n    this.publishedAt = moment($('#post-date').text().trim()).toDate()\n    const authorEl = $('#meta_content > em:nth-child(2)')\n\n    /**\n     * The author. Only exists when it does have an author field.\n     *\n     * To get a must-have author name, use {@link WeChatArticle#getAuthorName}.\n     * @type {String}\n     */\n    this.author = authorEl ? authorEl.text().trim() : undefined\n    this.account = infoObj.account\n\n    /**\n     * The original content fetched from WeChat public platform. Actually from\n     * `#js_content` part of the whole raw HTML.\n     * @type {String}\n     */\n    this.content = $('#js_content').html()\n    this._parsed = true\n    return this\n  }\n\n  /**\n   * Returns a cheerio $ of the content.\n   *\n   * To tell the truth, this $ is not a fully functional $. It's actually a\n   * function delegates cheerio instance in some way. You can only use `$(selector)`\n   * there, and even can't use a context.\n   *\n   * @return {$} The cheerio $.\n   * @since 0.2.0\n   */\n  getContent$ () { return selector => this._$(selector, '#js_content') }\n\n  /**\n   * Update content with your modified `$`. Don't forget to do this.\n   */\n  updateContent () { this.content = this._$('#js_content').html() }\n\n  /**\n   * Get an array of media in the article. Useful when you need to deal with it.\n   *\n   * Currently we only parse images, so it will be an array of {@link ArticleImage}.\n   * See its documentation for reference.\n   *\n   * @return {Array}\n   */\n  getMedia () { return this._media }\n\n  /**\n   * Returns author's name if the author does specify an author name on the\n   * article, or the name of the Official Account if not.\n   *\n   * @return {String} The author's name.\n   */\n  getAuthorName () { return this.author || this.account.name }\n  toString () {\n    return this._parsed\n      ? `WeChatArticle (\"${this.title}\" by \"${this.getAuthorName()}\")`\n      : `WeChatArticle (unparsed ${this.url})`\n  }\n}\n",
     "static": true,
     "longname": "/Users/laosb/Documents/SoftwareProj/wan/src/class/WeChatArticle.js",
     "access": "public",
@@ -1008,7 +1031,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 75,
+    "__docId__": 76,
     "kind": "external",
     "name": "$",
     "externalLink": "https://cheerio.js.org/",
@@ -1019,7 +1042,7 @@
     "description": null
   },
   {
-    "__docId__": 76,
+    "__docId__": 77,
     "kind": "class",
     "name": "WeChatArticle",
     "memberof": "src/class/WeChatArticle.js",
@@ -1038,7 +1061,7 @@
     "interface": false
   },
   {
-    "__docId__": 77,
+    "__docId__": 78,
     "kind": "constructor",
     "name": "constructor",
     "memberof": "src/class/WeChatArticle.js~WeChatArticle",
@@ -1063,7 +1086,7 @@
     ]
   },
   {
-    "__docId__": 78,
+    "__docId__": 79,
     "kind": "member",
     "name": "url",
     "memberof": "src/class/WeChatArticle.js~WeChatArticle",
@@ -1082,7 +1105,7 @@
     }
   },
   {
-    "__docId__": 79,
+    "__docId__": 80,
     "kind": "member",
     "name": "_parsed",
     "memberof": "src/class/WeChatArticle.js~WeChatArticle",
@@ -1099,7 +1122,7 @@
     }
   },
   {
-    "__docId__": 80,
+    "__docId__": 81,
     "kind": "method",
     "name": "isParsed",
     "memberof": "src/class/WeChatArticle.js~WeChatArticle",
@@ -1121,7 +1144,7 @@
     "params": []
   },
   {
-    "__docId__": 81,
+    "__docId__": 82,
     "kind": "method",
     "name": "fetchAndParse",
     "memberof": "src/class/WeChatArticle.js~WeChatArticle",
@@ -1143,7 +1166,7 @@
     "params": []
   },
   {
-    "__docId__": 82,
+    "__docId__": 83,
     "kind": "member",
     "name": "_$",
     "memberof": "src/class/WeChatArticle.js~WeChatArticle",
@@ -1162,7 +1185,7 @@
     }
   },
   {
-    "__docId__": 83,
+    "__docId__": 84,
     "kind": "member",
     "name": "_media",
     "memberof": "src/class/WeChatArticle.js~WeChatArticle",
@@ -1179,7 +1202,7 @@
     }
   },
   {
-    "__docId__": 84,
+    "__docId__": 85,
     "kind": "member",
     "name": "title",
     "memberof": "src/class/WeChatArticle.js~WeChatArticle",
@@ -1198,7 +1221,7 @@
     }
   },
   {
-    "__docId__": 85,
+    "__docId__": 86,
     "kind": "member",
     "name": "publishedAt",
     "memberof": "src/class/WeChatArticle.js~WeChatArticle",
@@ -1217,7 +1240,7 @@
     }
   },
   {
-    "__docId__": 86,
+    "__docId__": 87,
     "kind": "member",
     "name": "author",
     "memberof": "src/class/WeChatArticle.js~WeChatArticle",
@@ -1236,7 +1259,7 @@
     }
   },
   {
-    "__docId__": 87,
+    "__docId__": 88,
     "kind": "member",
     "name": "account",
     "memberof": "src/class/WeChatArticle.js~WeChatArticle",
@@ -1253,7 +1276,7 @@
     }
   },
   {
-    "__docId__": 88,
+    "__docId__": 89,
     "kind": "member",
     "name": "content",
     "memberof": "src/class/WeChatArticle.js~WeChatArticle",
@@ -1272,7 +1295,7 @@
     }
   },
   {
-    "__docId__": 90,
+    "__docId__": 91,
     "kind": "method",
     "name": "getContent$",
     "memberof": "src/class/WeChatArticle.js~WeChatArticle",
@@ -1295,7 +1318,7 @@
     "params": []
   },
   {
-    "__docId__": 91,
+    "__docId__": 92,
     "kind": "method",
     "name": "updateContent",
     "memberof": "src/class/WeChatArticle.js~WeChatArticle",
@@ -1304,14 +1327,13 @@
     "static": false,
     "longname": "src/class/WeChatArticle.js~WeChatArticle#updateContent",
     "access": "public",
-    "description": null,
-    "lineNumber": 126,
-    "undocument": true,
+    "description": "Update content with your modified `$`. Don't forget to do this.",
+    "lineNumber": 129,
     "params": [],
     "return": null
   },
   {
-    "__docId__": 93,
+    "__docId__": 94,
     "kind": "method",
     "name": "getMedia",
     "memberof": "src/class/WeChatArticle.js~WeChatArticle",
@@ -1320,18 +1342,20 @@
     "static": false,
     "longname": "src/class/WeChatArticle.js~WeChatArticle#getMedia",
     "access": "public",
-    "description": null,
-    "lineNumber": 128,
-    "undocument": true,
-    "params": [],
+    "description": "Get an array of media in the article. Useful when you need to deal with it.\n\nCurrently we only parse images, so it will be an array of {@link ArticleImage}.\nSee its documentation for reference.",
+    "lineNumber": 139,
     "return": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
-    }
+        "Array"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "params": []
   },
   {
-    "__docId__": 94,
+    "__docId__": 95,
     "kind": "method",
     "name": "getAuthorName",
     "memberof": "src/class/WeChatArticle.js~WeChatArticle",
@@ -1341,7 +1365,7 @@
     "longname": "src/class/WeChatArticle.js~WeChatArticle#getAuthorName",
     "access": "public",
     "description": "Returns author's name if the author does specify an author name on the\narticle, or the name of the Official Account if not.",
-    "lineNumber": 136,
+    "lineNumber": 147,
     "return": {
       "nullable": null,
       "types": [
@@ -1353,7 +1377,7 @@
     "params": []
   },
   {
-    "__docId__": 95,
+    "__docId__": 96,
     "kind": "method",
     "name": "toString",
     "memberof": "src/class/WeChatArticle.js~WeChatArticle",
@@ -1363,7 +1387,7 @@
     "longname": "src/class/WeChatArticle.js~WeChatArticle#toString",
     "access": "public",
     "description": null,
-    "lineNumber": 137,
+    "lineNumber": 148,
     "undocument": true,
     "params": [],
     "return": {
@@ -1373,7 +1397,7 @@
     }
   },
   {
-    "__docId__": 96,
+    "__docId__": 97,
     "kind": "file",
     "name": "src/index.js",
     "content": "import WeChatArticle from './class/WeChatArticle'\nimport NormalizedWeChatArticle from './class/NormalizedWeChatArticle'\nimport ArticleImage from './class/ArticleImage'\n\nexport {\n  WeChatArticle,\n  NormalizedWeChatArticle,\n  ArticleImage\n}\n",
@@ -1384,10 +1408,10 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 97,
+    "__docId__": 98,
     "kind": "file",
     "name": "src/lib/media.js",
-    "content": "import ArticleImage from '../class/ArticleImage'\n\nexport function collectMedia ($) {\n  const media = []\n  $('img[data-src]').each((i, el) => media.push(new ArticleImage($(el))))\n  return media\n}\n",
+    "content": "import ArticleImage from '../class/ArticleImage'\n\n/**\n * `collectMedia` is an internal function used to collect media info. Takes the\n * raw `$` and returns the array you can get by {@link WeChatArticle#getMedia}.\n *\n * @param {type} $ - Raw `$`. That means all elements in the original HTML.\n *\n * @return {Array}\n */\nexport function collectMedia ($) {\n  const media = []\n  $('img[data-src]').each((i, el) => media.push(new ArticleImage($(el))))\n  return media\n}\n",
     "static": true,
     "longname": "/Users/laosb/Documents/SoftwareProj/wan/src/lib/media.js",
     "access": "public",
@@ -1395,7 +1419,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 98,
+    "__docId__": 99,
     "kind": "function",
     "name": "collectMedia",
     "memberof": "src/lib/media.js",
@@ -1407,28 +1431,34 @@
     "export": true,
     "importPath": "wearticle/src/lib/media.js",
     "importStyle": "{collectMedia}",
-    "description": null,
-    "lineNumber": 3,
-    "undocument": true,
+    "description": "`collectMedia` is an internal function used to collect media info. Takes the\nraw `$` and returns the array you can get by {@link WeChatArticle#getMedia}.",
+    "lineNumber": 11,
     "params": [
       {
-        "name": "$",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "type"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "$",
+        "description": "Raw `$`. That means all elements in the original HTML."
       }
     ],
     "return": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "Array"
+      ],
+      "spread": false,
+      "description": ""
     }
   },
   {
-    "__docId__": 99,
+    "__docId__": 100,
     "kind": "file",
     "name": "src/lib/style.js",
-    "content": "const uselessStyle = {\n  'box-sizing': 'border-box',\n  'background-color': [\n    'rgb\\\\( *255 *, *255 *, *255 *\\\\)', // eslint-disable-line no-useless-escape\n    '#fff',\n    '#ffffff'\n  ],\n  'border-width': '0[a-z]*',\n  'white-space': 'normal',\n  'border-style': 'initial',\n  'border-color': 'initial',\n  'outline': ['0px', '0'],\n  'font-family': '[^;]*',\n  // WeChat public platform doesn't cares about fonts,\n  // thus any font family decorations are not useful.\n  '-[a-z]+-transform': '[^;]*'\n  // We no longer need to prefix transform to now;\n  // Actually I don't know why they are prefixed, for\n  // WeChat articles are normally displayed in WeChat.\n}\n\nconst cleanStyleRegexs = [\n  / *; *[^a-z-]/gi // Editors like Xiumi.us can produce extra semicolons.\n]\nObject.keys(uselessStyle).forEach(key => {\n  let values = uselessStyle[key]\n  if (!Array.isArray(values)) values = [values]\n  values.map(value => {\n    cleanStyleRegexs.push(new RegExp(` *${key}: *${value} *!?[a-z]*[ ;]*`, 'gi'))\n  })\n})\n\nexport function cleanStyle (styleStr) {\n  for (let i = 0; i < cleanStyleRegexs.length; i++) {\n    const regex = Array.isArray(cleanStyleRegexs[i])\n      ? cleanStyleRegexs[i][0]\n      : cleanStyleRegexs[i]\n    const replacement = Array.isArray(cleanStyleRegexs[i])\n      ? cleanStyleRegexs[i][1]\n      : ''\n    styleStr = styleStr.replace(regex, replacement)\n    if (styleStr === '') return null\n  }\n  return styleStr.trim() || null\n}\n",
+    "content": "const uselessStyle = {\n  'box-sizing': 'border-box',\n  'background-color': [\n    'rgb\\\\( *255 *, *255 *, *255 *\\\\)', // eslint-disable-line no-useless-escape\n    '#fff',\n    '#ffffff'\n  ],\n  'border-width': '0[a-z]*',\n  'white-space': 'normal',\n  'border-style': 'initial',\n  'border-color': 'initial',\n  'outline': ['0px', '0'],\n  'font-family': '[^;]*',\n  // WeChat public platform doesn't cares about fonts,\n  // thus any font family decorations are not useful.\n  '-[a-z]+-transform': '[^;]*'\n  // We no longer need to prefix transform to now;\n  // Actually I don't know why they are prefixed, for\n  // WeChat articles are normally displayed in WeChat.\n}\n\nconst cleanStyleRegexs = [\n  / *; *[^a-z-]/gi // Editors like Xiumi.us can produce extra semicolons.\n]\nObject.keys(uselessStyle).forEach(key => {\n  let values = uselessStyle[key]\n  if (!Array.isArray(values)) values = [values]\n  values.map(value => {\n    cleanStyleRegexs.push(new RegExp(` *${key}: *${value} *!?[a-z]*[ ;]*`, 'gi'))\n  })\n})\n\n/**\n * Internal function to remove unuseful styles from a `style` string.\n *\n * @param {string} styleStr - Original style string from `style` attribute.\n *\n * @return {string} Cleaned style string.\n */\nexport function cleanStyle (styleStr) {\n  for (let i = 0; i < cleanStyleRegexs.length; i++) {\n    const regex = Array.isArray(cleanStyleRegexs[i])\n      ? cleanStyleRegexs[i][0]\n      : cleanStyleRegexs[i]\n    const replacement = Array.isArray(cleanStyleRegexs[i])\n      ? cleanStyleRegexs[i][1]\n      : ''\n    styleStr = styleStr.replace(regex, replacement)\n    if (styleStr === '') return null\n  }\n  return styleStr.trim() || null\n}\n",
     "static": true,
     "longname": "/Users/laosb/Documents/SoftwareProj/wan/src/lib/style.js",
     "access": "public",
@@ -1436,7 +1466,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 100,
+    "__docId__": 101,
     "kind": "variable",
     "name": "uselessStyle",
     "memberof": "src/lib/style.js",
@@ -1457,7 +1487,7 @@
     "ignore": true
   },
   {
-    "__docId__": 101,
+    "__docId__": 102,
     "kind": "variable",
     "name": "cleanStyleRegexs",
     "memberof": "src/lib/style.js",
@@ -1478,7 +1508,7 @@
     "ignore": true
   },
   {
-    "__docId__": 102,
+    "__docId__": 103,
     "kind": "function",
     "name": "cleanStyle",
     "memberof": "src/lib/style.js",
@@ -1490,25 +1520,31 @@
     "export": true,
     "importPath": "wearticle/src/lib/style.js",
     "importStyle": "{cleanStyle}",
-    "description": null,
-    "lineNumber": 33,
-    "undocument": true,
+    "description": "Internal function to remove unuseful styles from a `style` string.",
+    "lineNumber": 40,
     "params": [
       {
-        "name": "styleStr",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "styleStr",
+        "description": "Original style string from `style` attribute."
       }
     ],
     "return": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "string"
+      ],
+      "spread": false,
+      "description": "Cleaned style string."
     }
   },
   {
-    "__docId__": 103,
+    "__docId__": 104,
     "kind": "file",
     "name": "src/normalize.js",
     "content": "import { cleanStyle } from './lib/style'\n\n/**\n * **Don't use.** Internal function of {@link NormalizedWeChatArticle}.\n *\n * In case you really need it, it proceeds the content cheerio instance.\n *\n * @private\n *\n * @param {$} $\n *\n * @return {$}\n *\n * @since 0.3.0\n */\nexport function normalize ($) {\n  $('br').each((i, el) => {\n    while ($(el).parent().children().length === 1) {\n      const $p = $(el).parent()\n      $(el).insertAfter($(el).parent())\n      $p.remove()\n    }\n  }) // Unwrap <br>s from any kind of element that only contains a <br>.\n  $('[style]').each((i, el) => $(el).attr('style', cleanStyle($(el).attr('style'))))\n  $('[powered-by]').attr('powered-by', null)\n  $('[class=\"Powered-by-XIUMI V5\"]').attr('class', null)\n  $('[data-label=\"powered by xmt.cn\"]').remove()\n  $('[label]').attr('label', null) // Mostly used to attach copyright of editors.\n  $('[class=\"\"]').attr('class', null)\n  let removals = 1\n  while (removals > 0) {\n    removals = 0\n    $('section').each((e, el) => {\n      if (!$(el).attr('class') && !$(el).attr('style')) {\n        for (let i = 0; i < $(el).children().length; i++) {\n          $($(el).children()[i]).insertAfter($(el))\n        }\n        $(el).remove()\n        removals++\n      }\n    }) // Unwrap elements in nonsense sections.\n  }\n  return $\n}\n",
@@ -1519,7 +1555,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 104,
+    "__docId__": 105,
     "kind": "function",
     "name": "normalize",
     "memberof": "src/normalize.js",
@@ -1556,7 +1592,7 @@
     }
   },
   {
-    "__docId__": 105,
+    "__docId__": 106,
     "kind": "file",
     "name": "src/utils.js",
     "content": "import cheerio from 'cheerio'\nimport axios from 'axios'\nimport throttle from 'p-throttle'\n\nconst axiosGet = throttle(axios.get, 7, 1000)\n\n/**\n * Internal shorthand for fetching & parsing a general webpage.\n *\n * @private\n *\n * @param {String} url - URL to that page.\n *\n * @return {$} Returns a cheerio instance with the whole HTML from axios.\n *\n * @since 0.2.0\n */\nexport async function fetchAndParse (url) {\n  try {\n    const { data } = await axiosGet(url)\n    return cheerio.load(data)\n  } catch (e) { console.log(e) }\n}\n",
@@ -1567,7 +1603,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 106,
+    "__docId__": 107,
     "kind": "variable",
     "name": "axiosGet",
     "memberof": "src/utils.js",
@@ -1588,7 +1624,7 @@
     "ignore": true
   },
   {
-    "__docId__": 107,
+    "__docId__": 108,
     "kind": "function",
     "name": "fetchAndParse",
     "memberof": "src/utils.js",

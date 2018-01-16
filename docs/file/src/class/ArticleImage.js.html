@@ -44,18 +44,60 @@
 <div class="content" data-ice="content"><h1 data-ice="title">src/class/ArticleImage.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import axios from &apos;axios&apos;
 
+/**
+ * A class for images in WeChat articles.
+ *
+ * You&apos;ll find this in the returned array of {@link WeChatArticle#getMedia}. You
+ * can use `instanceof` to find out if that element is an image.
+ *
+ * This library itself doesn&apos;t handle images, since many problems are closely
+ * related to your implementations. But we do provide a set of API for easier
+ * image handling. You can get the URL, remove it out of the article and set a
+ * new URL to where you caches all images. Additionally you can directly stream
+ * the image, and clean up that `&lt;img&gt;` for cleaner markup.
+ *
+ * @since 0.4.0
+ */
 export default class ArticleImage {
+  /**
+   * Takes a cheerio object(`$(someSelector)`). You won&apos;t `new` one in most cases.
+   * You can get all meta information of this image immediately.
+   *
+   * @param {$()} $img - a cheerio object representing an `&lt;img&gt;` in original WeChat
+   * article.
+   */
   constructor ($img) {
     this._$img = $img
     const size = $img.data(&apos;s&apos;)
+
+    /** @type {number[]} */
     if (size) this.size = size.split(&apos;,&apos;).map(e =&gt; e * 1)
+
+    /** @type {string} */
     this.type = $img.data(&apos;type&apos;) + &apos;&apos;
-    this._origUrl = this.url = $img.data(&apos;src&apos;) + &apos;&apos;
+
+    /** @type {string} */
+    this._origUrl = $img.data(&apos;src&apos;) + &apos;&apos;
+
+    /** @type {string} */
+    this.url = $img.data(&apos;src&apos;) + &apos;&apos;
+
+    /** @type {number} */
     this.copyright = $img.data(&apos;copyright&apos;) * 1
+
+    /** @type {number} */
     this.ratio = $img.data(&apos;ratio&apos;) * 1
+
+    /** @type {number} */
     this.width = $img.data(&apos;w&apos;) * 1
     this._removed = false
   }
+
+  /**
+   * Cleans up the `&lt;img&gt;` tag. Actually removes all WeChat-defined `data-*`,
+   * removes blank `style` and `class` attributes. And correct the URL to what
+   * you set, in case some of your transformation breaks it.
+   */
   cleanup () {
     if (!this._$img.attr(&apos;style&apos;)) this._$img.attr(&apos;style&apos;, null)
     if (!this._$img.attr(&apos;class&apos;)) this._$img.attr(&apos;class&apos;, null)
@@ -68,17 +110,44 @@ export default class ArticleImage {
     this._$img.attr(&apos;src&apos;, this.url)
     // this._$img.attr(&apos;width&apos;, this.size ? this.size[0] : this.width * this.ratio)
   }
+
+  /**
+   * Removes current image from the HTML. This is useful when you decided to remove
+   * some decorational gifs &amp; images.
+   */
   remove () {
     if (this._removed) throw new Error(&apos;This image has already been removed.&apos;)
     this._$img.remove()
     this._removed = true
   }
+
+  /**
+   * See if you&apos;ve already removed it.
+   */
   isRemoved () { return this._removed }
+
+  /**
+   * Get the underlying $(img). Good for custom tranformations. But don&apos;t set `src`
+   * manually there. Try {@link ArticleImage#setUrl}.
+   */
   get$Img () { return this._$img }
+
+  /**
+   * Set `src` for the picture. Please make sure this is correctly pointed to
+   * where you store the image.
+   */
   setUrl (newUrl) {
     this.url = newUrl + &apos;&apos;
     this._$img.attr(&apos;src&apos;, this.url)
   }
+
+  /**
+   * Returns a stream of that iamges. You can use this to persist images to disk.
+   * @example
+   * (await articleImage.stream()).pipe(fs.createWriteStream(&apos;xxx.jpg&apos;))
+   *
+   * @return {Stream}
+   */
   async stream () {
     const { data } = await axios.get(this._origUrl, { responseType: &apos;stream&apos; })
     return data // Pipeable data stream.

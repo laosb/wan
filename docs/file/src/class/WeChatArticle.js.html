@@ -167,8 +167,19 @@ export default class WeChatArticle {
    */
   getContent$ () { return selector =&gt; this._$(selector, &apos;#js_content&apos;) }
 
+  /**
+   * Update content with your modified `$`. Don&apos;t forget to do this.
+   */
   updateContent () { this.content = this._$(&apos;#js_content&apos;).html() }
 
+  /**
+   * Get an array of media in the article. Useful when you need to deal with it.
+   *
+   * Currently we only parse images, so it will be an array of {@link ArticleImage}.
+   * See its documentation for reference.
+   *
+   * @return {Array}
+   */
   getMedia () { return this._media }
 
   /**

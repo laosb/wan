@@ -60,13 +60,14 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-cleanStyle">cleanStyle</a></span></span><span class="code" data-ice="signature">(styleStr: <span>*</span>): <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-cleanStyle">cleanStyle</a></span></span><span class="code" data-ice="signature">(styleStr: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Internal function to remove unuseful styles from a <code>style</code> string.</p>
+</div>
       </div>
     </td>
     <td>
@@ -88,13 +89,14 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-collectMedia">collectMedia</a></span></span><span class="code" data-ice="signature">($: <span>*</span>): <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-collectMedia">collectMedia</a></span></span><span class="code" data-ice="signature">($: <span><a href="class/src/class/ArticleImage.js~ArticleImage.html#instance-member-type">type</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p><code>collectMedia</code> is an internal function used to collect media info.</p>
+</div>
       </div>
     </td>
     <td>
@@ -180,18 +182,19 @@
     
     
     
-    <span class="code" data-ice="name">cleanStyle</span><span class="code" data-ice="signature">(styleStr: <span>*</span>): <span>*</span></span>
+    <span class="code" data-ice="name">cleanStyle</span><span class="code" data-ice="signature">(styleStr: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/lib/style.js.html#lineNumber33">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/lib/style.js.html#lineNumber40">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {cleanStyle} from &apos;<span><a href="file/src/lib/style.js.html#lineNumber33">wearticle/src/lib/style.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {cleanStyle} from &apos;<span><a href="file/src/lib/style.js.html#lineNumber40">wearticle/src/lib/style.js</a></span>&apos;</code></pre></div>
   
   
-  
+  <div data-ice="description"><p>Internal function to remove unuseful styles from a <code>style</code> string.</p>
+</div>
 
   
 
@@ -205,9 +208,10 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">styleStr</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Original style string from <code>style</code> attribute.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -219,8 +223,9 @@
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span>*</span></td>
-          
+          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>Cleaned style string.</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -251,18 +256,20 @@
     
     
     
-    <span class="code" data-ice="name">collectMedia</span><span class="code" data-ice="signature">($: <span>*</span>): <span>*</span></span>
+    <span class="code" data-ice="name">collectMedia</span><span class="code" data-ice="signature">($: <span><a href="class/src/class/ArticleImage.js~ArticleImage.html#instance-member-type">type</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/lib/media.js.html#lineNumber3">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/lib/media.js.html#lineNumber11">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {collectMedia} from &apos;<span><a href="file/src/lib/media.js.html#lineNumber3">wearticle/src/lib/media.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {collectMedia} from &apos;<span><a href="file/src/lib/media.js.html#lineNumber11">wearticle/src/lib/media.js</a></span>&apos;</code></pre></div>
   
   
-  
+  <div data-ice="description"><p><code>collectMedia</code> is an internal function used to collect media info. Takes the
+raw <code>$</code> and returns the array you can get by <span><a href="class/src/class/WeChatArticle.js~WeChatArticle.html#instance-method-getMedia">WeChatArticle#getMedia</a></span>.</p>
+</div>
 
   
 
@@ -276,9 +283,10 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">$</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="type" class="code"><span><a href="class/src/class/ArticleImage.js~ArticleImage.html#instance-member-type">type</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>Raw <code>$</code>. That means all elements in the original HTML.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -290,7 +298,7 @@
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span>*</span></td>
+          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span></td>
           
         </tr>
       </tbody>
