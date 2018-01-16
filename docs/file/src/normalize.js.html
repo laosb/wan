@@ -70,12 +70,19 @@ export function normalize ($) {
   $(&apos;[class=&quot;Powered-by-XIUMI V5&quot;]&apos;).attr(&apos;class&apos;, null)
   $(&apos;[data-label=&quot;powered by xmt.cn&quot;]&apos;).remove()
   $(&apos;[class=&quot;&quot;]&apos;).attr(&apos;class&apos;, null)
-  $(&apos;section:not([class],[style])&apos;).each((e, el) =&gt; {
-    if ($(el).children().length === 1) {
-      $(el).children()[0].insertAfter($(el))
-      $(el).remove()
-    }
-  }) // Unwrap elements in nonsense sections.
+  let removals = 1
+  while (removals &gt; 0) {
+    removals = 0
+    $(&apos;section&apos;).each((e, el) =&gt; {
+      if (!$(el).attr(&apos;class&apos;) &amp;&amp; !$(el).attr(&apos;style&apos;)) {
+        for (let i = 0; i &lt; $(el).children().length; i++) {
+          $($(el).children()[i]).insertAfter($(el))
+        }
+        $(el).remove()
+        removals++
+      }
+    }) // Unwrap elements in nonsense sections.
+  }
   return $
 }
 </code></pre>

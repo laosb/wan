@@ -1412,7 +1412,7 @@
     "__docId__": 97,
     "kind": "file",
     "name": "src/lib/style.js",
-    "content": "const uselessStyle = {\n  'box-sizing': 'border-box',\n  'background-color': [\n    'rgb\\\\( *255 *, *255 *, *255 *\\\\)', // eslint-disable-line no-useless-escape\n    '#fff',\n    '#ffffff'\n  ],\n  'border-width': '0[a-z]*',\n  'white-space': 'normal',\n  'border-style': 'initial',\n  'border-color': 'initial',\n  'outline': ['0px', '0'],\n  'font-family': '.*'\n  // WeChat public platform doesn't cares about fonts,\n  // thus any font family decorations are not useful.\n}\n\nconst cleanStyleRegexs = [\n  / *;[^a-z]/gi // Editors like Xiumi.us can produce extra semicolons.\n]\nObject.keys(uselessStyle).forEach(key => {\n  let values = uselessStyle[key]\n  if (!Array.isArray(values)) values = [values]\n  values.map(value => {\n    cleanStyleRegexs.push(new RegExp(` *${key}: *${value} *[ ;]*`, 'gi'))\n  })\n})\n\nexport function cleanStyle (styleStr) {\n  for (let i = 0; i < cleanStyleRegexs.length; i++) {\n    styleStr = styleStr.replace(cleanStyleRegexs[i], '')\n    if (styleStr === '') return null\n  }\n  return styleStr.trim() || null\n}\n",
+    "content": "const uselessStyle = {\n  'box-sizing': 'border-box',\n  'background-color': [\n    'rgb\\\\( *255 *, *255 *, *255 *\\\\)', // eslint-disable-line no-useless-escape\n    '#fff',\n    '#ffffff'\n  ],\n  'border-width': '0[a-z]*',\n  'white-space': 'normal',\n  'border-style': 'initial',\n  'border-color': 'initial',\n  'outline': ['0px', '0'],\n  'font-family': '[^;]*',\n  // WeChat public platform doesn't cares about fonts,\n  // thus any font family decorations are not useful.\n  '-[a-z]+-transform': '[^;]*'\n  // We no longer need to prefix transform to now;\n  // Actually I don't know why they are prefixed, for\n  // WeChat articles are normally displayed in WeChat.\n}\n\nconst cleanStyleRegexs = [\n  / *; *[^a-z-]/gi // Editors like Xiumi.us can produce extra semicolons.\n]\nObject.keys(uselessStyle).forEach(key => {\n  let values = uselessStyle[key]\n  if (!Array.isArray(values)) values = [values]\n  values.map(value => {\n    cleanStyleRegexs.push(new RegExp(` *${key}: *${value} *[ ;]*`, 'gi'))\n  })\n})\n\nexport function cleanStyle (styleStr) {\n  for (let i = 0; i < cleanStyleRegexs.length; i++) {\n    const regex = Array.isArray(cleanStyleRegexs[i])\n      ? cleanStyleRegexs[i][0]\n      : cleanStyleRegexs[i]\n    const replacement = Array.isArray(cleanStyleRegexs[i])\n      ? cleanStyleRegexs[i][1]\n      : ''\n    styleStr = styleStr.replace(regex, replacement)\n    if (styleStr === '') return null\n  }\n  return styleStr.trim() || null\n}\n",
     "static": true,
     "longname": "/Users/laosb/Documents/SoftwareProj/wan/src/lib/style.js",
     "access": "public",
@@ -1435,7 +1435,7 @@
     "undocument": true,
     "type": {
       "types": [
-        "{\"box-sizing\": string, \"background-color\": *, \"border-width\": string, \"white-space\": string, \"border-style\": string, \"border-color\": string, \"outline\": *, \"font-family\": string}"
+        "{\"box-sizing\": string, \"background-color\": *, \"border-width\": string, \"white-space\": string, \"border-style\": string, \"border-color\": string, \"outline\": *, \"font-family\": string, \"-[a-z]+-transform\": string}"
       ]
     },
     "ignore": true
@@ -1452,7 +1452,7 @@
     "importPath": "wearticle/src/lib/style.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 18,
+    "lineNumber": 22,
     "undocument": true,
     "type": {
       "types": [
@@ -1475,7 +1475,7 @@
     "importPath": "wearticle/src/lib/style.js",
     "importStyle": "{cleanStyle}",
     "description": null,
-    "lineNumber": 29,
+    "lineNumber": 33,
     "undocument": true,
     "params": [
       {
@@ -1495,7 +1495,7 @@
     "__docId__": 101,
     "kind": "file",
     "name": "src/normalize.js",
-    "content": "import { cleanStyle } from './lib/style'\n\n/**\n * **Don't use.** Internal function of {@link NormalizedWeChatArticle}.\n *\n * In case you really need it, it proceeds the content cheerio instance.\n *\n * @private\n *\n * @param {$} $\n *\n * @return {$}\n *\n * @since 0.3.0\n */\nexport function normalize ($) {\n  $('br').each((i, el) => {\n    while ($(el).parent().children().length === 1) {\n      const $p = $(el).parent()\n      $(el).insertAfter($(el).parent())\n      $p.remove()\n    }\n  }) // Unwrap <br>s from any kind of element that only contains a <br>.\n  $('[style]').each((i, el) => $(el).attr('style', cleanStyle($(el).attr('style'))))\n  $('[powered-by]').attr('powered-by', null)\n  $('[class=\"Powered-by-XIUMI V5\"]').attr('class', null)\n  $('[data-label=\"powered by xmt.cn\"]').remove()\n  $('[class=\"\"]').attr('class', null)\n  $('section:not([class],[style])').each((e, el) => {\n    if ($(el).children().length === 1) {\n      $(el).children()[0].insertAfter($(el))\n      $(el).remove()\n    }\n  }) // Unwrap elements in nonsense sections.\n  return $\n}\n",
+    "content": "import { cleanStyle } from './lib/style'\n\n/**\n * **Don't use.** Internal function of {@link NormalizedWeChatArticle}.\n *\n * In case you really need it, it proceeds the content cheerio instance.\n *\n * @private\n *\n * @param {$} $\n *\n * @return {$}\n *\n * @since 0.3.0\n */\nexport function normalize ($) {\n  $('br').each((i, el) => {\n    while ($(el).parent().children().length === 1) {\n      const $p = $(el).parent()\n      $(el).insertAfter($(el).parent())\n      $p.remove()\n    }\n  }) // Unwrap <br>s from any kind of element that only contains a <br>.\n  $('[style]').each((i, el) => $(el).attr('style', cleanStyle($(el).attr('style'))))\n  $('[powered-by]').attr('powered-by', null)\n  $('[class=\"Powered-by-XIUMI V5\"]').attr('class', null)\n  $('[data-label=\"powered by xmt.cn\"]').remove()\n  $('[class=\"\"]').attr('class', null)\n  let removals = 1\n  while (removals > 0) {\n    removals = 0\n    $('section').each((e, el) => {\n      if (!$(el).attr('class') && !$(el).attr('style')) {\n        for (let i = 0; i < $(el).children().length; i++) {\n          $($(el).children()[i]).insertAfter($(el))\n        }\n        $(el).remove()\n        removals++\n      }\n    }) // Unwrap elements in nonsense sections.\n  }\n  return $\n}\n",
     "static": true,
     "longname": "/Users/laosb/Documents/SoftwareProj/wan/src/normalize.js",
     "access": "public",
@@ -1618,7 +1618,7 @@
   },
   {
     "kind": "packageJSON",
-    "content": "{\n  \"name\": \"wearticle\",\n  \"version\": \"0.4.0-0\",\n  \"description\": \"A server that normalize WeChat articles to webpages.\",\n  \"main\": \"src/index.js\",\n  \"scripts\": {\n    \"start\": \"node -r @std/esm src/app\",\n    \"test\": \"echo \\\"no test specified\\\" && exit 0\",\n    \"gen-doc\": \"esdoc\",\n    \"serve-doc\": \"(cd docs && live-server)\",\n    \"doc\": \"npm run gen-doc && npm run serve-doc\",\n    \"version\": \"npm run gen-doc && git add docs\"\n  },\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"git+https://github.com/laosb/wan.git\"\n  },\n  \"keywords\": [\n    \"wechat\",\n    \"html\"\n  ],\n  \"author\": \"laosb\",\n  \"license\": \"MIT\",\n  \"bugs\": {\n    \"url\": \"https://github.com/laosb/wan/issues\"\n  },\n  \"homepage\": \"https://github.com/laosb/wan#readme\",\n  \"dependencies\": {\n    \"@std/esm\": \"^0.19.2\",\n    \"axios\": \"^0.17.1\",\n    \"cheerio\": \"^1.0.0-rc.2\",\n    \"esdoc\": \"^1.0.4\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"moment\": \"^2.20.1\",\n    \"p-throttle\": \"^1.1.0\",\n    \"vm2\": \"^3.5.2\"\n  },\n  \"devDependencies\": {\n    \"babel-eslint\": \"^8.2.1\",\n    \"live-server\": \"^1.2.0\",\n    \"np\": \"^2.18.3\",\n    \"standard\": \"^10.0.3\"\n  },\n  \"standard\": {\n    \"parser\": \"babel-eslint\"\n  },\n  \"@std/esm\": {\n    \"esm\": \"js\",\n    \"cjs\": true\n  }\n}\n",
+    "content": "{\n  \"name\": \"wearticle\",\n  \"version\": \"0.4.0-1\",\n  \"description\": \"A server that normalize WeChat articles to webpages.\",\n  \"main\": \"src/index.js\",\n  \"scripts\": {\n    \"start\": \"node -r @std/esm src/app\",\n    \"test\": \"echo \\\"no test specified\\\" && exit 0\",\n    \"gen-doc\": \"esdoc\",\n    \"serve-doc\": \"(cd docs && live-server)\",\n    \"doc\": \"npm run gen-doc && npm run serve-doc\",\n    \"version\": \"npm run gen-doc && git add docs\"\n  },\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"git+https://github.com/laosb/wan.git\"\n  },\n  \"keywords\": [\n    \"wechat\",\n    \"html\"\n  ],\n  \"author\": \"laosb\",\n  \"license\": \"MIT\",\n  \"bugs\": {\n    \"url\": \"https://github.com/laosb/wan/issues\"\n  },\n  \"homepage\": \"https://github.com/laosb/wan#readme\",\n  \"dependencies\": {\n    \"@std/esm\": \"^0.19.2\",\n    \"axios\": \"^0.17.1\",\n    \"cheerio\": \"^1.0.0-rc.2\",\n    \"esdoc\": \"^1.0.4\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"moment\": \"^2.20.1\",\n    \"p-throttle\": \"^1.1.0\",\n    \"vm2\": \"^3.5.2\"\n  },\n  \"devDependencies\": {\n    \"babel-eslint\": \"^8.2.1\",\n    \"live-server\": \"^1.2.0\",\n    \"np\": \"^2.18.3\",\n    \"standard\": \"^10.0.3\"\n  },\n  \"standard\": {\n    \"parser\": \"babel-eslint\"\n  },\n  \"@std/esm\": {\n    \"esm\": \"js\",\n    \"cjs\": true\n  }\n}\n",
     "longname": "/Users/laosb/Documents/SoftwareProj/wan/package.json",
     "name": "package.json",
     "static": true,

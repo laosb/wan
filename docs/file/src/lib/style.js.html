@@ -54,13 +54,17 @@
   &apos;border-style&apos;: &apos;initial&apos;,
   &apos;border-color&apos;: &apos;initial&apos;,
   &apos;outline&apos;: [&apos;0px&apos;, &apos;0&apos;],
-  &apos;font-family&apos;: &apos;.*&apos;
+  &apos;font-family&apos;: &apos;[^;]*&apos;,
   // WeChat public platform doesn&apos;t cares about fonts,
   // thus any font family decorations are not useful.
+  &apos;-[a-z]+-transform&apos;: &apos;[^;]*&apos;
+  // We no longer need to prefix transform to now;
+  // Actually I don&apos;t know why they are prefixed, for
+  // WeChat articles are normally displayed in WeChat.
 }
 
 const cleanStyleRegexs = [
-  / *;[^a-z]/gi // Editors like Xiumi.us can produce extra semicolons.
+  / *; *[^a-z-]/gi // Editors like Xiumi.us can produce extra semicolons.
 ]
 Object.keys(uselessStyle).forEach(key =&gt; {
   let values = uselessStyle[key]
@@ -72,7 +76,13 @@ Object.keys(uselessStyle).forEach(key =&gt; {
 
 export function cleanStyle (styleStr) {
   for (let i = 0; i &lt; cleanStyleRegexs.length; i++) {
-    styleStr = styleStr.replace(cleanStyleRegexs[i], &apos;&apos;)
+    const regex = Array.isArray(cleanStyleRegexs[i])
+      ? cleanStyleRegexs[i][0]
+      : cleanStyleRegexs[i]
+    const replacement = Array.isArray(cleanStyleRegexs[i])
+      ? cleanStyleRegexs[i][1]
+      : &apos;&apos;
+    styleStr = styleStr.replace(regex, replacement)
     if (styleStr === &apos;&apos;) return null
   }
   return styleStr.trim() || null
