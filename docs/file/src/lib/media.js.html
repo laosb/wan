@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../../">
-  <title data-ice="title">src/lib/style.js | wearticle</title>
+  <title data-ice="title">src/lib/media.js | wearticle</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -41,41 +41,13 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/lib/style.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">const uselessStyle = {
-  &apos;box-sizing&apos;: &apos;border-box&apos;,
-  &apos;background-color&apos;: [
-    &apos;rgb\\( *255 *, *255 *, *255 *\\)&apos;, // eslint-disable-line no-useless-escape
-    &apos;#fff&apos;,
-    &apos;#ffffff&apos;
-  ],
-  &apos;border-width&apos;: &apos;0[a-z]*&apos;,
-  &apos;white-space&apos;: &apos;normal&apos;,
-  &apos;border-style&apos;: &apos;initial&apos;,
-  &apos;border-color&apos;: &apos;initial&apos;,
-  &apos;outline&apos;: [&apos;0px&apos;, &apos;0&apos;],
-  &apos;font-family&apos;: &apos;.*&apos;
-  // WeChat public platform doesn&apos;t cares about fonts,
-  // thus any font family decorations are not useful.
-}
+<div class="content" data-ice="content"><h1 data-ice="title">src/lib/media.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import ArticleImage from &apos;../class/ArticleImage&apos;
 
-const cleanStyleRegexs = [
-  / *;[^a-z]/gi // Editors like Xiumi.us can produce extra semicolons.
-]
-Object.keys(uselessStyle).forEach(key =&gt; {
-  let values = uselessStyle[key]
-  if (!Array.isArray(values)) values = [values]
-  values.map(value =&gt; {
-    cleanStyleRegexs.push(new RegExp(` *${key}: *${value} *[ ;]*`, &apos;gi&apos;))
-  })
-})
-
-export function cleanStyle (styleStr) {
-  for (let i = 0; i &lt; cleanStyleRegexs.length; i++) {
-    styleStr = styleStr.replace(cleanStyleRegexs[i], &apos;&apos;)
-    if (styleStr === &apos;&apos;) return null
-  }
-  return styleStr.trim() || null
+export function collectMedia ($) {
+  const media = []
+  $(&apos;img[data-src]&apos;).each((i, el) =&gt; media.push(new ArticleImage($(el))))
+  return media
 }
 </code></pre>
 

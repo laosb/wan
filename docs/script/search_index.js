@@ -1,5 +1,11 @@
 window.esdocSearchIndex = [
   [
+    "wearticle/src/class/articleimage.js~articleimage",
+    "class/src/class/ArticleImage.js~ArticleImage.html",
+    "<span>ArticleImage</span> <span class=\"search-result-import-path\">wearticle/src/class/ArticleImage.js</span>",
+    "class"
+  ],
+  [
     "wearticle/src/class/normalizedwechatarticle.js~normalizedwechatarticle",
     "class/src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle.html",
     "<span>NormalizedWeChatArticle</span> <span class=\"search-result-import-path\">wearticle/src/class/NormalizedWeChatArticle.js</span>",
@@ -15,6 +21,12 @@ window.esdocSearchIndex = [
     "wearticle/src/lib/style.js~cleanstyle",
     "function/index.html#static-function-cleanStyle",
     "<span>cleanStyle</span> <span class=\"search-result-import-path\">wearticle/src/lib/style.js</span>",
+    "function"
+  ],
+  [
+    "wearticle/src/lib/media.js~collectmedia",
+    "function/index.html#static-function-collectMedia",
+    "<span>collectMedia</span> <span class=\"search-result-import-path\">wearticle/src/lib/media.js</span>",
     "function"
   ],
   [
@@ -318,6 +330,108 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/class/articleimage.js",
+    "file/src/class/ArticleImage.js.html",
+    "src/class/ArticleImage.js",
+    "file"
+  ],
+  [
+    "src/class/articleimage.js~articleimage#_$img",
+    "class/src/class/ArticleImage.js~ArticleImage.html#instance-member-_$img",
+    "src/class/ArticleImage.js~ArticleImage#_$img",
+    "member"
+  ],
+  [
+    "src/class/articleimage.js~articleimage#_origurl",
+    "class/src/class/ArticleImage.js~ArticleImage.html#instance-member-_origUrl",
+    "src/class/ArticleImage.js~ArticleImage#_origUrl",
+    "member"
+  ],
+  [
+    "src/class/articleimage.js~articleimage#_removed",
+    "class/src/class/ArticleImage.js~ArticleImage.html#instance-member-_removed",
+    "src/class/ArticleImage.js~ArticleImage#_removed",
+    "member"
+  ],
+  [
+    "src/class/articleimage.js~articleimage#cleanup",
+    "class/src/class/ArticleImage.js~ArticleImage.html#instance-method-cleanup",
+    "src/class/ArticleImage.js~ArticleImage#cleanup",
+    "method"
+  ],
+  [
+    "src/class/articleimage.js~articleimage#constructor",
+    "class/src/class/ArticleImage.js~ArticleImage.html#instance-constructor-constructor",
+    "src/class/ArticleImage.js~ArticleImage#constructor",
+    "method"
+  ],
+  [
+    "src/class/articleimage.js~articleimage#copyright",
+    "class/src/class/ArticleImage.js~ArticleImage.html#instance-member-copyright",
+    "src/class/ArticleImage.js~ArticleImage#copyright",
+    "member"
+  ],
+  [
+    "src/class/articleimage.js~articleimage#get$img",
+    "class/src/class/ArticleImage.js~ArticleImage.html#instance-method-get$Img",
+    "src/class/ArticleImage.js~ArticleImage#get$Img",
+    "method"
+  ],
+  [
+    "src/class/articleimage.js~articleimage#isremoved",
+    "class/src/class/ArticleImage.js~ArticleImage.html#instance-method-isRemoved",
+    "src/class/ArticleImage.js~ArticleImage#isRemoved",
+    "method"
+  ],
+  [
+    "src/class/articleimage.js~articleimage#ratio",
+    "class/src/class/ArticleImage.js~ArticleImage.html#instance-member-ratio",
+    "src/class/ArticleImage.js~ArticleImage#ratio",
+    "member"
+  ],
+  [
+    "src/class/articleimage.js~articleimage#remove",
+    "class/src/class/ArticleImage.js~ArticleImage.html#instance-method-remove",
+    "src/class/ArticleImage.js~ArticleImage#remove",
+    "method"
+  ],
+  [
+    "src/class/articleimage.js~articleimage#seturl",
+    "class/src/class/ArticleImage.js~ArticleImage.html#instance-method-setUrl",
+    "src/class/ArticleImage.js~ArticleImage#setUrl",
+    "method"
+  ],
+  [
+    "src/class/articleimage.js~articleimage#size",
+    "class/src/class/ArticleImage.js~ArticleImage.html#instance-member-size",
+    "src/class/ArticleImage.js~ArticleImage#size",
+    "member"
+  ],
+  [
+    "src/class/articleimage.js~articleimage#stream",
+    "class/src/class/ArticleImage.js~ArticleImage.html#instance-method-stream",
+    "src/class/ArticleImage.js~ArticleImage#stream",
+    "method"
+  ],
+  [
+    "src/class/articleimage.js~articleimage#type",
+    "class/src/class/ArticleImage.js~ArticleImage.html#instance-member-type",
+    "src/class/ArticleImage.js~ArticleImage#type",
+    "member"
+  ],
+  [
+    "src/class/articleimage.js~articleimage#url",
+    "class/src/class/ArticleImage.js~ArticleImage.html#instance-member-url",
+    "src/class/ArticleImage.js~ArticleImage#url",
+    "member"
+  ],
+  [
+    "src/class/articleimage.js~articleimage#width",
+    "class/src/class/ArticleImage.js~ArticleImage.html#instance-member-width",
+    "src/class/ArticleImage.js~ArticleImage#width",
+    "member"
+  ],
+  [
     "src/class/normalizedwechatarticle.js",
     "file/src/class/NormalizedWeChatArticle.js.html",
     "src/class/NormalizedWeChatArticle.js",
@@ -357,6 +471,12 @@ window.esdocSearchIndex = [
     "src/class/wechatarticle.js~wechatarticle#_$",
     "class/src/class/WeChatArticle.js~WeChatArticle.html#instance-member-_$",
     "src/class/WeChatArticle.js~WeChatArticle#_$",
+    "member"
+  ],
+  [
+    "src/class/wechatarticle.js~wechatarticle#_media",
+    "class/src/class/WeChatArticle.js~WeChatArticle.html#instance-member-_media",
+    "src/class/WeChatArticle.js~WeChatArticle#_media",
     "member"
   ],
   [
@@ -408,6 +528,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/class/wechatarticle.js~wechatarticle#getmedia",
+    "class/src/class/WeChatArticle.js~WeChatArticle.html#instance-method-getMedia",
+    "src/class/WeChatArticle.js~WeChatArticle#getMedia",
+    "method"
+  ],
+  [
     "src/class/wechatarticle.js~wechatarticle#isparsed",
     "class/src/class/WeChatArticle.js~WeChatArticle.html#instance-method-isParsed",
     "src/class/WeChatArticle.js~WeChatArticle#isParsed",
@@ -441,6 +567,12 @@ window.esdocSearchIndex = [
     "src/index.js",
     "file/src/index.js.html",
     "src/index.js",
+    "file"
+  ],
+  [
+    "src/lib/media.js",
+    "file/src/lib/media.js.html",
+    "src/lib/media.js",
     "file"
   ],
   [

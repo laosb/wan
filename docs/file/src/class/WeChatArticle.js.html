@@ -31,16 +31,19 @@
     
   <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-normalize">normalize</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-fetchAndParse">fetchAndParse</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#class">class</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle.html">NormalizedWeChatArticle</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#class">class</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/class/ArticleImage.js~ArticleImage.html">ArticleImage</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle.html">NormalizedWeChatArticle</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/class/WeChatArticle.js~WeChatArticle.html">WeChatArticle</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://cheerio.js.org/">$</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib">lib</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-cleanStyle">cleanStyle</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib">lib</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-collectMedia">collectMedia</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-cleanStyle">cleanStyle</a></span></span></li>
 </ul>
 </div>
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/class/WeChatArticle.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { fetchAndParse } from &apos;../utils&apos;
+import { collectMedia } from &apos;../lib/media&apos;
 import moment from &apos;moment&apos;
 import { VM } from &apos;vm2&apos;
 
@@ -105,6 +108,8 @@ export default class WeChatArticle {
 
     /** @type {$} */
     this._$ = $
+
+    this._media = collectMedia($)
     let usefulCode = &apos;const window = {}; const __getInfoFunc = () =&gt; {&apos;
     usefulCode += $(&apos;#activity-detail &gt; script:nth-child(7)&apos;).get()[0].children[0].data
     usefulCode += `
@@ -162,6 +167,8 @@ export default class WeChatArticle {
    * @since 0.2.0
    */
   getContent$ () { return selector =&gt; this._$(selector, &apos;#js_content&apos;) }
+
+  getMedia () { return this._media }
 
   /**
    * Returns author&apos;s name if the author does specify an author name on the

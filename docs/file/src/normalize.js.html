@@ -31,10 +31,12 @@
     
   <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-normalize">normalize</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-fetchAndParse">fetchAndParse</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#class">class</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle.html">NormalizedWeChatArticle</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#class">class</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/class/ArticleImage.js~ArticleImage.html">ArticleImage</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/class/NormalizedWeChatArticle.js~NormalizedWeChatArticle.html">NormalizedWeChatArticle</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/class/WeChatArticle.js~WeChatArticle.html">WeChatArticle</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-external">E</span><span data-ice="name"><span><a href="https://cheerio.js.org/">$</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib">lib</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-cleanStyle">cleanStyle</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib">lib</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-collectMedia">collectMedia</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-cleanStyle">cleanStyle</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -56,13 +58,24 @@
  * @since 0.3.0
  */
 export function normalize ($) {
+  $(&apos;br&apos;).each((i, el) =&gt; {
+    while ($(el).parent().children().length === 1) {
+      const $p = $(el).parent()
+      $(el).insertAfter($(el).parent())
+      $p.remove()
+    }
+  }) // Unwrap &lt;br&gt;s from any kind of element that only contains a &lt;br&gt;.
   $(&apos;[style]&apos;).each((i, el) =&gt; $(el).attr(&apos;style&apos;, cleanStyle($(el).attr(&apos;style&apos;))))
   $(&apos;[powered-by]&apos;).attr(&apos;powered-by&apos;, null)
   $(&apos;[class=&quot;Powered-by-XIUMI V5&quot;]&apos;).attr(&apos;class&apos;, null)
+  $(&apos;[data-label=&quot;powered by xmt.cn&quot;]&apos;).remove()
   $(&apos;[class=&quot;&quot;]&apos;).attr(&apos;class&apos;, null)
   $(&apos;section:not([class],[style])&apos;).each((e, el) =&gt; {
-    if ($(el).children().length &lt;= 1) $(el).remove()
-  })
+    if ($(el).children().length === 1) {
+      $(el).children()[0].insertAfter($(el))
+      $(el).remove()
+    }
+  }) // Unwrap elements in nonsense sections.
   return $
 }
 </code></pre>
