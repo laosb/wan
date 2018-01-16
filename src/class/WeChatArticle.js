@@ -125,6 +125,8 @@ export default class WeChatArticle {
 
   /**
    * Update content with your modified `$`. Don't forget to do this.
+   *
+   * @since 0.4.0
    */
   updateContent () { this.content = this._$('#js_content').html() }
 
@@ -135,6 +137,8 @@ export default class WeChatArticle {
    * See its documentation for reference.
    *
    * @return {Array}
+   *
+   * @since 0.4.0
    */
   getMedia () { return this._media }
 

@@ -7,6 +7,8 @@ import ArticleImage from '../class/ArticleImage'
  * @param {type} $ - Raw `$`. That means all elements in the original HTML.
  *
  * @return {Array}
+ *
+ * @since 0.4.0
  */
 export function collectMedia ($) {
   const media = []

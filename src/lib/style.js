@@ -36,6 +36,8 @@ Object.keys(uselessStyle).forEach(key => {
  * @param {string} styleStr - Original style string from `style` attribute.
  *
  * @return {string} Cleaned style string.
+ *
+ * @since 0.4.0
  */
 export function cleanStyle (styleStr) {
   for (let i = 0; i < cleanStyleRegexs.length; i++) {
