@@ -12,15 +12,28 @@ export default class ArticleImage {
     this.width = $img.data('w') * 1
     this._removed = false
   }
+  cleanup () {
+    if (!this._$img.attr('style')) this._$img.attr('style', null)
+    if (!this._$img.attr('class')) this._$img.attr('class', null)
+    this._$img.attr('data-type', null)
+    this._$img.attr('data-copyright', null)
+    this._$img.attr('data-src', null)
+    this._$img.attr('data-w', null)
+    this._$img.attr('data-ratio', null)
+    this._$img.attr('data-s', null)
+    this._$img.attr('src', this.url)
+  }
   remove () {
     if (this._removed) throw new Error('This image has already been removed.')
     this._$img.remove()
     this._removed = true
   }
   isRemoved () { return this._removed }
-  setStyle (css) { this._$img.css(css) }
   get$Img () { return this._$img }
-  setUrl (newUrl) { this.url = newUrl + '' }
+  setUrl (newUrl) {
+    this.url = newUrl + ''
+    this._$img.attr('src', this.url)
+  }
   async stream () {
     const { data } = await axios.get(this._origUrl, { responseType: 'stream' })
     return data // Pipeable data stream.
