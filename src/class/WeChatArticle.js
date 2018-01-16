@@ -34,8 +34,7 @@ export default class WeChatArticle {
    * `http(s)://mp.weixin.qq.com/s`
    */
   constructor (url) {
-    if (!url.startsWith('https://mp.weixin.qq.com/s') &&
-      !url.startsWith('http://mp.weixin.qq.com/s')) {
+    if (!url.match(/https*:\/\/mp\.weixin\.qq\.com\/s[/?]/ig)) {
       throw new Error('url is not a WeChat article url')
     }
 

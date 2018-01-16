@@ -26,7 +26,7 @@ Object.keys(uselessStyle).forEach(key => {
   let values = uselessStyle[key]
   if (!Array.isArray(values)) values = [values]
   values.map(value => {
-    cleanStyleRegexs.push(new RegExp(` *${key}: *${value} *[ ;]*`, 'gi'))
+    cleanStyleRegexs.push(new RegExp(` *${key}: *${value} *!?[a-z]*[ ;]*`, 'gi'))
   })
 })
 
