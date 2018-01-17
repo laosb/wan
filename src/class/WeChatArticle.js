@@ -97,7 +97,7 @@ export default class WeChatArticle {
      * To get a must-have author name, use {@link WeChatArticle#getAuthorName}.
      * @type {String}
      */
-    this.author = authorEl ? authorEl.text().trim() : undefined
+    this.author = author !== Elmoment($('#post-date').text() ? authorEl.text().trim() : undefined
     this.account = infoObj.account
 
     /**
