@@ -64,7 +64,6 @@ export default class WeChatArticle {
     /** @type {$} */
     this._$ = $
 
-    this._media = collectMedia($)
     let usefulCode = 'const window = {}; const __getInfoFunc = () => {'
     usefulCode += $('#activity-detail > script:nth-child(7)').get()[0].children[0].data
     usefulCode += `
@@ -137,14 +136,14 @@ export default class WeChatArticle {
    * Currently we only parse images, so it will be an array of {@link ArticleImage}.
    * See its documentation for reference.
    *
-   * Only available after you {@link WeChatArticle#fetchAndParse}ed.
+   * Parse media only when you try to get them.
    *
    * @return {Array}
    *
    * @since 0.4.0
    */
   getMedia () {
-    if (!this._parsed) throw new Error("Can't get media before parse.")
+    if (!this._media) this._media = collectMedia(this._$)
     return this._media
   }
 
