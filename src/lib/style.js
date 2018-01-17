@@ -5,7 +5,7 @@ const uselessStyle = {
     '#fff',
     '#ffffff'
   ],
-  'border-width': '0[a-z]*',
+  // 'border-width': '0[a-z]*',
   'white-space': 'normal',
   'border-style': 'initial',
   'border-color': 'initial',
