@@ -108,7 +108,6 @@ export default class WeChatArticle {
     /** @type {$} */
     this._$ = $
 
-    this._media = collectMedia($)
     let usefulCode = &apos;const window = {}; const __getInfoFunc = () =&gt; {&apos;
     usefulCode += $(&apos;#activity-detail &gt; script:nth-child(7)&apos;).get()[0].children[0].data
     usefulCode += `
@@ -142,7 +141,9 @@ export default class WeChatArticle {
      * To get a must-have author name, use {@link WeChatArticle#getAuthorName}.
      * @type {String}
      */
-    this.author = authorEl ? authorEl.text().trim() : undefined
+    this.author = (authorEl.text() !== $(&apos;#post-date&apos;).text())
+      ? authorEl.text().trim()
+      : undefined
     this.account = infoObj.account
 
     /**
@@ -181,14 +182,14 @@ export default class WeChatArticle {
    * Currently we only parse images, so it will be an array of {@link ArticleImage}.
    * See its documentation for reference.
    *
-   * Only available after you {@link WeChatArticle#fetAndParse}ed.
+   * Parse media only when you try to get them.
    *
    * @return {Array}
    *
    * @since 0.4.0
    */
   getMedia () {
-    if (!this._parsed) throw new Error(&quot;Can&apos;t get media before parse.&quot;)
+    if (!this._media) this._media = collectMedia(this._$)
     return this._media
   }
 

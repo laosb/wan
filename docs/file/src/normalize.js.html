@@ -76,9 +76,7 @@ export function normalize ($) {
     removals = 0
     $(&apos;section&apos;).each((e, el) =&gt; {
       if (!$(el).attr(&apos;class&apos;) &amp;&amp; !$(el).attr(&apos;style&apos;)) {
-        for (let i = 0; i &lt; $(el).children().length; i++) {
-          $($(el).children()[i]).insertAfter($(el))
-        }
+        $(el).children().each((i, child) =&gt; $(child).insertBefore($(child).parent()))
         $(el).remove()
         removals++
       }
