@@ -79,7 +79,7 @@ export default class WeChatArticle {
    */
   constructor (url) {
     if (!url.match(/https*:\/\/mp\.weixin\.qq\.com\/s[/?]/ig)) {
-      throw new Error(&apos;url is not a WeChat article url&apos;)
+      throw new Error(url + &apos; is not a WeChat article url&apos;)
     }
 
     /** @type {String} */
