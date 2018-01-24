@@ -108,6 +108,10 @@ export default class WeChatArticle {
      * @type {String}
      */
     this.content = $('#js_content').html()
+
+    this.sourceUrl = infoObj.sourceUrl
+    this.headPicUrl = infoObj.headPicUrl
+    this.description = infoObj.description
     this._parsed = true
     return this
   }
