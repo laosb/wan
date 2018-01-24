@@ -510,6 +510,12 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
+    "src/class/wechatarticle.js~wechatarticle#description",
+    "class/src/class/WeChatArticle.js~WeChatArticle.html#instance-member-description",
+    "src/class/WeChatArticle.js~WeChatArticle#description",
+    "member"
+  ],
+  [
     "src/class/wechatarticle.js~wechatarticle#fetchandparse",
     "class/src/class/WeChatArticle.js~WeChatArticle.html#instance-method-fetchAndParse",
     "src/class/WeChatArticle.js~WeChatArticle#fetchAndParse",
@@ -534,6 +540,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/class/wechatarticle.js~wechatarticle#headpicurl",
+    "class/src/class/WeChatArticle.js~WeChatArticle.html#instance-member-headPicUrl",
+    "src/class/WeChatArticle.js~WeChatArticle#headPicUrl",
+    "member"
+  ],
+  [
     "src/class/wechatarticle.js~wechatarticle#isparsed",
     "class/src/class/WeChatArticle.js~WeChatArticle.html#instance-method-isParsed",
     "src/class/WeChatArticle.js~WeChatArticle#isParsed",
@@ -543,6 +555,12 @@ window.esdocSearchIndex = [
     "src/class/wechatarticle.js~wechatarticle#publishedat",
     "class/src/class/WeChatArticle.js~WeChatArticle.html#instance-member-publishedAt",
     "src/class/WeChatArticle.js~WeChatArticle#publishedAt",
+    "member"
+  ],
+  [
+    "src/class/wechatarticle.js~wechatarticle#sourceurl",
+    "class/src/class/WeChatArticle.js~WeChatArticle.html#instance-member-sourceUrl",
+    "src/class/WeChatArticle.js~WeChatArticle#sourceUrl",
     "member"
   ],
   [
